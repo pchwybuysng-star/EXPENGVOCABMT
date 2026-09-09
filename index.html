@@ -6,7 +6,7 @@
   <title>VocabFlip - ฝึกจำคำศัพท์ภาษาอังกฤษ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================
        CSS VARIABLES & THEMES
@@ -36,8 +36,8 @@
       
       --bg-body: #f8fafc;
       --bg-card-front: #ffffff;
-      --bg-card-back: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
-      --bg-glass: rgba(255, 255, 255, 0.82);
+      --bg-card-back: linear-gradient(145deg, #181c32 0%, #202644 50%, #2c2759 100%);
+      --bg-glass: rgba(255, 255, 255, 0.85);
       --bg-glass-subtle: rgba(255, 255, 255, 0.6);
       
       --text-main: #0f172a;
@@ -79,7 +79,7 @@
       
       --bg-body: #0b0f19;
       --bg-card-front: #141c2e;
-      --bg-card-back: linear-gradient(135deg, #090d16 0%, #1e1b4b 60%, #312e81 100%);
+      --bg-card-back: linear-gradient(145deg, #090d16 0%, #151a2e 50%, #1c1a40 100%);
       --bg-glass: rgba(20, 28, 46, 0.85);
       --bg-glass-subtle: rgba(20, 28, 46, 0.6);
       
@@ -176,7 +176,7 @@
       align-items: center;
     }
 
-    /* Top Utility Bar (Theme, Sound, Speed) */
+    /* Top Utility Bar */
     .top-toolbar {
       width: 100%;
       display: flex;
@@ -268,10 +268,6 @@
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .tab-btn svg {
-      transition: transform 0.2s ease;
-    }
-
     .tab-btn:hover:not(.active) {
       background: var(--bg-glass-subtle);
       color: var(--text-main);
@@ -281,10 +277,6 @@
       background: var(--primary);
       color: white;
       box-shadow: 0 6px 16px var(--primary-glow);
-    }
-
-    .tab-btn.active svg {
-      transform: scale(1.08);
     }
 
     /* Stats Overview Pills */
@@ -309,11 +301,6 @@
       align-items: center;
       gap: 7px;
       box-shadow: var(--shadow-sm);
-      transition: transform 0.2s ease;
-    }
-
-    .stat-chip:hover {
-      transform: translateY(-1px);
     }
 
     .chip-dot {
@@ -450,13 +437,13 @@
     .card-stage {
       perspective: 1200px;
       width: 100%;
-      height: 330px;
+      min-height: 410px;
       margin-bottom: 18px;
     }
 
     .flashcard-3d {
       width: 100%;
-      height: 100%;
+      min-height: 410px;
       position: relative;
       transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
       transform-style: preserve-3d;
@@ -472,10 +459,11 @@
     .card-face-plane {
       width: 100%;
       height: 100%;
+      min-height: 410px;
       position: absolute;
       backface-visibility: hidden;
       border-radius: var(--radius-xl);
-      padding: 24px 28px;
+      padding: 22px 26px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -515,7 +503,7 @@
     }
 
     .card-back-plane .card-watermark {
-      opacity: 0.08;
+      opacity: 0.05;
       color: white;
     }
 
@@ -577,8 +565,8 @@
 
     /* Audio TTS Button */
     .speech-bubble-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 14px;
       border: 1px solid var(--border-color);
       background: var(--bg-glass);
@@ -630,7 +618,7 @@
       align-items: center;
       text-align: center;
       width: 100%;
-      padding: 12px 0;
+      padding: 8px 0;
       z-index: 2;
     }
 
@@ -664,29 +652,136 @@
     .card-back-plane .en-word-subtext {
       font-family: var(--font-en);
       font-size: 1.15rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.85);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* English Definition Box */
+    .card-def-en-box {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 3px solid #818cf8;
+      border-radius: 0 10px 10px 0;
+      padding: 7px 12px;
+      text-align: left;
       margin-bottom: 10px;
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .def-content-left {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .def-tag-label {
+      font-family: var(--font-en);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #a5b4fc;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .def-text-line {
+      font-family: var(--font-en);
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.95);
     }
 
     .card-back-plane .th-meaning-lead {
-      font-size: 1.9rem;
+      font-size: 1.65rem;
       font-weight: 700;
-      line-height: 1.35;
+      line-height: 1.3;
       color: #ffffff;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      margin-bottom: 12px;
+    }
+
+    /* EXAMPLE SENTENCE BOX ON CARD BACK */
+    .card-example-box {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 10px 14px;
+      text-align: left;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .example-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .example-title-chip {
+      font-size: 0.73rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .mini-speaker-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mini-speaker-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .example-en-line {
+      font-family: var(--font-en);
+      font-size: 0.93rem;
+      line-height: 1.4;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .example-th-line {
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.75);
     }
 
     /* Card Prompt Hints */
     .card-flip-cue {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-subtle);
       display: flex;
       align-items: center;
       gap: 6px;
       background: var(--bg-glass-subtle);
-      padding: 5px 14px;
+      padding: 4px 12px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
       z-index: 2;
@@ -696,6 +791,7 @@
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.2);
       color: rgba(255, 255, 255, 0.8);
+      margin-top: 8px;
     }
 
     /* Mastery Buttons Shelf */
@@ -1078,11 +1174,11 @@
 
     .words-scroll-list {
       width: 100%;
-      max-height: 540px;
+      max-height: 560px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       padding-right: 4px;
     }
 
@@ -1093,8 +1189,8 @@
       padding: 14px 18px;
       border-radius: 16px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 8px;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: var(--shadow-sm);
@@ -1105,6 +1201,13 @@
       background: var(--bg-card-front);
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
+    }
+
+    .word-row-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
 
     .word-row-left {
@@ -1121,8 +1224,49 @@
     }
 
     .word-row-th {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .word-row-def-en {
+      font-family: var(--font-en);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #6366f1;
+      line-height: 1.35;
+      padding-left: 2px;
+    }
+
+    [data-theme="dark"] .word-row-def-en {
+      color: #a5b4fc;
+    }
+
+    .word-row-example {
+      background: rgba(0, 0, 0, 0.03);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    [data-theme="dark"] .word-row-example {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .word-row-example-en {
+      font-family: var(--font-en);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .word-row-example-th {
+      color: var(--text-muted);
+      font-size: 0.8rem;
       margin-top: 2px;
     }
 
@@ -1158,9 +1302,9 @@
     @media (max-width: 640px) {
       body { padding: 12px 12px 40px; }
       .brand-logo { font-size: 1.15rem; }
-      .card-stage { height: 290px; }
+      .card-stage, .flashcard-3d, .card-face-plane { min-height: 380px; }
       .en-word-lead { font-size: 1.85rem; }
-      .card-back-plane .th-meaning-lead { font-size: 1.5rem; }
+      .card-back-plane .th-meaning-lead { font-size: 1.4rem; }
       .deck-controls-shelf { grid-template-columns: 1fr 1fr; }
       .keyboard-cheatsheet { display: none; }
     }
@@ -1267,7 +1411,7 @@
       <!-- 3D Flashcard Stage -->
       <div class="card-stage" id="cardTouchArea" onclick="flipCurrentCard()">
         <div class="flashcard-3d" id="mainFlashcard">
-          <!-- FRONT FACE (English) -->
+          <!-- FRONT FACE (English Word) -->
           <div class="card-face-plane card-front-plane">
             <span class="card-watermark" id="watermarkIndex">01</span>
             
@@ -1285,11 +1429,11 @@
 
             <div class="card-flip-cue">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-              แตะการ์ดเพื่อดูความหมาย
+              แตะการ์ดเพื่อดูนิยามภาษาอังกฤษ คำแปล และตัวอย่าง
             </div>
           </div>
 
-          <!-- BACK FACE (Thai Meaning) -->
+          <!-- BACK FACE (English Definition, Thai Meaning & Example) -->
           <div class="card-face-plane card-back-plane">
             <span class="card-watermark" id="watermarkIndexBack">01</span>
 
@@ -1302,7 +1446,34 @@
 
             <div class="card-core-content">
               <div class="en-word-subtext" id="backWordSubtitle"></div>
+
+              <!-- English Definition Box -->
+              <div class="card-def-en-box" onclick="event.stopPropagation()">
+                <div class="def-content-left">
+                  <span class="def-tag-label">DEF:</span>
+                  <span class="def-text-line" id="backDefEn">definition here</span>
+                </div>
+                <button class="mini-speaker-btn" onclick="speakCurrentDef(event)" title="ฟังเสียงอ่านนิยามภาษาอังกฤษ">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                </button>
+              </div>
+
+              <!-- Thai Meaning -->
               <div class="th-meaning-lead" id="backMeaningText">กำลังโหลด...</div>
+
+              <!-- Dedicated Example Sentence Box -->
+              <div class="card-example-box" onclick="event.stopPropagation()">
+                <div class="example-header-bar">
+                  <span class="example-title-chip">
+                    <span>💬</span> ตัวอย่างประโยค
+                  </span>
+                  <button class="mini-speaker-btn" onclick="speakCurrentExample(event)" title="ฟังเสียงอ่านประโยค">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                  </button>
+                </div>
+                <div class="example-en-line" id="backExampleEn">...</div>
+                <div class="example-th-line" id="backExampleTh">...</div>
+              </div>
             </div>
 
             <div class="card-flip-cue">
@@ -1349,7 +1520,9 @@
       <div class="keyboard-cheatsheet">
         <span><span class="key-badge">Space</span> พลิกการ์ด</span>
         <span><span class="key-badge">&larr;</span> <span class="key-badge">&rarr;</span> ก่อนหน้า/ถัดไป</span>
-        <span><span class="key-badge">S</span> ฟังเสียง</span>
+        <span><span class="key-badge">S</span> ฟังคำศัพท์</span>
+        <span><span class="key-badge">D</span> ฟังนิยาม Eng</span>
+        <span><span class="key-badge">E</span> ฟังตัวอย่างประโยค</span>
         <span><span class="key-badge">1</span> ต้องทบทวน</span>
         <span><span class="key-badge">2</span> จำได้แล้ว</span>
       </div>
@@ -1444,7 +1617,7 @@
          ========================================================== -->
     <div id="wordlistPane" class="tab-pane">
       <div class="wordlist-search-deck">
-        <input type="text" id="filterSearchQuery" class="search-field-input" placeholder="🔍 ค้นหาคำศัพท์ (อังกฤษ หรือ ไทย)..." oninput="renderWordCatalog()">
+        <input type="text" id="filterSearchQuery" class="search-field-input" placeholder="🔍 ค้นหาคำศัพท์, นิยามภาษาอังกฤษ, หรือคำแปล..." oninput="renderWordCatalog()">
         <select id="filterStatusSelect" class="select-dropdown-styled" onchange="renderWordCatalog()">
           <option value="all">ทั้งหมด (110)</option>
           <option value="review">เฉพาะที่ต้องทบทวน</option>
@@ -1472,443 +1645,773 @@
     const masterVocabDeck = [
   {
     "word": "addiction (n.)",
-    "meaning": "การเสพติด"
+    "meaning": "การเสพติด",
+    "example_en": "He sought professional help to overcome his smartphone addiction.",
+    "example_th": "เขาขอความช่วยเหลือจากผู้เชี่ยวชาญเพื่อเอาชนะการเสพติดสมาร์ตโฟน",
+    "definition_en": "a strong and harmful need to regularly have or do something"
   },
   {
     "word": "approach (v.)",
-    "meaning": "เข้าใกล้, เข้าหา, วิธีการ"
+    "meaning": "เข้าใกล้, เข้าหา, วิธีการ",
+    "example_en": "We need to find a new approach to solve this complicated problem.",
+    "example_th": "เราจำเป็นต้องหาวิธีการใหม่เพื่อแก้ปัญหาที่ซับซ้อนนี้",
+    "definition_en": "to come near or closer to someone or something; a way of dealing with a situation"
   },
   {
     "word": "assign (v.)",
-    "meaning": "มอบหมาย"
+    "meaning": "มอบหมาย",
+    "example_en": "The teacher will assign each student a research topic tomorrow.",
+    "example_th": "คุณครูจะมอบหมายหัวข้องานวิจัยให้นักเรียนแต่ละคนในวันพรุ่งนี้",
+    "definition_en": "to allocate a job or duty to someone"
   },
   {
     "word": "baseline (n.)",
-    "meaning": "เส้นพื้นฐาน, เกณฑ์มาตรฐาน"
+    "meaning": "เส้นพื้นฐาน, เกณฑ์มาตรฐาน",
+    "example_en": "The doctor measured her baseline blood pressure before beginning the treatment.",
+    "example_th": "แพทย์วัดความดันโลหิตเกณฑ์มาตรฐานของเธอก่อนเริ่มการรักษา",
+    "definition_en": "a starting point or standard used for comparison"
   },
   {
     "word": "centenarian (n.)",
-    "meaning": "ผู้ที่มีอายุ 100 ปีขึ้นไป"
+    "meaning": "ผู้ที่มีอายุ 100 ปีขึ้นไป",
+    "example_en": "The island is famous for having a remarkably high number of centenarians.",
+    "example_th": "เกาะแห่งนี้มีชื่อเสียงในเรื่องการมีผู้ที่มีอายุ 100 ปีขึ้นไปจำนวนมากเป็นพิเศษ",
+    "definition_en": "a person who is one hundred years old or older"
   },
   {
     "word": "chronic disease (n.)",
-    "meaning": "โรคเรื้อรัง"
+    "meaning": "โรคเรื้อรัง",
+    "example_en": "A healthy diet can significantly lower the risk of developing a chronic disease.",
+    "example_th": "การรับประทานอาหารที่มีประโยชน์สามารถลดความเสี่ยงต่อการเกิดโรคเรื้อรังได้อย่างมีนัยสำคัญ",
+    "definition_en": "a long-lasting condition that can be controlled but not easily cured"
   },
   {
     "word": "dominate (v.)",
-    "meaning": "ครอบงำ, ควบคุม"
+    "meaning": "ครอบงำ, ควบคุม",
+    "example_en": "A few major technology companies continue to dominate the global market.",
+    "example_th": "บริษัทเทคโนโลยียักษ์ใหญ่เพียงไม่กี่แห่งยังคงมีอำนาจครอบงำตลาดโลก",
+    "definition_en": "to have power and influence over someone or something"
   },
   {
     "word": "embarrassed (adj.)",
-    "meaning": "รู้สึกอับอาย, ขวยเขิน"
+    "meaning": "รู้สึกอับอาย, ขวยเขิน",
+    "example_en": "She felt embarrassed when she realized her microphone was still on.",
+    "example_th": "เธอรู้สึกขวยเขินเมื่อตระหนักว่าไมโครโฟนของเธอยังคงเปิดอยู่",
+    "definition_en": "feeling awkward, self-conscious, or ashamed"
   },
   {
     "word": "excess (adj./n.)",
-    "meaning": "ส่วนเกิน, มากเกินไป / ความมากเกินไป"
+    "meaning": "ส่วนเกิน, มากเกินไป / ความมากเกินไป",
+    "example_en": "Try to avoid consuming an excess of processed sugar.",
+    "example_th": "พยายามหลีกเลี่ยงการบริโภคน้ำตาลแปรรูปในปริมาณที่มากเกินไป",
+    "definition_en": "an amount that is more than necessary, acceptable, or desirable"
   },
   {
     "word": "impair (v.)",
-    "meaning": "ทำให้แย่ลง, ทำให้อ่อนแอ, ทำให้บกพร่อง"
+    "meaning": "ทำให้แย่ลง, ทำให้อ่อนแอ, ทำให้บกพร่อง",
+    "example_en": "Lack of proper sleep can severely impair your ability to concentrate.",
+    "example_th": "การอดนอนอย่างเพียงพออาจทำให้ความสามารถในการมีสมาธิแย่ลงอย่างมาก",
+    "definition_en": "to weaken, damage, or make something worse"
   },
   {
     "word": "indulge in (phr. v.)",
-    "meaning": "หมกมุ่น, ปล่อยตัวตามใจใน"
+    "meaning": "หมกมุ่น, ปล่อยตัวตามใจใน",
+    "example_en": "On weekends, he likes to indulge in his favorite desserts.",
+    "example_th": "ในวันหยุดสุดสัปดาห์ เขาชอบตามใจตัวเองด้วยการทานของหวานที่ชื่นชอบ",
+    "definition_en": "to allow oneself to enjoy the pleasure of something"
   },
   {
     "word": "intake (n.)",
-    "meaning": "ปริมาณที่บริโภคเข้าไป"
+    "meaning": "ปริมาณที่บริโภคเข้าไป",
+    "example_en": "Doctors recommend increasing your daily intake of fresh fruits and water.",
+    "example_th": "แพทย์แนะนำให้เพิ่มปริมาณการบริโภคผลไม้สดและน้ำในแต่ละวัน",
+    "definition_en": "the amount of food, drink, or air that is taken into the body"
   },
   {
     "word": "intervention (n.)",
-    "meaning": "การแทรกแซง (เพื่อแก้ไขปัญหา)"
+    "meaning": "การแทรกแซง (เพื่อแก้ไขปัญหา)",
+    "example_en": "Early medical intervention can prevent minor conditions from becoming severe.",
+    "example_th": "การแทรกแซงทางการแพทย์ตั้งแต่เนิ่นๆ สามารถป้องกันไม่ให้อาการเล็กน้อยลุกลามจนรุนแรง",
+    "definition_en": "action taken to improve a situation or prevent harm"
   },
   {
     "word": "life expectancy (n.)",
-    "meaning": "อายุขัยเฉลี่ย"
+    "meaning": "อายุขัยเฉลี่ย",
+    "example_en": "Better healthcare systems have led to a noticeable rise in average life expectancy.",
+    "example_th": "ระบบสาธารณสุขที่ดีขึ้นส่งผลให้อายุขัยเฉลี่ยเพิ่มขึ้นอย่างเห็นได้ชัด",
+    "definition_en": "the average period that a person or living thing may expect to live"
   },
   {
     "word": "longevity (n.)",
-    "meaning": "ความมีอายุยืน"
+    "meaning": "ความมีอายุยืน",
+    "example_en": "Scientists are studying how genetic factors contribute to human longevity.",
+    "example_th": "นักวิทยาศาสตร์กำลังศึกษาว่าปัจจัยทางพันธุกรรมส่งผลต่อความมีอายุยืนอย่างไร",
+    "definition_en": "long life or the ability to live for a long time"
   },
   {
     "word": "optimal (adj.)",
-    "meaning": "เหมาะสมที่สุด, ดีที่สุด"
+    "meaning": "เหมาะสมที่สุด, ดีที่สุด",
+    "example_en": "Getting eight hours of restful sleep is optimal for brain recovery.",
+    "example_th": "การนอนหลับพักผ่อนแปดชั่วโมงถือว่าเหมาะสมที่สุดสำหรับการฟื้นฟูสมอง",
+    "definition_en": "best, most favorable, or most desirable"
   },
   {
     "word": "premature (adj.)",
-    "meaning": "ก่อนกำหนด"
+    "meaning": "ก่อนกำหนด",
+    "example_en": "Stress and an unhealthy lifestyle can cause premature aging.",
+    "example_th": "ความเครียดและการใช้ชีวิตที่ไม่ถูกสุขลักษณะอาจทำให้เกิดความชราก่อนกำหนด",
+    "definition_en": "occurring or done before the usual or proper time"
   },
   {
     "word": "realize (v.)",
-    "meaning": "ตระหนัก, เข้าใจอย่างชัดเจน"
+    "meaning": "ตระหนัก, เข้าใจอย่างชัดเจน",
+    "example_en": "It took a few moments for him to realize the true importance of the message.",
+    "example_th": "ต้องใช้เวลาสักพักกว่าที่เขาจะตระหนักถึงความสำคัญที่แท้จริงของข้อความนั้น",
+    "definition_en": "to become fully aware of something as a fact"
   },
   {
     "word": "root for (phr. v.)",
-    "meaning": "เอาใจช่วย, สนับสนุน"
+    "meaning": "เอาใจช่วย, สนับสนุน",
+    "example_en": "The entire city gathered at the stadium to root for their hometown team.",
+    "example_th": "คนทั้งเมืองมารวมตัวกันที่สนามกีฬาเพื่อส่งเสียงเอาใจช่วยทีมบ้านเกิดของตน",
+    "definition_en": "to show support or cheer for someone's success"
   },
   {
     "word": "unproven (adj.)",
-    "meaning": "ยังไม่ได้รับการพิสูจน์"
+    "meaning": "ยังไม่ได้รับการพิสูจน์",
+    "example_en": "Doctors advise patients not to rely on unproven medical remedies.",
+    "example_th": "แพทย์แนะนำผู้ป่วยว่าอย่าพึ่งพาการรักษาทางการแพทย์ที่ยังไม่ได้รับการพิสูจน์",
+    "definition_en": "not demonstrated or established by evidence or testing"
   },
   {
     "word": "alleviate (v.)",
-    "meaning": "บรรเทา, ทำให้น้อยลง"
+    "meaning": "บรรเทา, ทำให้น้อยลง",
+    "example_en": "Taking a warm bath can help alleviate muscle tension and soreness.",
+    "example_th": "การแช่น้ำอุ่นสามารถช่วยบรรเทาความตึงเครียดและอาการปวดเมื่อยของกล้ามเนื้อได้",
+    "definition_en": "to make suffering, deficiency, or a problem less severe"
   },
   {
     "word": "casually (adv.)",
-    "meaning": "อย่างไม่เป็นทางการ, สบายๆ"
+    "meaning": "อย่างไม่เป็นทางการ, สบายๆ",
+    "example_en": "They walked casually through the park, chatting about their weekend plans.",
+    "example_th": "พวกเขาเดินเล่นในสวนสาธารณะอย่างสบายๆ พลางพูดคุยเกี่ยวกับแผนการในวันหยุด",
+    "definition_en": "in a relaxed, informal, or unconcerned manner"
   },
   {
     "word": "commute (v./n.)",
-    "meaning": "เดินทางไปกลับที่ทำงาน / การเดินทางไปทำงาน"
+    "meaning": "เดินทางไปกลับที่ทำงาน / การเดินทางไปทำงาน",
+    "example_en": "Many people choose to take the train to avoid a stressful daily commute.",
+    "example_th": "หลายคนเลือกนั่งรถไฟเพื่อหลีกเลี่ยงการเดินทางไปทำงานประจำวันที่ตึงเครียด",
+    "definition_en": "to travel regularly between one's home and place of work"
   },
   {
     "word": "compel (v.)",
-    "meaning": "บังคับ, บีบบังคับ"
+    "meaning": "บังคับ, บีบบังคับ",
+    "example_en": "Economic hardship may compel families to cut down on non-essential spending.",
+    "example_th": "ความยากลำบากทางเศรษฐกิจอาจบีบบังคับให้ครอบครัวต้องลดค่าใช้จ่ายที่ไม่จำเป็น",
+    "definition_en": "to force or strongly persuade someone to do something"
   },
   {
     "word": "coordinate (v.)",
-    "meaning": "ประสานงาน"
+    "meaning": "ประสานงาน",
+    "example_en": "The project manager had to coordinate efforts across three different international teams.",
+    "example_th": "ผู้จัดการโครงการต้องประสานงานระหว่างทีมจากสามประเทศที่แตกต่างกัน",
+    "definition_en": "to organize the different elements of an activity so they work together smoothly"
   },
   {
     "word": "cutting-edge (adj.)",
-    "meaning": "ล้ำยุค, ทันสมัยที่สุด"
+    "meaning": "ล้ำยุค, ทันสมัยที่สุด",
+    "example_en": "The laboratory is equipped with cutting-edge medical technology.",
+    "example_th": "ห้องปฏิบัติการนี้เพียบพร้อมด้วยเทคโนโลยีทางการแพทย์ที่ล้ำสมัยที่สุด",
+    "definition_en": "at the latest or most advanced stage of development"
   },
   {
     "word": "iconic (adj.)",
-    "meaning": "ซึ่งเป็นสัญลักษณ์, มีชื่อเสียงโด่งดัง"
+    "meaning": "ซึ่งเป็นสัญลักษณ์, มีชื่อเสียงโด่งดัง",
+    "example_en": "The Eiffel Tower remains one of the most iconic landmarks in the world.",
+    "example_th": "หอไอเฟลยังคงเป็นหนึ่งในแลนด์มาร์กที่มีชื่อเสียงและเป็นสัญลักษณ์มากที่สุดในโลก",
+    "definition_en": "widely recognized, famous, and considered representative of a concept or era"
   },
   {
     "word": "illegally (adv.)",
-    "meaning": "อย่างผิดกฎหมาย"
+    "meaning": "อย่างผิดกฎหมาย",
+    "example_en": "The driver was fined for parking illegally in a designated bus zone.",
+    "example_th": "คนขับรถถูกปรับเนื่องจากจอดรถอย่างผิดกฎหมายในเขตที่กำหนดไว้สำหรับรถโดยสาร",
+    "definition_en": "in a way that violates or is contrary to the law"
   },
   {
     "word": "incentive (n.)",
-    "meaning": "สิ่งจูงใจ, แรงจูงใจ"
+    "meaning": "สิ่งจูงใจ, แรงจูงใจ",
+    "example_en": "The company offers a performance bonus as an incentive for hard work.",
+    "example_th": "บริษัทเสนอเงินโบนัสผลงานเพื่อเป็นสิ่งจูงใจในการทำงานหนัก",
+    "definition_en": "a thing that motivates or encourages someone to do something"
   },
   {
     "word": "impediment (n.)",
-    "meaning": "อุปสรรค, สิ่งกีดขวาง"
+    "meaning": "อุปสรรค, สิ่งกีดขวาง",
+    "example_en": "A lack of financial funding proved to be a serious impediment to the project.",
+    "example_th": "การขาดแคลนเงินทุนกลายเป็นอุปสรรคสำคัญสำหรับโครงการนี้",
+    "definition_en": "a hindrance or obstruction in doing something"
   },
   {
     "word": "navigate (v.)",
-    "meaning": "นำทาง, หาเส้นทาง"
+    "meaning": "นำทาง, หาเส้นทาง",
+    "example_en": "She used a digital map on her phone to navigate the maze of narrow streets.",
+    "example_th": "เธอใช้แผนที่ดิจิทัลบนโทรศัพท์เพื่อนำทางผ่านเขาวงกตของตรอกซอกซอยแคบๆ",
+    "definition_en": "to plan and direct the course of a journey, or find one's way"
   },
   {
     "word": "necessity (n.)",
-    "meaning": "ความจำเป็น, สิ่งจำเป็น"
+    "meaning": "ความจำเป็น, สิ่งจำเป็น",
+    "example_en": "Clean drinking water is an absolute necessity for human survival.",
+    "example_th": "น้ำดื่มสะอาดเป็นสิ่งจำเป็นอย่างยิ่งต่อการอยู่รอดของมนุษย์",
+    "definition_en": "the state or fact of being required or indispensable"
   },
   {
     "word": "picturesque (adj.)",
-    "meaning": "สวยงามเหมือนภาพวาด"
+    "meaning": "สวยงามเหมือนภาพวาด",
+    "example_en": "The mountain village is known for its picturesque wooden cabins and floral fields.",
+    "example_th": "หมู่บ้านบนภูเขาแห่งนี้มีชื่อเสียงในเรื่องกระท่อมไม้และทุ่งดอกไม้ที่สวยงามราวกับภาพวาด",
+    "definition_en": "visually attractive, charming, and like a picture"
   },
   {
     "word": "scarce (adj.)",
-    "meaning": "ขาดแคลน, หายาก"
+    "meaning": "ขาดแคลน, หายาก",
+    "example_en": "During the severe drought, fresh agricultural produce became very scarce.",
+    "example_th": "ในช่วงที่เกิดภัยแล้งรุนแรง ผลผลิตทางการเกษตรที่สดใหม่กลายเป็นของหายากและขาดแคลน",
+    "definition_en": "insufficient for the demand; rare or difficult to find"
   },
   {
     "word": "secure (adj.)",
-    "meaning": "ปลอดภัย, มั่นคง"
+    "meaning": "ปลอดภัย, มั่นคง",
+    "example_en": "Make sure you keep all confidential documents in a secure safe.",
+    "example_th": "ตรวจสอบให้แน่ใจว่าคุณเก็บเอกสารลับทั้งหมดไว้ในตู้เซฟที่ปลอดภัย",
+    "definition_en": "fixed or fastened so as not to give way, become lost, or be attacked"
   },
   {
     "word": "shortage (n.)",
-    "meaning": "ความขาดแคลน"
+    "meaning": "ความขาดแคลน",
+    "example_en": "The hospital is currently facing a critical shortage of qualified nurses.",
+    "example_th": "โรงพยาบาลกำลังเผชิญกับภาวะขาดแคลนพยาบาลวิชาชีพอย่างวิกฤตในขณะนี้",
+    "definition_en": "a state or situation in which something needed cannot be obtained in sufficient amounts"
   },
   {
     "word": "slash (v.)",
-    "meaning": "ฟัน, ตัดราคา/ลดลงอย่างมาก"
+    "meaning": "ฟัน, ตัดราคา/ลดลงอย่างมาก",
+    "example_en": "The supermarket decided to slash prices on seasonal goods to attract buyers.",
+    "example_th": "ซูเปอร์มาร์เก็ตตัดสินใจตัดลดราคาของสินค้าตามฤดูกาลเพื่อดึงดูดผู้ซื้อ",
+    "definition_en": "to cut violently, or to reduce prices and numbers drastically"
   },
   {
     "word": "staple (n.)",
-    "meaning": "สินค้าหลัก, อาหารหลัก"
+    "meaning": "สินค้าหลัก, อาหารหลัก",
+    "example_en": "Rice has always been the primary food staple across many Asian nations.",
+    "example_th": "ข้าวเป็นอาหารหลักที่สำคัญของหลายประเทศในเอเชียมาโดยตลอด",
+    "definition_en": "a main or essential item of trade, production, or diet"
   },
   {
     "word": "strain (n.)",
-    "meaning": "ความตึงเครียด, ภาระหนัก"
+    "meaning": "ความตึงเครียด, ภาระหนัก",
+    "example_en": "Working long hours in front of a computer screen can cause serious eye strain.",
+    "example_th": "การทำงานหน้าจอคอมพิวเตอร์เป็นเวลานานอาจทำให้เกิดความตึงเครียดของสายตาอย่างรุนแรง",
+    "definition_en": "a severe or demanding pressure on mental or physical strength"
   },
   {
     "word": "stroll (v./n.)",
-    "meaning": "เดินเล่น / การเดินเล่น"
+    "meaning": "เดินเล่น / การเดินเล่น",
+    "example_en": "They enjoyed an evening stroll along the peaceful lakeside promenade.",
+    "example_th": "พวกเขาเพลิดเพลินกับการเดินเล่นยามเย็นไปตามทางเดินริมทะเลสาบอันเงียบสงบ",
+    "definition_en": "to walk in a leisurely, relaxed, and unhurried way"
   },
   {
     "word": "cardiovascular (adj.)",
-    "meaning": "เกี่ยวกับหัวใจและหลอดเลือด"
+    "meaning": "เกี่ยวกับหัวใจและหลอดเลือด",
+    "example_en": "Aerobic exercises like swimming and cycling promote cardiovascular health.",
+    "example_th": "การออกกำลังกายแบบแอโรบิก เช่น ว่ายน้ำและปั่นจักรยาน ช่วยส่งเสริมสุขภาพของหัวใจและหลอดเลือด",
+    "definition_en": "relating to the circulatory system, especially the heart and blood vessels"
   },
   {
     "word": "contributor (n.)",
-    "meaning": "ปัจจัยที่มีส่วนทำให้เกิด, ผู้บริจาค"
+    "meaning": "ปัจจัยที่มีส่วนทำให้เกิด, ผู้บริจาค",
+    "example_en": "Excessive stress is considered a major contributor to sleep disorders.",
+    "example_th": "ความเครียดที่มากเกินไปถือเป็นปัจจัยสำคัญที่ก่อให้เกิดความผิดปกติในการนอนหลับ",
+    "definition_en": "a person or factor that helps bring about a particular result"
   },
   {
     "word": "restriction (n.)",
-    "meaning": "การจำกัด, ข้อจำกัด"
+    "meaning": "การจำกัด, ข้อจำกัด",
+    "example_en": "The doctor placed a strict dietary restriction on sodium and saturated fat.",
+    "example_th": "แพทย์ได้กำหนดข้อจำกัดทางอาหารอย่างเข้มงวดเกี่ยวกับโซเดียมและไขมันอิ่มตัว",
+    "definition_en": "a limiting condition or measure, especially a legal regulation"
   },
   {
     "word": "refined (adj.)",
-    "meaning": "ผ่านการกลั่น/ทำให้บริสุทธิ์ (เช่น น้ำตาลทรายขาว), ขัดเกลาแล้ว"
+    "meaning": "ผ่านการกลั่น/ทำให้บริสุทธิ์ (เช่น น้ำตาลทรายขาว), ขัดเกลาแล้ว",
+    "example_en": "Nutritionists often warn against consuming too many refined carbohydrates.",
+    "example_th": "นักโภชนาการมักเตือนเกี่ยวกับการบริโภคคาร์โบไฮเดรตที่ผ่านการขัดสีมากเกินไป",
+    "definition_en": "purified of impurities through processing, or polite and cultured"
   },
   {
     "word": "sober (adj.)",
-    "meaning": "ไม่เมา, มีสติ, สุขุม"
+    "meaning": "ไม่เมา, มีสติ, สุขุม",
+    "example_en": "He made a conscious decision to remain completely sober at the party.",
+    "example_th": "เขาตัดสินใจอย่างมีสติว่าจะไม่ดื่มของมึนเมาเลยในงานปาร์ตี้",
+    "definition_en": "not affected by alcohol or drugs; serious and sensible"
   },
   {
     "word": "diverse (adj.)",
-    "meaning": "หลากหลาย"
+    "meaning": "หลากหลาย",
+    "example_en": "The company values having employees with diverse backgrounds and perspectives.",
+    "example_th": "บริษัทให้ความสำคัญกับการมีพนักงานที่มีภูมิหลังและมุมมองที่หลากหลาย",
+    "definition_en": "showing a great deal of variety; very different"
   },
   {
     "word": "pattern (n.)",
-    "meaning": "รูปแบบ"
+    "meaning": "รูปแบบ",
+    "example_en": "Researchers discovered a distinct pattern in the way the virus spreads.",
+    "example_th": "นักวิจัยได้ค้นพบรูปแบบที่ชัดเจนในลักษณะที่ไวรัสแพร่กระจาย",
+    "definition_en": "a regular and repeated way in which something happens or is done"
   },
   {
     "word": "strategy (n.)",
-    "meaning": "กลยุทธ์, แผนการ"
+    "meaning": "กลยุทธ์, แผนการ",
+    "example_en": "The marketing team devised an innovative strategy to boost online sales.",
+    "example_th": "ทีมการตลาดได้คิดค้นกลยุทธ์แปลกใหม่เพื่อเพิ่มยอดขายทางออนไลน์",
+    "definition_en": "a plan of action designed to achieve a long-term or overall aim"
   },
   {
     "word": "capacity (n.)",
-    "meaning": "ความจุ, ความสามารถในการรับ"
+    "meaning": "ความจุ, ความสามารถในการรับ",
+    "example_en": "The stadium has reached its maximum seating capacity for the finals.",
+    "example_th": "สนามกีฬาได้จุคนเต็มความจุที่นั่งสูงสุดสำหรับการแข่งขันรอบชิงชนะเลิศแล้ว",
+    "definition_en": "the maximum amount that something can contain or produce"
   },
   {
     "word": "pedestrian (n.)",
-    "meaning": "คนเดินเท้า"
+    "meaning": "คนเดินเท้า",
+    "example_en": "Drivers are legally required to yield to any pedestrian at the crosswalk.",
+    "example_th": "ผู้ขับขี่มีหน้าที่ตามกฎหมายที่จะต้องหยุดให้คนเดินเท้าข้ามทางม้าลาย",
+    "definition_en": "a person walking along a road or in a developed area"
   },
   {
     "word": "pavement (n.)",
-    "meaning": "ทางเท้า, ฟุตบาท"
+    "meaning": "ทางเท้า, ฟุตบาท",
+    "example_en": "The city decided to renovate the damaged pavement along the main avenue.",
+    "example_th": "เมืองตัดสินใจบูรณะทางเท้าที่ชำรุดตลอดแนวถนนสายหลัก",
+    "definition_en": "a raised path with a paved surface for walking beside a street"
   },
   {
     "word": "infrastructure (n.)",
-    "meaning": "โครงสร้างพื้นฐาน (เช่น ถนน, ไฟฟ้า)"
+    "meaning": "โครงสร้างพื้นฐาน (เช่น ถนน, ไฟฟ้า)",
+    "example_en": "Investing in sustainable infrastructure is crucial for future economic growth.",
+    "example_th": "การลงทุนในโครงสร้างพื้นฐานที่ยั่งยืนเป็นสิ่งจำเป็นอย่างยิ่งสำหรับการเติบโตทางเศรษฐกิจในอนาคต",
+    "definition_en": "the basic physical systems of a country or city, such as roads, railways, and power grids"
   },
   {
     "word": "emission (n.)",
-    "meaning": "การปล่อยออกมา (เช่น ก๊าซ, มลพิษ)"
+    "meaning": "การปล่อยออกมา (เช่น ก๊าซ, มลพิษ)",
+    "example_en": "The new automotive regulation aims to reduce toxic carbon emission levels.",
+    "example_th": "กฎระเบียบยานยนต์ฉบับใหม่มีเป้าหมายเพื่อลดระดับการปล่อยก๊าซคาร์บอนที่เป็นพิษ",
+    "definition_en": "the production and discharge of something, especially gas or radiation"
   },
   {
     "word": "mode (n.)",
-    "meaning": "วิธีการ, รูปแบบ"
+    "meaning": "วิธีการ, รูปแบบ",
+    "example_en": "Cycling has become an increasingly popular mode of daily transportation.",
+    "example_th": "การปั่นจักรยานกลายเป็นรูปแบบการเดินทางประจำวันที่ได้รับความนิยมเพิ่มขึ้นเรื่อยๆ",
+    "definition_en": "a way or manner in which something occurs or is experienced"
   },
   {
     "word": "automobile (n.)",
-    "meaning": "รถยนต์"
+    "meaning": "รถยนต์",
+    "example_en": "The invention of the automobile fundamentally changed modern society.",
+    "example_th": "การประดิษฐ์รถยนต์ได้เปลี่ยนแปลงสังคมยุคใหม่อย่างสิ้นเชิง",
+    "definition_en": "a road vehicle, typically with four wheels, powered by an internal combustion engine or battery"
   },
   {
     "word": "mobility (n.)",
-    "meaning": "ความสามารถในการเคลื่อนที่, ความคล่องตัว"
+    "meaning": "ความสามารถในการเคลื่อนที่, ความคล่องตัว",
+    "example_en": "Physical therapy helped restore joint mobility after the sports injury.",
+    "example_th": "กายภาพบำบัดช่วยฟื้นฟูความคล่องตัวของข้อต่อหลังจากการบาดเจ็บจากการเล่นกีฬา",
+    "definition_en": "the ability to move or be moved freely and easily"
   },
   {
     "word": "sustainable (adj.)",
-    "meaning": "ยั่งยืน"
+    "meaning": "ยั่งยืน",
+    "example_en": "Using solar energy provides a clean and sustainable source of electricity.",
+    "example_th": "การใช้พลังงานแสงอาทิตย์ให้แหล่งพลังงานไฟฟ้าที่สะอาดและยั่งยืน",
+    "definition_en": "able to be maintained at a certain rate or level without exhausting natural resources"
   },
   {
     "word": "provincial (adj.)",
-    "meaning": "เกี่ยวกับจังหวัด, ส่วนภูมิภาค"
+    "meaning": "เกี่ยวกับจังหวัด, ส่วนภูมิภาค",
+    "example_en": "She was transferred from the central headquarters to a provincial branch.",
+    "example_th": "เธอถูกย้ายจากสำนักงานใหญ่ส่วนกลางไปยังสาขาในส่วนภูมิภาค",
+    "definition_en": "concerning a province or region outside the capital city"
   },
   {
     "word": "standard (n.)",
-    "meaning": "มาตรฐาน"
+    "meaning": "มาตรฐาน",
+    "example_en": "Every manufacturing facility must uphold the highest quality standard.",
+    "example_th": "โรงงานผลิตทุกแห่งต้องรักษามาตรฐานคุณภาพสูงสุดไว้เสมอ",
+    "definition_en": "a level of quality or attainment used as a measure or model"
   },
   {
     "word": "installation (n.)",
-    "meaning": "การติดตั้ง"
+    "meaning": "การติดตั้ง",
+    "example_en": "The installation of smoke detectors throughout the building is mandatory.",
+    "example_th": "การติดตั้งเครื่องตรวจจับควันทั่วทั้งอาคารถือเป็นสิ่งบังคับตามกฎหมาย",
+    "definition_en": "the act of putting equipment or machinery in place and making it ready to use"
   },
   {
     "word": "daunting (adj.)",
-    "meaning": "น่าหวั่นเกรง, ที่ทำให้เสียกำลังใจ"
+    "meaning": "น่าหวั่นเกรง, ที่ทำให้เสียกำลังใจ",
+    "example_en": "Learning an entirely new language can be a daunting challenge initially.",
+    "example_th": "การเรียนภาษาใหม่อย่างสิ้นเชิงอาจเป็นความท้าทายที่น่าหวั่นเกรงในช่วงแรก",
+    "definition_en": "seeming difficult to deal with in anticipation; intimidating"
   },
   {
     "word": "environmental (adj.)",
-    "meaning": "เกี่ยวกับสิ่งแวดล้อม"
+    "meaning": "เกี่ยวกับสิ่งแวดล้อม",
+    "example_en": "Air pollution is among the most urgent environmental problems today.",
+    "example_th": "มลพิษทางอากาศเป็นหนึ่งในปัญหาสิ่งแวดล้อมที่เร่งด่วนที่สุดในปัจจุบัน",
+    "definition_en": "relating to the natural world and the impact of human activity on its condition"
   },
   {
     "word": "cheerful (adj.)",
-    "meaning": "ร่าเริง, แจ่มใส"
+    "meaning": "ร่าเริง, แจ่มใส",
+    "example_en": "Her cheerful morning greeting immediately brightened everyone's mood.",
+    "example_th": "คำทักทายยามเช้าอันร่าเริงของเธอช่วยทำให้ทุกคนอารมณ์ดีขึ้นทันที",
+    "definition_en": "noticeably happy and optimistic"
   },
   {
     "word": "resident (n.)",
-    "meaning": "ผู้อยู่อาศัย"
+    "meaning": "ผู้อยู่อาศัย",
+    "example_en": "Every local resident was invited to voice their opinion at the town hall.",
+    "example_th": "ผู้อยู่อาศัยในท้องถิ่นทุกคนได้รับเชิญให้มาร่วมแสดงความคิดเห็นที่ศาลาว่าการ",
+    "definition_en": "a person who lives in a particular place permanently or on a long-term basis"
   },
   {
     "word": "historic (adj.)",
-    "meaning": "ที่มีความสำคัญทางประวัติศาสตร์"
+    "meaning": "ที่มีความสำคัญทางประวัติศาสตร์",
+    "example_en": "The signing of the peace treaty was a truly historic occasion.",
+    "example_th": "การลงนามในสนธิสัญญาสันติภาพถือเป็นโอกาสที่มีความสำคัญทางประวัติศาสตร์อย่างแท้จริง",
+    "definition_en": "famous or important in history, or likely to be remembered"
   },
   {
     "word": "sedentary (adj.)",
-    "meaning": "ซึ่งนั่งๆ นอนๆ, ไม่ค่อยออกกำลังกาย"
+    "meaning": "ซึ่งนั่งๆ นอนๆ, ไม่ค่อยออกกำลังกาย",
+    "example_en": "Maintaining a sedentary lifestyle increases the likelihood of health complications.",
+    "example_th": "การมีวิถีชีวิตที่นั่งๆ นอนๆ ไม่ค่อยขยับร่างกายเพิ่มโอกาสเกิดปัญหาสุขภาพแทรกซ้อน",
+    "definition_en": "tending to spend much time seated; somewhat inactive"
   },
   {
     "word": "cognitive (adj.)",
-    "meaning": "เกี่ยวกับกระบวนการรับรู้/การใช้ความคิด"
+    "meaning": "เกี่ยวกับกระบวนการรับรู้/การใช้ความคิด",
+    "example_en": "Brain puzzles and reading help preserve cognitive function in old age.",
+    "example_th": "เกมฝึกสมองและการอ่านหนังสือช่วยรักษาการทำงานของระบบความคิดในวัยชรา",
+    "definition_en": "relating to the mental processes of perception, memory, judgment, and reasoning"
   },
   {
     "word": "mortality (n.)",
-    "meaning": "อัตราการตาย, ความตาย"
+    "meaning": "อัตราการตาย, ความตาย",
+    "example_en": "Vaccination campaigns have drastically reduced infant mortality worldwide.",
+    "example_th": "การรณรงค์ฉีดวัคซีนช่วยลดอัตราการเสียชีวิตของทารกทั่วโลกได้อย่างมาก",
+    "definition_en": "the state of being subject to death; death rate"
   },
   {
     "word": "resilience (n.)",
-    "meaning": "ความยืดหยุ่น, ความสามารถในการฟื้นตัวจากภาวะยากลำบาก"
+    "meaning": "ความยืดหยุ่น, ความสามารถในการฟื้นตัวจากภาวะยากลำบาก",
+    "example_en": "Her remarkable resilience enabled her to overcome enormous personal tragedy.",
+    "example_th": "ความยืดหยุ่นและจิตใจที่เข้มแข็งของเธอทำให้สามารถก้าวผ่านโศกนาฏกรรมครั้งใหญ่ในชีวิตได้",
+    "definition_en": "the capacity to recover quickly from difficulties, change, or misfortune"
   },
   {
     "word": "nourishment (n.)",
-    "meaning": "การบำรุงเลี้ยง, อาหารที่บำรุงร่างกาย"
+    "meaning": "การบำรุงเลี้ยง, อาหารที่บำรุงร่างกาย",
+    "example_en": "Healthy meals provide essential nourishment for children's growth.",
+    "example_th": "อาหารที่มีประโยชน์ให้สารอาหารบำรุงร่างกายที่จำเป็นต่อการเจริญเติบโตของเด็ก",
+    "definition_en": "food or other substances necessary for growth, health, and good condition"
   },
   {
     "word": "moderate (adj./v.)",
-    "meaning": "ปานกลาง / ทำให้บรรเทาลง"
+    "meaning": "ปานกลาง / ทำให้บรรเทาลง",
+    "example_en": "Doctors recommend engaging in moderate aerobic exercise every day.",
+    "example_th": "แพทย์แนะนำให้ออกกำลังกายแบบแอโรบิกในระดับปานกลางเป็นประจำทุกวัน",
+    "definition_en": "average in amount, intensity, or quality; to make or become less extreme"
   },
   {
     "word": "metabolism (n.)",
-    "meaning": "กระบวนการเผาผลาญอาหารในร่างกาย"
+    "meaning": "กระบวนการเผาผลาญอาหารในร่างกาย",
+    "example_en": "Regular strength training helps boost your resting body metabolism.",
+    "example_th": "การฝึกกล้ามเนื้ออย่างสม่ำเสมอช่วยกระตุ้นระบบการเผาผลาญพลังงานของร่างกายขณะพักผ่อน",
+    "definition_en": "the chemical processes that occur within a living organism in order to maintain life"
   },
   {
     "word": "vulnerable (adj.)",
-    "meaning": "อ่อนแอ, เปราะบาง, เสี่ยงต่อการรับอันตราย"
+    "meaning": "อ่อนแอ, เปราะบาง, เสี่ยงต่อการรับอันตราย",
+    "example_en": "Young children and elderly citizens are most vulnerable to extreme heat waves.",
+    "example_th": "เด็กเล็กและผู้สูงอายุเป็นกลุ่มที่เปราะบางและเสี่ยงอันตรายมากที่สุดต่อคลื่นความร้อนรุนแรง",
+    "definition_en": "susceptible to physical or emotional attack or harm"
   },
   {
     "word": "vitality (n.)",
-    "meaning": "พลังชีวิต, ความมีชีวิตชีวา"
+    "meaning": "พลังชีวิต, ความมีชีวิตชีวา",
+    "example_en": "Yoga and balanced nutrition helped her regain her youthful vitality.",
+    "example_th": "โยคะและโภชนาการที่สมดุลช่วยให้เธอฟื้นฟูพลังชีวิตและความสดใสกลับคืนมา",
+    "definition_en": "the state of being strong and active; physical or mental energy"
   },
   {
     "word": "habitual (adj.)",
-    "meaning": "ที่ทำเป็นนิสัย, เป็นประจำ"
+    "meaning": "ที่ทำเป็นนิสัย, เป็นประจำ",
+    "example_en": "Biting one's fingernails is often an involuntary habitual reaction to anxiety.",
+    "example_th": "การกัดเล็บมักเป็นปฏิกิริยาที่ทำเป็นนิสัยโดยไม่รู้ตัวเมื่อเกิดความวิตกกังวล",
+    "definition_en": "done or doing constantly or as a regular habit"
   },
   {
     "word": "prolong (v.)",
-    "meaning": "ยืดเวลา, ทำให้ยาวนานขึ้น"
+    "meaning": "ยืดเวลา, ทำให้ยาวนานขึ้น",
+    "example_en": "Proper maintenance can significantly prolong the lifespan of electronic devices.",
+    "example_th": "การดูแลรักษาอย่างถูกวิธีสามารถยืดอายุการใช้งานของอุปกรณ์อิเล็กทรอนิกส์ได้อย่างมาก",
+    "definition_en": "to extend the duration of something or make it last longer"
   },
   {
     "word": "restrictive (adj.)",
-    "meaning": "ซึ่งจำกัด, ซึ่งหวงห้าม"
+    "meaning": "ซึ่งจำกัด, ซึ่งหวงห้าม",
+    "example_en": "The company imposed restrictive policies regarding working from home.",
+    "example_th": "บริษัทได้กำหนดนโยบายที่เข้มงวดและจำกัดเกี่ยวกับการทำงานจากที่บ้าน",
+    "definition_en": "imposing restrictions on someone's activities or freedom"
   },
   {
     "word": "consumption (n.)",
-    "meaning": "การบริโภค"
+    "meaning": "การบริโภค",
+    "example_en": "Excessive alcohol consumption can lead to severe liver damage.",
+    "example_th": "การบริโภคเครื่องดื่มแอลกอฮอล์มากเกินไปอาจนำไปสู่ภาวะตับถูกทำลายอย่างรุนแรง",
+    "definition_en": "the action of using up a resource or eating and drinking"
   },
   {
     "word": "well-balanced (adj.)",
-    "meaning": "ซึ่งสมดุล, ได้สัดส่วนดี"
+    "meaning": "ซึ่งสมดุล, ได้สัดส่วนดี",
+    "example_en": "Eating a well-balanced diet gives your body all the necessary vitamins.",
+    "example_th": "การรับประทานอาหารที่ได้สัดส่วนสมดุลช่วยให้ร่างกายได้รับวิตามินที่จำเป็นครบถ้วน",
+    "definition_en": "having an equal or pleasing distribution of different elements"
   },
   {
     "word": "decline (n./v.)",
-    "meaning": "การลดลง / เสื่อมลง, ปฏิเสธ"
+    "meaning": "การลดลง / เสื่อมลง, ปฏิเสธ",
+    "example_en": "There has been a steady decline in crime rates over the past decade.",
+    "example_th": "อัตราการเกิดอาชญากรรมลดลงอย่างต่อเนื่องตลอดทศวรรษที่ผ่านมา",
+    "definition_en": "a gradual decrease in quality, quantity, or importance; to diminish"
   },
   {
     "word": "wellbeing (n.)",
-    "meaning": "ความเป็นอยู่ที่ดี, สุขภาวะ"
+    "meaning": "ความเป็นอยู่ที่ดี, สุขภาวะ",
+    "example_en": "Physical exercise and mental peace are both essential for human wellbeing.",
+    "example_th": "การออกกำลังกายกายภาพและความสงบทางจิตใจล้วนจำเป็นต่อสุขภาวะและความเป็นอยู่ที่ดี",
+    "definition_en": "the state of being comfortable, healthy, or happy"
   },
   {
     "word": "susceptible (adj.)",
-    "meaning": "อ่อนแอ, ติดเชื้อได้ง่าย, อ่อนไหว"
+    "meaning": "อ่อนแอ, ติดเชื้อได้ง่าย, อ่อนไหว",
+    "example_en": "People with weakened immune defenses are especially susceptible to seasonal infections.",
+    "example_th": "ผู้ที่มีภูมิคุ้มกันอ่อนแอมีความเสี่ยงและติดเชื้อตามฤดูกาลได้ง่ายเป็นพิเศษ",
+    "definition_en": "likely or liable to be influenced or harmed by a particular thing"
   },
   {
     "word": "longevity-boosting (adj.)",
-    "meaning": "ที่ช่วยส่งเสริมให้มีอายุยืนยาว"
+    "meaning": "ที่ช่วยส่งเสริมให้มีอายุยืนยาว",
+    "example_en": "Consuming antioxidant-rich green tea is known as a longevity-boosting habit.",
+    "example_th": "การดื่มชาเขียวที่อุดมไปด้วยสารต้านอนุมูลอิสระจัดเป็นนิสัยที่ช่วยส่งเสริมให้อายุยืนยาว",
+    "definition_en": "having properties that help increase or extend human lifespan"
   },
   {
     "word": "urbanization (n.)",
-    "meaning": "การขยายตัวของเมือง, ความเป็นเมือง"
+    "meaning": "การขยายตัวของเมือง, ความเป็นเมือง",
+    "example_en": "Rapid urbanization has created high demand for affordable urban housing.",
+    "example_th": "การขยายตัวของเมืองอย่างรวดเร็วทำให้เกิดความต้องการที่อยู่อาศัยในเมืองราคาย่อมเยาเพิ่มสูงขึ้น",
+    "definition_en": "the process of making an area more urban; the progressive movement of population into cities"
   },
   {
     "word": "congestion (n.)",
-    "meaning": "ความแออัด (มักใช้กับการจราจร)"
+    "meaning": "ความแออัด (มักใช้กับการจราจร)",
+    "example_en": "Commuters face severe traffic congestion during peak rush hour morning trips.",
+    "example_th": "ผู้เดินทางต้องเผชิญกับสภาพการจราจรที่ติดขัดอย่างหนักในช่วงเวลาเร่งด่วนตอนเช้า",
+    "definition_en": "the state of being overcrowded or blocked with traffic"
   },
   {
     "word": "pedestrian-friendly (adj.)",
-    "meaning": "เป็นมิตรต่อคนเดินเท้า (เดินสะดวก, ปลอดภัย)"
+    "meaning": "เป็นมิตรต่อคนเดินเท้า (เดินสะดวก, ปลอดภัย)",
+    "example_en": "The downtown corridor was redesigned into a pedestrian-friendly shopping zone.",
+    "example_th": "พื้นที่ใจกลางเมืองได้รับการปรับปรุงใหม่ให้กลายเป็นย่านช้อปปิ้งที่เดินสะดวกและปลอดภัยสำหรับคนเดินเท้า",
+    "definition_en": "designed to be safe, easy, and pleasant for people walking"
   },
   {
     "word": "accessibility (n.)",
-    "meaning": "การเข้าถึงได้ง่าย, สิ่งอำนวยความสะดวก"
+    "meaning": "การเข้าถึงได้ง่าย, สิ่งอำนวยความสะดวก",
+    "example_en": "The building installed wheelchair ramps to improve wheelchair accessibility.",
+    "example_th": "อาคารแห่งนี้ได้ติดตั้งทางลาดสำหรับเก้าอี้รถเข็นเพื่อปรับปรุงความสะดวกในการเข้าถึง",
+    "definition_en": "the quality of being easy to reach, enter, or understand by all people"
   },
   {
     "word": "municipality (n.)",
-    "meaning": "เทศบาล"
+    "meaning": "เทศบาล",
+    "example_en": "The local municipality approved the budget for the new public library.",
+    "example_th": "เทศบาลท้องถิ่นได้อนุมัติงบประมาณสำหรับการสร้างห้องสมุดประชาชนแห่งใหม่",
+    "definition_en": "a city or town that has corporate status and local government"
   },
   {
     "word": "gridlock (n.)",
-    "meaning": "สภาพการจราจรติดขัดอย่างหนักจนขยับไม่ได้"
+    "meaning": "สภาพการจราจรติดขัดอย่างหนักจนขยับไม่ได้",
+    "example_en": "A multi-vehicle accident on the bridge caused total traffic gridlock.",
+    "example_th": "อุบัติเหตุรถชนหลายคันบนสะพานส่งผลให้สภาพการจราจรติดขัดจนเป็นอัมพาต",
+    "definition_en": "a traffic jam so severe that movement across an entire network ceases"
   },
   {
     "word": "eco-friendly (adj.)",
-    "meaning": "เป็นมิตรต่อสิ่งแวดล้อม"
+    "meaning": "เป็นมิตรต่อสิ่งแวดล้อม",
+    "example_en": "Many consumers now prefer eco-friendly packaging made from recycled material.",
+    "example_th": "ผู้บริโภคจำนวนมากในปัจจุบันชอบบรรจุภัณฑ์ที่เป็นมิตรต่อสิ่งแวดล้อมซึ่งทำจากวัสดุรีไซเคิล",
+    "definition_en": "not harmful to the environment"
   },
   {
     "word": "renewable (adj.)",
-    "meaning": "หมุนเวียน, ทดแทนได้ (เช่น พลังงาน)"
+    "meaning": "หมุนเวียน, ทดแทนได้ (เช่น พลังงาน)",
+    "example_en": "Solar and wind energy are leading sources of renewable green power.",
+    "example_th": "พลังงานแสงอาทิตย์และพลังงานลมเป็นแหล่งพลังงานหมุนเวียนสะอาดชั้นนำ",
+    "definition_en": "capable of being replenished naturally over a short period of time"
   },
   {
     "word": "densely populated (adj.)",
-    "meaning": "มีประชากรอาศัยอยู่หนาแน่น"
+    "meaning": "มีประชากรอาศัยอยู่หนาแน่น",
+    "example_en": "Tokyo is one of the most densely populated metropolitan areas in the world.",
+    "example_th": "โตเกียวเป็นหนึ่งในเขตมหานครที่มีประชากรอาศัยอยู่หนาแน่นที่สุดในโลก",
+    "definition_en": "crowded with many inhabitants per unit of area"
   },
   {
     "word": "public transit (n.)",
-    "meaning": "ระบบขนส่งสาธารณะ"
+    "meaning": "ระบบขนส่งสาธารณะ",
+    "example_en": "Using public transit reduces both traffic congestion and pollution levels.",
+    "example_th": "การใช้ระบบขนส่งสาธารณะช่วยลดทั้งปัญหาการจราจรติดขัดและมลพิษทางอากาศ",
+    "definition_en": "public transportation systems such as buses and trains available to the general public"
   },
   {
     "word": "feasible (adj.)",
-    "meaning": "ซึ่งเป็นไปได้, ในทางปฏิบัติทำได้"
+    "meaning": "ซึ่งเป็นไปได้, ในทางปฏิบัติทำได้",
+    "example_en": "The engineers confirmed that building the undersea tunnel is technically feasible.",
+    "example_th": "วิศวกรยืนยันว่าการก่อสร้างอุโมงค์ใต้ทะเลเป็นไปได้ในทางปฏิบัติ",
+    "definition_en": "possible to do easily or conveniently; realistic"
   },
   {
     "word": "carbon footprint (n.)",
-    "meaning": "รอยเท้าคาร์บอน (ปริมาณการปล่อยก๊าซเรือนกระจก)"
+    "meaning": "รอยเท้าคาร์บอน (ปริมาณการปล่อยก๊าซเรือนกระจก)",
+    "example_en": "Walking or cycling to work can help shrink your personal carbon footprint.",
+    "example_th": "การเดินหรือปั่นจักรยานไปทำงานช่วยลดรอยเท้าคาร์บอนส่วนบุคคลของคุณได้",
+    "definition_en": "the total amount of greenhouse gases produced directly and indirectly by human activities"
   },
   {
     "word": "proximity (n.)",
-    "meaning": "ความใกล้ชิด, บริเวณใกล้เคียง"
+    "meaning": "ความใกล้ชิด, บริเวณใกล้เคียง",
+    "example_en": "The residential hotel was chosen for its close proximity to the airport.",
+    "example_th": "โรงแรมที่พักนี้ได้รับเลือกเนื่องจากตั้งอยู่ใกล้กับสนามบินอย่างมาก",
+    "definition_en": "nearness in space, time, or relationship"
   },
   {
     "word": "liveability (n.)",
-    "meaning": "ความน่าอยู่"
+    "meaning": "ความน่าอยู่",
+    "example_en": "Parks, low crime, and clean streets contribute to a city's overall liveability.",
+    "example_th": "สวนสาธารณะ อัตราอาชญากรรมต่ำ และถนนที่สะอาดล้วนช่วยเพิ่มความน่าอยู่โดยรวมของเมือง",
+    "definition_en": "the sum of the factors that add up to a community's quality of life"
   },
   {
     "word": "urban sprawl (n.)",
-    "meaning": "การขยายตัวของเมืองออกไปบริเวณรอบนอกอย่างไม่เป็นระเบียบ"
+    "meaning": "การขยายตัวของเมืองออกไปบริเวณรอบนอกอย่างไม่เป็นระเบียบ",
+    "example_en": "Unchecked urban sprawl has consumed vast areas of farmland surrounding the city.",
+    "example_th": "การขยายตัวของเมืองออกไปอย่างไร้ระเบียบได้กลืนกินพื้นที่การเกษตรขนาดใหญ่รอบตัวเมือง",
+    "definition_en": "the uncontrolled expansion of urban areas into surrounding rural land"
   },
   {
     "word": "transformation (n.)",
-    "meaning": "การเปลี่ยนแปลงรูปร่าง/สภาพ"
+    "meaning": "การเปลี่ยนแปลงรูปร่าง/สภาพ",
+    "example_en": "The neighborhood underwent a complete transformation from an industrial yard to an arts hub.",
+    "example_th": "ย่านนี้ผ่านการเปลี่ยนแปลงสภาพอย่างสิ้นเชิงจากลานอุตสาหกรรมกลายเป็นศูนย์กลางทางศิลปะ",
+    "definition_en": "a marked or thorough change in form, nature, or appearance"
   },
   {
     "word": "suburban (adj.)",
-    "meaning": "เกี่ยวกับชานเมือง"
+    "meaning": "เกี่ยวกับชานเมือง",
+    "example_en": "They decided to relocate to a quiet suburban neighborhood with better schools.",
+    "example_th": "พวกเขาตัดสินใจย้ายไปอยู่ในย่านชานเมืองที่เงียบสงบซึ่งมีโรงเรียนที่ดีกว่า",
+    "definition_en": "relating to or characteristic of a residential district outside an urban core"
   },
   {
     "word": "adherence (n.)",
-    "meaning": "การยึดมั่น, การปฏิบัติตาม (กฎเกณฑ์/คำแนะนำ)"
+    "meaning": "การยึดมั่น, การปฏิบัติตาม (กฎเกณฑ์/คำแนะนำ)",
+    "example_en": "Strict adherence to safety guidelines prevents dangerous laboratory accidents.",
+    "example_th": "การปฏิบัติตามแนวทางความปลอดภัยอย่างเคร่งครัดช่วยป้องกันอุบัติเหตุร้ายแรงในห้องปฏิบัติการ",
+    "definition_en": "attachment or commitment to a person, rule, belief, or guideline"
   },
   {
     "word": "detrimental (adj.)",
-    "meaning": "เป็นอันตราย, ก่อให้เกิดความเสียหาย"
+    "meaning": "เป็นอันตราย, ก่อให้เกิดความเสียหาย",
+    "example_en": "Excessive stress has a detrimental effect on both mental and physical health.",
+    "example_th": "ความเครียดที่มากเกินไปส่งผลร้ายที่เป็นอันตรายต่อทั้งสุขภาพกายและสุขภาพจิต",
+    "definition_en": "tending to cause harm, loss, or injury"
   },
   {
     "word": "exacerbate (v.)",
-    "meaning": "ทำให้แย่ลง, ทำให้รุนแรงขึ้น"
+    "meaning": "ทำให้แย่ลง, ทำให้รุนแรงขึ้น",
+    "example_en": "Cold winter winds can exacerbate symptoms of asthma and dry skin.",
+    "example_th": "ลมหนาวที่พัดแรงสามารถทำให้แย่ลงและกระตุ้นอาการหอบหืดรวมถึงผิวแห้งให้รุนแรงขึ้น",
+    "definition_en": "to make a problem, bad situation, or negative feeling worse"
   },
   {
     "word": "incorporation (n.)",
-    "meaning": "การรวมเข้าด้วยกัน, การผสมผสาน"
+    "meaning": "การรวมเข้าด้วยกัน, การผสมผสาน",
+    "example_en": "The incorporation of multimedia tools has transformed classroom teaching.",
+    "example_th": "การผสมผสานเครื่องมือมัลติมีเดียเข้ามาใช้ได้เปลี่ยนโฉมการสอนในห้องเรียนไปอย่างมาก",
+    "definition_en": "the inclusion of something as part of a whole"
   },
   {
     "word": "substantially (adv.)",
-    "meaning": "อย่างมาก, อย่างมีนัยสำคัญ"
+    "meaning": "อย่างมาก, อย่างมีนัยสำคัญ",
+    "example_en": "The new production technique substantially reduced manufacturing expenses.",
+    "example_th": "เทคนิคการผลิตแบบใหม่ช่วยลดค่าใช้จ่ายในการผลิตลงได้อย่างมาก",
+    "definition_en": "to a great or significant degree; considerably"
   },
   {
     "word": "metropolitan (adj.)",
-    "meaning": "เกี่ยวกับเมืองหลวง/มหานคร"
+    "meaning": "เกี่ยวกับเมืองหลวง/มหานคร",
+    "example_en": "The metropolitan police force operates across several surrounding municipal districts.",
+    "example_th": "กองกำลังตำรวจนครบาลปฏิบัติงานครอบคลุมหลายเขตเทศบาลโดยรอบ",
+    "definition_en": "relating to or denoting a metropolis or large city"
   },
   {
     "word": "implementation (n.)",
-    "meaning": "การนำไปปฏิบัติ"
+    "meaning": "การนำไปปฏิบัติ",
+    "example_en": "The successful implementation of the software took approximately six months.",
+    "example_th": "การนำระบบซอฟต์แวร์ไปติดตั้งและใช้งานจริงได้สำเร็จใช้เวลาประมาณหกเดือน",
+    "definition_en": "the process of putting a decision or plan into effect; execution"
   },
   {
     "word": "revitalization (n.)",
-    "meaning": "การฟื้นฟู, การทำให้กลับมามีชีวิตชีวาอีกครั้ง"
+    "meaning": "การฟื้นฟู, การทำให้กลับมามีชีวิตชีวาอีกครั้ง",
+    "example_en": "The waterfront project aimed at the economic revitalization of the old port area.",
+    "example_th": "โครงการพัฒนาพื้นที่ริมน้ำมีเป้าหมายเพื่อการฟื้นฟูทางเศรษฐกิจของพื้นที่ท่าเรือเก่า",
+    "definition_en": "the action of giving new life, vitality, or vigor to something"
   },
   {
     "word": "disparity (n.)",
-    "meaning": "ความแตกต่าง, ความเหลื่อมล้ำ"
+    "meaning": "ความแตกต่าง, ความเหลื่อมล้ำ",
+    "example_en": "Policies are needed to bridge the growing income disparity between social classes.",
+    "example_th": "จำเป็นต้องมีนโยบายเพื่อลดความเหลื่อมล้ำทางรายได้ที่เพิ่มขึ้นระหว่างชนชั้นทางสังคม",
+    "definition_en": "a great and noticeable difference or inequality between groups"
   },
   {
     "word": "interconnectivity (n.)",
-    "meaning": "การเชื่อมโยงถึงกันและกัน"
+    "meaning": "การเชื่อมโยงถึงกันและกัน",
+    "example_en": "Global digital networks have enhanced interconnectivity between people worldwide.",
+    "example_th": "เครือข่ายดิจิทัลระดับโลกได้เพิ่มการเชื่อมโยงถึงกันระหว่างผู้คนทั่วโลกอย่างมหาศาล",
+    "definition_en": "the state of being connected with each other, sharing information and resources"
   }
 ];
 
@@ -1937,6 +2440,9 @@
     const frontPosTag = document.getElementById('frontPosTag');
     const backMeaningText = document.getElementById('backMeaningText');
     const backWordSubtitle = document.getElementById('backWordSubtitle');
+    const backDefEn = document.getElementById('backDefEn');
+    const backExampleEn = document.getElementById('backExampleEn');
+    const backExampleTh = document.getElementById('backExampleTh');
     const cardProgressText = document.getElementById('cardProgressText');
     const cardPercentText = document.getElementById('cardPercentText');
     const cardProgressFill = document.getElementById('cardProgressFill');
@@ -1946,7 +2452,7 @@
     const watermarkIndexBack = document.getElementById('watermarkIndexBack');
 
     // ==========================================================
-    // AUDIO & SOUND SYNTHESIZER (Zero External Dependency)
+    // AUDIO & SOUND SYNTHESIZER
     // ==========================================================
     let audioCtx = null;
 
@@ -1988,7 +2494,7 @@
       try {
         const ctx = getAudioContext();
         if (!ctx) return;
-        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord
+        const notes = [523.25, 659.25, 783.99];
         notes.forEach((freq, idx) => {
           setTimeout(() => playTone(freq, 'triangle', 0.25, 0.18), idx * 80);
         });
@@ -2088,6 +2594,18 @@
       pronounceWord(sanitizeSpeechWord(activeDeck[currentDeckIndex].word));
     }
 
+    function speakCurrentDef(e) {
+      if (e) e.stopPropagation();
+      if (!activeDeck[currentDeckIndex]) return;
+      pronounceWord(activeDeck[currentDeckIndex].definition_en);
+    }
+
+    function speakCurrentExample(e) {
+      if (e) e.stopPropagation();
+      if (!activeDeck[currentDeckIndex]) return;
+      pronounceWord(activeDeck[currentDeckIndex].example_en);
+    }
+
     // ==========================================================
     // DATA HELPERS & STORAGE
     // ==========================================================
@@ -2152,6 +2670,9 @@
         frontPosTag.style.display = 'none';
         backMeaningText.innerText = 'ลองเลือกหมวดอื่น หรือท่องในหมวดคำศัพท์ทั้งหมด';
         backWordSubtitle.innerText = '';
+        backDefEn.innerText = '';
+        backExampleEn.innerText = '';
+        backExampleTh.innerText = '';
         cardProgressText.innerText = '0 / 0';
         cardPercentText.innerText = '0%';
         cardProgressFill.style.width = '0%';
@@ -2183,6 +2704,11 @@
 
         backMeaningText.innerText = item.meaning;
         backWordSubtitle.innerText = item.word;
+
+        // Render English Definition & Example Sentence
+        backDefEn.innerText = item.definition_en || '';
+        backExampleEn.innerText = item.example_en || '';
+        backExampleTh.innerText = item.example_th || '';
 
         const formattedIndex = curNum < 10 ? '0' + curNum : curNum;
         watermarkIndex.innerText = formattedIndex;
@@ -2297,25 +2823,21 @@
     function runAutoPlayCycle() {
       if (!isAutoPlaying || activeDeck.length === 0) return;
 
-      // 1. Ensure flipped to front
       mainFlashcard.classList.remove('is-flipped');
 
-      // 2. Speak English word
       setTimeout(() => {
         if (!isAutoPlaying) return;
         speakCurrentCard();
 
-        // 3. Flip to Thai meaning after speech
         autoPlayTimer = setTimeout(() => {
           if (!isAutoPlaying) return;
           flipCurrentCard();
 
-          // 4. Advance to next card
           autoPlayTimer = setTimeout(() => {
             if (!isAutoPlaying) return;
             navigateCard(1);
             runAutoPlayCycle();
-          }, 3200);
+          }, 3800);
 
         }, 2200);
 
@@ -2340,9 +2862,9 @@
 
       if (Math.abs(diffX) > 60 && Math.abs(diffY) < 50) {
         if (diffX < 0) {
-          navigateCard(1); // Swipe left = Next
+          navigateCard(1);
         } else {
-          navigateCard(-1); // Swipe right = Prev
+          navigateCard(-1);
         }
       }
     }, { passive: true });
@@ -2351,7 +2873,7 @@
     // TAB SWITCHING
     // ==========================================================
     function switchActiveTab(tabKey) {
-      if (isAutoPlaying) toggleAutoPlay(); // stop autoplay on switch
+      if (isAutoPlaying) toggleAutoPlay();
 
       document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
         btn.classList.toggle('active', (tabKey === 'flashcards' && idx === 0) || (tabKey === 'quiz' && idx === 1) || (tabKey === 'wordlist' && idx === 2));
@@ -2388,6 +2910,10 @@
         flipCurrentCard();
       } else if (e.key === 's' || e.key === 'S') {
         speakCurrentCard();
+      } else if (e.key === 'd' || e.key === 'D') {
+        speakCurrentDef();
+      } else if (e.key === 'e' || e.key === 'E') {
+        speakCurrentExample();
       } else if (e.key === '1') {
         markCardStatus('review');
       } else if (e.key === '2') {
@@ -2442,7 +2968,6 @@
       document.getElementById('quizStreakIndicator').innerText = quizComboStreak > 1 ? `🔥 ${quizComboStreak} ข้อติด!` : '';
       document.getElementById('quizWordDisplay').innerText = item.word;
 
-      // Wrongs
       const wrongList = masterVocabDeck.filter(w => w.word !== item.word);
       const chosenWrongs = wrongList.sort(() => 0.5 - Math.random()).slice(0, 3);
 
@@ -2466,7 +2991,6 @@
         container.appendChild(btn);
       });
 
-      // Auto speak quiz prompt
       setTimeout(() => {
         pronounceWord(sanitizeSpeechWord(item.word));
       }, 150);
@@ -2500,7 +3024,6 @@
           }
         });
 
-        // Automatically note as review
         reviewWords.add(item.word);
         masteredWords.delete(item.word);
         saveState();
@@ -2570,7 +3093,11 @@
       const container = document.getElementById('wordCatalogContainer');
 
       const filtered = masterVocabDeck.filter(item => {
-        const matchesQ = item.word.toLowerCase().includes(q) || item.meaning.toLowerCase().includes(q);
+        const matchesQ = item.word.toLowerCase().includes(q) || 
+                         item.meaning.toLowerCase().includes(q) ||
+                         (item.definition_en && item.definition_en.toLowerCase().includes(q)) ||
+                         (item.example_en && item.example_en.toLowerCase().includes(q)) ||
+                         (item.example_th && item.example_th.toLowerCase().includes(q));
         if (!matchesQ) return false;
 
         if (statusFilter === 'review') return reviewWords.has(item.word);
@@ -2600,22 +3127,38 @@
         const row = document.createElement('div');
         row.className = 'word-row-card';
         row.innerHTML = `
-          <div class="word-row-left">
-            <button class="speech-bubble-btn" style="width: 36px; height: 36px;" onclick="speakListRowWord(event, '${item.word.replace(/'/g, "\\'")}')" title="ฟังเสียง">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-            </button>
+          <div class="word-row-top">
+            <div class="word-row-left">
+              <button class="speech-bubble-btn" style="width: 36px; height: 36px;" onclick="speakListRowWord(event, '${item.word.replace(/'/g, "\\'")}')" title="ฟังเสียงคำศัพท์">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+              <div>
+                <div class="word-row-en">${item.word}</div>
+                <div class="word-row-th">${item.meaning}</div>
+              </div>
+            </div>
             <div>
-              <div class="word-row-en">${item.word}</div>
-              <div class="word-row-th">${item.meaning}</div>
+              ${badgeHtml}
             </div>
           </div>
-          <div>
-            ${badgeHtml}
+
+          <div class="word-row-def-en">
+            <span>📖 DEF: ${item.definition_en || ''}</span>
+          </div>
+
+          <div class="word-row-example">
+            <div class="word-row-example-en">
+              <span>💬 ${item.example_en}</span>
+              <button class="mini-speaker-btn" style="background: transparent; color: var(--primary);" onclick="speakListExampleRow(event, '${item.example_en.replace(/'/g, "\\'")}')" title="ฟังเสียงประโยค">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+            </div>
+            <div class="word-row-example-th">${item.example_th}</div>
           </div>
         `;
 
         row.onclick = (e) => {
-          if (e.target.closest('.speech-bubble-btn')) return;
+          if (e.target.closest('button')) return;
           jumpDirectlyToCard(item.word);
         };
 
@@ -2626,6 +3169,11 @@
     function speakListRowWord(e, word) {
       e.stopPropagation();
       pronounceWord(sanitizeSpeechWord(word));
+    }
+
+    function speakListExampleRow(e, sent) {
+      e.stopPropagation();
+      pronounceWord(sent);
     }
 
     function jumpDirectlyToCard(word) {
@@ -2688,7 +3236,7 @@
         particles.forEach(p => {
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.35; // gravity
+          p.vy += 0.35;
           p.rotation += p.vrot;
           p.opacity -= 0.012;
 
