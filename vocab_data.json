@@ -1,0 +1,442 @@
+[
+  {
+    "word": "addiction (n.)",
+    "meaning": "การเสพติด"
+  },
+  {
+    "word": "approach (v.)",
+    "meaning": "เข้าใกล้, เข้าหา, วิธีการ"
+  },
+  {
+    "word": "assign (v.)",
+    "meaning": "มอบหมาย"
+  },
+  {
+    "word": "baseline (n.)",
+    "meaning": "เส้นพื้นฐาน, เกณฑ์มาตรฐาน"
+  },
+  {
+    "word": "centenarian (n.)",
+    "meaning": "ผู้ที่มีอายุ 100 ปีขึ้นไป"
+  },
+  {
+    "word": "chronic disease (n.)",
+    "meaning": "โรคเรื้อรัง"
+  },
+  {
+    "word": "dominate (v.)",
+    "meaning": "ครอบงำ, ควบคุม"
+  },
+  {
+    "word": "embarrassed (adj.)",
+    "meaning": "รู้สึกอับอาย, ขวยเขิน"
+  },
+  {
+    "word": "excess (adj./n.)",
+    "meaning": "ส่วนเกิน, มากเกินไป / ความมากเกินไป"
+  },
+  {
+    "word": "impair (v.)",
+    "meaning": "ทำให้แย่ลง, ทำให้อ่อนแอ, ทำให้บกพร่อง"
+  },
+  {
+    "word": "indulge in (phr. v.)",
+    "meaning": "หมกมุ่น, ปล่อยตัวตามใจใน"
+  },
+  {
+    "word": "intake (n.)",
+    "meaning": "ปริมาณที่บริโภคเข้าไป"
+  },
+  {
+    "word": "intervention (n.)",
+    "meaning": "การแทรกแซง (เพื่อแก้ไขปัญหา)"
+  },
+  {
+    "word": "life expectancy (n.)",
+    "meaning": "อายุขัยเฉลี่ย"
+  },
+  {
+    "word": "longevity (n.)",
+    "meaning": "ความมีอายุยืน"
+  },
+  {
+    "word": "optimal (adj.)",
+    "meaning": "เหมาะสมที่สุด, ดีที่สุด"
+  },
+  {
+    "word": "premature (adj.)",
+    "meaning": "ก่อนกำหนด"
+  },
+  {
+    "word": "realize (v.)",
+    "meaning": "ตระหนัก, เข้าใจอย่างชัดเจน"
+  },
+  {
+    "word": "root for (phr. v.)",
+    "meaning": "เอาใจช่วย, สนับสนุน"
+  },
+  {
+    "word": "unproven (adj.)",
+    "meaning": "ยังไม่ได้รับการพิสูจน์"
+  },
+  {
+    "word": "alleviate (v.)",
+    "meaning": "บรรเทา, ทำให้น้อยลง"
+  },
+  {
+    "word": "casually (adv.)",
+    "meaning": "อย่างไม่เป็นทางการ, สบายๆ"
+  },
+  {
+    "word": "commute (v./n.)",
+    "meaning": "เดินทางไปกลับที่ทำงาน / การเดินทางไปทำงาน"
+  },
+  {
+    "word": "compel (v.)",
+    "meaning": "บังคับ, บีบบังคับ"
+  },
+  {
+    "word": "coordinate (v.)",
+    "meaning": "ประสานงาน"
+  },
+  {
+    "word": "cutting-edge (adj.)",
+    "meaning": "ล้ำยุค, ทันสมัยที่สุด"
+  },
+  {
+    "word": "iconic (adj.)",
+    "meaning": "ซึ่งเป็นสัญลักษณ์, มีชื่อเสียงโด่งดัง"
+  },
+  {
+    "word": "illegally (adv.)",
+    "meaning": "อย่างผิดกฎหมาย"
+  },
+  {
+    "word": "incentive (n.)",
+    "meaning": "สิ่งจูงใจ, แรงจูงใจ"
+  },
+  {
+    "word": "impediment (n.)",
+    "meaning": "อุปสรรค, สิ่งกีดขวาง"
+  },
+  {
+    "word": "navigate (v.)",
+    "meaning": "นำทาง, หาเส้นทาง"
+  },
+  {
+    "word": "necessity (n.)",
+    "meaning": "ความจำเป็น, สิ่งจำเป็น"
+  },
+  {
+    "word": "picturesque (adj.)",
+    "meaning": "สวยงามเหมือนภาพวาด"
+  },
+  {
+    "word": "scarce (adj.)",
+    "meaning": "ขาดแคลน, หายาก"
+  },
+  {
+    "word": "secure (adj.)",
+    "meaning": "ปลอดภัย, มั่นคง"
+  },
+  {
+    "word": "shortage (n.)",
+    "meaning": "ความขาดแคลน"
+  },
+  {
+    "word": "slash (v.)",
+    "meaning": "ฟัน, ตัดราคา/ลดลงอย่างมาก"
+  },
+  {
+    "word": "staple (n.)",
+    "meaning": "สินค้าหลัก, อาหารหลัก"
+  },
+  {
+    "word": "strain (n.)",
+    "meaning": "ความตึงเครียด, ภาระหนัก"
+  },
+  {
+    "word": "stroll (v./n.)",
+    "meaning": "เดินเล่น / การเดินเล่น"
+  },
+  {
+    "word": "cardiovascular (adj.)",
+    "meaning": "เกี่ยวกับหัวใจและหลอดเลือด"
+  },
+  {
+    "word": "contributor (n.)",
+    "meaning": "ปัจจัยที่มีส่วนทำให้เกิด, ผู้บริจาค"
+  },
+  {
+    "word": "restriction (n.)",
+    "meaning": "การจำกัด, ข้อจำกัด"
+  },
+  {
+    "word": "refined (adj.)",
+    "meaning": "ผ่านการกลั่น/ทำให้บริสุทธิ์ (เช่น น้ำตาลทรายขาว), ขัดเกลาแล้ว"
+  },
+  {
+    "word": "sober (adj.)",
+    "meaning": "ไม่เมา, มีสติ, สุขุม"
+  },
+  {
+    "word": "diverse (adj.)",
+    "meaning": "หลากหลาย"
+  },
+  {
+    "word": "pattern (n.)",
+    "meaning": "รูปแบบ"
+  },
+  {
+    "word": "strategy (n.)",
+    "meaning": "กลยุทธ์, แผนการ"
+  },
+  {
+    "word": "capacity (n.)",
+    "meaning": "ความจุ, ความสามารถในการรับ"
+  },
+  {
+    "word": "pedestrian (n.)",
+    "meaning": "คนเดินเท้า"
+  },
+  {
+    "word": "pavement (n.)",
+    "meaning": "ทางเท้า, ฟุตบาท"
+  },
+  {
+    "word": "infrastructure (n.)",
+    "meaning": "โครงสร้างพื้นฐาน (เช่น ถนน, ไฟฟ้า)"
+  },
+  {
+    "word": "emission (n.)",
+    "meaning": "การปล่อยออกมา (เช่น ก๊าซ, มลพิษ)"
+  },
+  {
+    "word": "mode (n.)",
+    "meaning": "วิธีการ, รูปแบบ"
+  },
+  {
+    "word": "automobile (n.)",
+    "meaning": "รถยนต์"
+  },
+  {
+    "word": "mobility (n.)",
+    "meaning": "ความสามารถในการเคลื่อนที่, ความคล่องตัว"
+  },
+  {
+    "word": "sustainable (adj.)",
+    "meaning": "ยั่งยืน"
+  },
+  {
+    "word": "provincial (adj.)",
+    "meaning": "เกี่ยวกับจังหวัด, ส่วนภูมิภาค"
+  },
+  {
+    "word": "standard (n.)",
+    "meaning": "มาตรฐาน"
+  },
+  {
+    "word": "installation (n.)",
+    "meaning": "การติดตั้ง"
+  },
+  {
+    "word": "daunting (adj.)",
+    "meaning": "น่าหวั่นเกรง, ที่ทำให้เสียกำลังใจ"
+  },
+  {
+    "word": "environmental (adj.)",
+    "meaning": "เกี่ยวกับสิ่งแวดล้อม"
+  },
+  {
+    "word": "cheerful (adj.)",
+    "meaning": "ร่าเริง, แจ่มใส"
+  },
+  {
+    "word": "resident (n.)",
+    "meaning": "ผู้อยู่อาศัย"
+  },
+  {
+    "word": "historic (adj.)",
+    "meaning": "ที่มีความสำคัญทางประวัติศาสตร์"
+  },
+  {
+    "word": "sedentary (adj.)",
+    "meaning": "ซึ่งนั่งๆ นอนๆ, ไม่ค่อยออกกำลังกาย"
+  },
+  {
+    "word": "cognitive (adj.)",
+    "meaning": "เกี่ยวกับกระบวนการรับรู้/การใช้ความคิด"
+  },
+  {
+    "word": "mortality (n.)",
+    "meaning": "อัตราการตาย, ความตาย"
+  },
+  {
+    "word": "resilience (n.)",
+    "meaning": "ความยืดหยุ่น, ความสามารถในการฟื้นตัวจากภาวะยากลำบาก"
+  },
+  {
+    "word": "nourishment (n.)",
+    "meaning": "การบำรุงเลี้ยง, อาหารที่บำรุงร่างกาย"
+  },
+  {
+    "word": "moderate (adj./v.)",
+    "meaning": "ปานกลาง / ทำให้บรรเทาลง"
+  },
+  {
+    "word": "metabolism (n.)",
+    "meaning": "กระบวนการเผาผลาญอาหารในร่างกาย"
+  },
+  {
+    "word": "vulnerable (adj.)",
+    "meaning": "อ่อนแอ, เปราะบาง, เสี่ยงต่อการรับอันตราย"
+  },
+  {
+    "word": "vitality (n.)",
+    "meaning": "พลังชีวิต, ความมีชีวิตชีวา"
+  },
+  {
+    "word": "habitual (adj.)",
+    "meaning": "ที่ทำเป็นนิสัย, เป็นประจำ"
+  },
+  {
+    "word": "prolong (v.)",
+    "meaning": "ยืดเวลา, ทำให้ยาวนานขึ้น"
+  },
+  {
+    "word": "restrictive (adj.)",
+    "meaning": "ซึ่งจำกัด, ซึ่งหวงห้าม"
+  },
+  {
+    "word": "consumption (n.)",
+    "meaning": "การบริโภค"
+  },
+  {
+    "word": "well-balanced (adj.)",
+    "meaning": "ซึ่งสมดุล, ได้สัดส่วนดี"
+  },
+  {
+    "word": "decline (n./v.)",
+    "meaning": "การลดลง / เสื่อมลง, ปฏิเสธ"
+  },
+  {
+    "word": "wellbeing (n.)",
+    "meaning": "ความเป็นอยู่ที่ดี, สุขภาวะ"
+  },
+  {
+    "word": "susceptible (adj.)",
+    "meaning": "อ่อนแอ, ติดเชื้อได้ง่าย, อ่อนไหว"
+  },
+  {
+    "word": "longevity-boosting (adj.)",
+    "meaning": "ที่ช่วยส่งเสริมให้มีอายุยืนยาว"
+  },
+  {
+    "word": "urbanization (n.)",
+    "meaning": "การขยายตัวของเมือง, ความเป็นเมือง"
+  },
+  {
+    "word": "congestion (n.)",
+    "meaning": "ความแออัด (มักใช้กับการจราจร)"
+  },
+  {
+    "word": "pedestrian-friendly (adj.)",
+    "meaning": "เป็นมิตรต่อคนเดินเท้า (เดินสะดวก, ปลอดภัย)"
+  },
+  {
+    "word": "accessibility (n.)",
+    "meaning": "การเข้าถึงได้ง่าย, สิ่งอำนวยความสะดวก"
+  },
+  {
+    "word": "municipality (n.)",
+    "meaning": "เทศบาล"
+  },
+  {
+    "word": "gridlock (n.)",
+    "meaning": "สภาพการจราจรติดขัดอย่างหนักจนขยับไม่ได้"
+  },
+  {
+    "word": "eco-friendly (adj.)",
+    "meaning": "เป็นมิตรต่อสิ่งแวดล้อม"
+  },
+  {
+    "word": "renewable (adj.)",
+    "meaning": "หมุนเวียน, ทดแทนได้ (เช่น พลังงาน)"
+  },
+  {
+    "word": "densely populated (adj.)",
+    "meaning": "มีประชากรอาศัยอยู่หนาแน่น"
+  },
+  {
+    "word": "public transit (n.)",
+    "meaning": "ระบบขนส่งสาธารณะ"
+  },
+  {
+    "word": "feasible (adj.)",
+    "meaning": "ซึ่งเป็นไปได้, ในทางปฏิบัติทำได้"
+  },
+  {
+    "word": "carbon footprint (n.)",
+    "meaning": "รอยเท้าคาร์บอน (ปริมาณการปล่อยก๊าซเรือนกระจก)"
+  },
+  {
+    "word": "proximity (n.)",
+    "meaning": "ความใกล้ชิด, บริเวณใกล้เคียง"
+  },
+  {
+    "word": "liveability (n.)",
+    "meaning": "ความน่าอยู่"
+  },
+  {
+    "word": "urban sprawl (n.)",
+    "meaning": "การขยายตัวของเมืองออกไปบริเวณรอบนอกอย่างไม่เป็นระเบียบ"
+  },
+  {
+    "word": "transformation (n.)",
+    "meaning": "การเปลี่ยนแปลงรูปร่าง/สภาพ"
+  },
+  {
+    "word": "suburban (adj.)",
+    "meaning": "เกี่ยวกับชานเมือง"
+  },
+  {
+    "word": "adherence (n.)",
+    "meaning": "การยึดมั่น, การปฏิบัติตาม (กฎเกณฑ์/คำแนะนำ)"
+  },
+  {
+    "word": "detrimental (adj.)",
+    "meaning": "เป็นอันตราย, ก่อให้เกิดความเสียหาย"
+  },
+  {
+    "word": "exacerbate (v.)",
+    "meaning": "ทำให้แย่ลง, ทำให้รุนแรงขึ้น"
+  },
+  {
+    "word": "incorporation (n.)",
+    "meaning": "การรวมเข้าด้วยกัน, การผสมผสาน"
+  },
+  {
+    "word": "substantially (adv.)",
+    "meaning": "อย่างมาก, อย่างมีนัยสำคัญ"
+  },
+  {
+    "word": "metropolitan (adj.)",
+    "meaning": "เกี่ยวกับเมืองหลวง/มหานคร"
+  },
+  {
+    "word": "implementation (n.)",
+    "meaning": "การนำไปปฏิบัติ"
+  },
+  {
+    "word": "revitalization (n.)",
+    "meaning": "การฟื้นฟู, การทำให้กลับมามีชีวิตชีวาอีกครั้ง"
+  },
+  {
+    "word": "disparity (n.)",
+    "meaning": "ความแตกต่าง, ความเหลื่อมล้ำ"
+  },
+  {
+    "word": "interconnectivity (n.)",
+    "meaning": "การเชื่อมโยงถึงกันและกัน"
+  }
+]

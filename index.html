@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>VocabFlip - ฝึกจำคำศัพท์ภาษาอังกฤษ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================
+       CSS VARIABLES & THEMES
+       ========================================================== */
+    :root {
+      --font-body: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-en: 'Plus Jakarta Sans', 'Prompt', sans-serif;
+      
+      /* Light Theme */
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-glow: rgba(79, 70, 229, 0.25);
+      
+      --success: #10b981;
+      --success-hover: #059669;
+      --success-light: #ecfdf5;
+      --success-glow: rgba(16, 185, 129, 0.25);
+      
+      --danger: #f43f5e;
+      --danger-hover: #e11d48;
+      --danger-light: #fff1f2;
+      --danger-glow: rgba(244, 63, 94, 0.25);
+      
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      
+      --bg-body: #f8fafc;
+      --bg-card-front: #ffffff;
+      --bg-card-back: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+      --bg-glass: rgba(255, 255, 255, 0.82);
+      --bg-glass-subtle: rgba(255, 255, 255, 0.6);
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      
+      --border-color: rgba(226, 232, 240, 0.85);
+      --border-focus: #818cf8;
+      
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 25px 40px -12px rgba(79, 70, 229, 0.16), 0 12px 20px -8px rgba(15, 23, 42, 0.06);
+      --shadow-card: 0 22px 35px -10px rgba(79, 70, 229, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+      
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    [data-theme="dark"] {
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
+      --primary-light: rgba(99, 102, 241, 0.16);
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      
+      --success: #34d399;
+      --success-hover: #10b981;
+      --success-light: rgba(16, 185, 129, 0.16);
+      --success-glow: rgba(52, 211, 153, 0.3);
+      
+      --danger: #fb7185;
+      --danger-hover: #f43f5e;
+      --danger-light: rgba(244, 63, 94, 0.16);
+      --danger-glow: rgba(251, 113, 133, 0.3);
+      
+      --warning: #fbbf24;
+      --warning-light: rgba(245, 158, 11, 0.16);
+      
+      --bg-body: #0b0f19;
+      --bg-card-front: #141c2e;
+      --bg-card-back: linear-gradient(135deg, #090d16 0%, #1e1b4b 60%, #312e81 100%);
+      --bg-glass: rgba(20, 28, 46, 0.85);
+      --bg-glass-subtle: rgba(20, 28, 46, 0.6);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      
+      --border-color: rgba(51, 65, 85, 0.65);
+      --border-focus: #a5b4fc;
+      
+      --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+      --shadow-card: 0 22px 35px -10px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 16px 48px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glowing Background Orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(80px);
+      opacity: 0.7;
+      transition: opacity 0.5s ease;
+    }
+
+    .bg-orb-1 {
+      top: -100px;
+      left: 10%;
+      width: 460px;
+      height: 460px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+      animation: float-orb-1 18s ease-in-out infinite alternate;
+    }
+
+    .bg-orb-2 {
+      bottom: 50px;
+      right: 5%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+      animation: float-orb-2 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-orb-1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.1); }
+    }
+
+    @keyframes float-orb-2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, -40px) scale(1.08); }
+    }
+
+    /* Canvas for Confetti */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Main Container */
+    .app-wrapper {
+      width: 100%;
+      max-width: 660px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Top Utility Bar (Theme, Sound, Speed) */
+    .top-toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo span.gradient-text {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-btn {
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tool-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .tool-btn.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs-container {
+      width: 100%;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      padding: 6px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 14px;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--bg-glass-subtle);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 6px 16px var(--primary-glow);
+    }
+
+    .tab-btn.active svg {
+      transform: scale(1.08);
+    }
+
+    /* Stats Overview Pills */
+    .stats-shelf {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease;
+    }
+
+    .stat-chip:hover {
+      transform: translateY(-1px);
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .chip-dot.total { background: #94a3b8; }
+    .chip-dot.mastered { background: var(--success); box-shadow: 0 0 8px var(--success); }
+    .chip-dot.review { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-pane.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================
+       TAB 1: FLASHCARDS STYLES
+       ========================================================== */
+    .flashcard-tools-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-chips-group {
+      display: flex;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      padding: 4px;
+      border-radius: 30px;
+      gap: 4px;
+    }
+
+    .filter-chip-btn {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-chip-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    .autoplay-toggle-btn {
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .autoplay-toggle-btn.playing {
+      background: var(--warning-light);
+      border-color: var(--warning);
+      color: #b45309;
+      animation: pulse-border 1.5s infinite;
+    }
+
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 0 4px rgba(245, 158, 11, 0); }
+    }
+
+    /* Progress Shelf */
+    .card-progress-shelf {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 7px;
+      background: var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-value {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      border-radius: 20px;
+      width: 0%;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 3D FLASHCARD CONTAINER */
+    .card-stage {
+      perspective: 1200px;
+      width: 100%;
+      height: 330px;
+      margin-bottom: 18px;
+    }
+
+    .flashcard-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+      cursor: pointer;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+    }
+
+    .flashcard-3d.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face-plane {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: border-color 0.3s ease;
+    }
+
+    /* Card Front */
+    .card-front-plane {
+      background: var(--bg-card-front);
+      color: var(--text-main);
+    }
+
+    /* Card Back */
+    .card-back-plane {
+      background: var(--bg-card-back);
+      color: #ffffff;
+      transform: rotateY(180deg);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Watermark Card Index */
+    .card-watermark {
+      position: absolute;
+      right: 20px;
+      bottom: 10px;
+      font-family: var(--font-en);
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .card-back-plane .card-watermark {
+      opacity: 0.08;
+      color: white;
+    }
+
+    /* Card Header */
+    .card-pane-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .status-badge-pill {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.2px;
+    }
+
+    .badge-unmarked {
+      background: var(--bg-glass-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .badge-mastered {
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-review {
+      background: var(--danger-light);
+      color: var(--danger);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    .card-back-plane .badge-unmarked {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.85);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-back-plane .badge-mastered {
+      background: #10b981;
+      color: white;
+      border-color: #34d399;
+    }
+
+    .card-back-plane .badge-review {
+      background: #f43f5e;
+      color: white;
+      border-color: #fb7185;
+    }
+
+    /* Audio TTS Button */
+    .speech-bubble-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(8px);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .speech-bubble-btn:hover {
+      transform: scale(1.1);
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .speech-bubble-btn.is-speaking {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      animation: speaking-pulse 1s infinite alternate;
+    }
+
+    .card-back-plane .speech-bubble-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: white;
+    }
+
+    .card-back-plane .speech-bubble-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    @keyframes speaking-pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 var(--primary-glow); }
+      100% { transform: scale(1.12); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+    }
+
+    /* Card Core Content */
+    .card-core-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding: 12px 0;
+      z-index: 2;
+    }
+
+    .en-word-lead {
+      font-family: var(--font-en);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      word-break: break-word;
+    }
+
+    .pos-pill-tag {
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    .pos-pill-tag.noun { background: #e0f2fe; color: #0369a1; }
+    .pos-pill-tag.verb { background: #ecfdf5; color: #047857; }
+    .pos-pill-tag.adj  { background: #f3e8ff; color: #7e22ce; }
+    .pos-pill-tag.adv  { background: #fef3c7; color: #b45309; }
+
+    .card-back-plane .en-word-subtext {
+      font-family: var(--font-en);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 10px;
+    }
+
+    .card-back-plane .th-meaning-lead {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Card Prompt Hints */
+    .card-flip-cue {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-glass-subtle);
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      z-index: 2;
+    }
+
+    .card-back-plane .card-flip-cue {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Mastery Buttons Shelf */
+    .mastery-buttons-shelf {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .mastery-action-btn {
+      padding: 13px 18px;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mastery-action-btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-act-review {
+      background: var(--danger-light);
+      color: var(--danger);
+      border-color: rgba(244, 63, 94, 0.3);
+    }
+
+    .btn-act-review:hover {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+      box-shadow: 0 6px 16px var(--danger-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-act-mastered {
+      background: var(--success-light);
+      color: var(--success);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-act-mastered:hover {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+      box-shadow: 0 6px 16px var(--success-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Main Deck Controls */
+    .deck-controls-shelf {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .deck-btn {
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .deck-btn:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .deck-btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary-flip {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .btn-primary-flip:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    .btn-shuffle-deck {
+      color: #d97706;
+      border-color: rgba(245, 158, 11, 0.3);
+      background: var(--warning-light);
+    }
+
+    .btn-shuffle-deck:hover {
+      background: var(--warning);
+      color: white;
+      border-color: var(--warning);
+    }
+
+    /* Keyboard Shortcuts Footer Note */
+    .keyboard-cheatsheet {
+      margin-top: 22px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      background: var(--bg-glass-subtle);
+      backdrop-filter: blur(10px);
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .key-badge {
+      background: var(--bg-body);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.78rem;
+    }
+
+    /* ==========================================================
+       TAB 2: QUIZ MODE STYLES
+       ========================================================== */
+    .quiz-panel-card {
+      width: 100%;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 30px 24px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .quiz-top-scoreboard {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .quiz-stage-pill {
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 30px;
+    }
+
+    .quiz-streak-tag {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ea580c;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quiz-prompt-headline {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .quiz-lead-word {
+      font-family: var(--font-en);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .quiz-choices-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .quiz-choice-row {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-card-front);
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-choice-row:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(6px);
+    }
+
+    .choice-alpha-label {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--bg-body);
+      color: var(--text-muted);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+
+    .quiz-choice-row.choice-correct {
+      border-color: var(--success) !important;
+      background: var(--success-light) !important;
+      color: #065f46 !important;
+      box-shadow: 0 4px 14px var(--success-glow);
+    }
+
+    .quiz-choice-row.choice-correct .choice-alpha-label {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    .quiz-choice-row.choice-wrong {
+      border-color: var(--danger) !important;
+      background: var(--danger-light) !important;
+      color: #991b1b !important;
+      animation: shake-choice 0.35s;
+    }
+
+    .quiz-choice-row.choice-wrong .choice-alpha-label {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+
+    @keyframes shake-choice {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    /* Result Shelf */
+    .quiz-result-shelf {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .score-medal-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0 20px;
+      box-shadow: 0 15px 30px var(--primary-glow);
+      animation: scale-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes scale-up {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .score-digits {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1;
+      font-family: var(--font-en);
+    }
+
+    .score-percent-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ==========================================================
+       TAB 3: WORD LIST & SEARCH STYLES
+       ========================================================== */
+    .wordlist-search-deck {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-field-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-field-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .select-dropdown-styled {
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .words-scroll-list {
+      width: 100%;
+      max-height: 540px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    .word-row-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .word-row-card:hover {
+      border-color: var(--border-focus);
+      background: var(--bg-card-front);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .word-row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .word-row-en {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .word-row-th {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Toast Notification Banner */
+    .app-toast-alert {
+      position: fixed;
+      bottom: 24px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10000;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .app-toast-alert.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      body { padding: 12px 12px 40px; }
+      .brand-logo { font-size: 1.15rem; }
+      .card-stage { height: 290px; }
+      .en-word-lead { font-size: 1.85rem; }
+      .card-back-plane .th-meaning-lead { font-size: 1.5rem; }
+      .deck-controls-shelf { grid-template-columns: 1fr 1fr; }
+      .keyboard-cheatsheet { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="app-wrapper">
+
+    <!-- Top Utility Bar -->
+    <div class="top-toolbar">
+      <div class="brand-logo">
+        <span style="font-size: 1.4rem;">🧠</span>
+        <span>Vocab<span class="gradient-text">Flip</span></span>
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- Voice speed selector -->
+        <button class="tool-btn" id="speedBtn" onclick="toggleVoiceSpeed()" title="ปรับความเร็วเสียงอ่าน (ปัจจุบัน 1.0x)">
+          <span id="speedLabel" style="font-size: 0.75rem; font-weight: 700;">1.0x</span>
+        </button>
+
+        <!-- Sound FX toggle -->
+        <button class="tool-btn active" id="sfxBtn" onclick="toggleSfx()" title="เปิด/ปิดเสียงเอฟเฟกต์">
+          <svg id="sfxIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        </button>
+
+        <!-- Dark / Light theme toggle -->
+        <button class="tool-btn" id="themeBtn" onclick="toggleTheme()" title="สลับธีม สว่าง / มืด">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Nav Tabs -->
+    <div class="nav-tabs-container">
+      <button class="tab-btn active" onclick="switchActiveTab('flashcards')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
+        การ์ดคำศัพท์
+      </button>
+      <button class="tab-btn" onclick="switchActiveTab('quiz')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        แบบทดสอบ
+      </button>
+      <button class="tab-btn" onclick="switchActiveTab('wordlist')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="4" cy="18" r="1.5"/></svg>
+        คลังศัพท์ (110)
+      </button>
+    </div>
+
+    <!-- Quick Stats Overview Shelf -->
+    <div class="stats-shelf">
+      <div class="stat-chip">
+        <span class="chip-dot total"></span>
+        <span>คำทั้งหมด: <strong id="statTotalNumber">110</strong></span>
+      </div>
+      <div class="stat-chip">
+        <span class="chip-dot mastered"></span>
+        <span>จำได้แล้ว: <strong id="statMasteredNumber" style="color: var(--success)">0</strong></span>
+      </div>
+      <div class="stat-chip">
+        <span class="chip-dot review"></span>
+        <span>ต้องทบทวน: <strong id="statReviewNumber" style="color: var(--danger)">0</strong></span>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         TAB 1: FLASHCARDS PANE
+         ========================================================== -->
+    <div id="flashcardsPane" class="tab-pane active">
+
+      <!-- Filter chips & Auto-play toggle -->
+      <div class="flashcard-tools-bar">
+        <div class="filter-chips-group">
+          <button class="filter-chip-btn active" onclick="applyDeckFilter('all', this)">ทั้งหมด (<span id="countAll">110</span>)</button>
+          <button class="filter-chip-btn" onclick="applyDeckFilter('review', this)">⚠️ ต้องทบทวน (<span id="countReview">0</span>)</button>
+          <button class="filter-chip-btn" onclick="applyDeckFilter('mastered', this)">✅ จำได้แล้ว (<span id="countMastered">0</span>)</button>
+        </div>
+
+        <button class="autoplay-toggle-btn" id="autoplayBtn" onclick="toggleAutoPlay()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span id="autoplayLabel">เล่นอัตโนมัติ</span>
+        </button>
+      </div>
+
+      <!-- Card Progress Bar -->
+      <div class="card-progress-shelf">
+        <div class="progress-meta">
+          <span id="cardProgressText">การ์ดที่ 1 จาก 110</span>
+          <span id="cardPercentText">1%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-value" id="cardProgressFill"></div>
+        </div>
+      </div>
+
+      <!-- 3D Flashcard Stage -->
+      <div class="card-stage" id="cardTouchArea" onclick="flipCurrentCard()">
+        <div class="flashcard-3d" id="mainFlashcard">
+          <!-- FRONT FACE (English) -->
+          <div class="card-face-plane card-front-plane">
+            <span class="card-watermark" id="watermarkIndex">01</span>
+            
+            <div class="card-pane-header">
+              <span class="status-badge-pill badge-unmarked" id="cardTagFront">ยังไม่ระบุ</span>
+              <button class="speech-bubble-btn" onclick="speakCurrentCard(event)" title="ฟังเสียงอ่านสำเนียงอังกฤษ">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              </button>
+            </div>
+
+            <div class="card-core-content">
+              <div class="en-word-lead" id="frontWordText">Loading...</div>
+              <div class="pos-pill-tag" id="frontPosTag"></div>
+            </div>
+
+            <div class="card-flip-cue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              แตะการ์ดเพื่อดูความหมาย
+            </div>
+          </div>
+
+          <!-- BACK FACE (Thai Meaning) -->
+          <div class="card-face-plane card-back-plane">
+            <span class="card-watermark" id="watermarkIndexBack">01</span>
+
+            <div class="card-pane-header">
+              <span class="status-badge-pill badge-unmarked" id="cardTagBack">ยังไม่ระบุ</span>
+              <button class="speech-bubble-btn" onclick="speakCurrentCard(event)" title="ฟังเสียงอ่านสำเนียงอังกฤษ">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              </button>
+            </div>
+
+            <div class="card-core-content">
+              <div class="en-word-subtext" id="backWordSubtitle"></div>
+              <div class="th-meaning-lead" id="backMeaningText">กำลังโหลด...</div>
+            </div>
+
+            <div class="card-flip-cue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              แตะการ์ดเพื่อพลิกกลับ
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mastery Action Buttons -->
+      <div class="mastery-buttons-shelf">
+        <button class="mastery-action-btn btn-act-review" onclick="markCardStatus('review')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          ยังจำไม่ได้ <span style="font-size: 0.8rem; opacity: 0.7;">(กด 1)</span>
+        </button>
+        <button class="mastery-action-btn btn-act-mastered" onclick="markCardStatus('mastered')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          จำได้แล้ว! <span style="font-size: 0.8rem; opacity: 0.7;">(กด 2)</span>
+        </button>
+      </div>
+
+      <!-- Main Deck Controls -->
+      <div class="deck-controls-shelf">
+        <button class="deck-btn" onclick="navigateCard(-1)" title="ก่อนหน้า (ลูกศรซ้าย / ปัดขวา)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          ก่อนหน้า
+        </button>
+        <button class="deck-btn btn-primary-flip" onclick="flipCurrentCard()" title="พลิกการ์ด (Spacebar)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          พลิกการ์ด
+        </button>
+        <button class="deck-btn" onclick="navigateCard(1)" title="ถัดไป (ลูกศรขวา / ปัดซ้าย)">
+          ถัดไป
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="deck-btn btn-shuffle-deck" onclick="shuffleDeckCards()" title="สลับลำดับคำศัพท์">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          สลับคำ
+        </button>
+      </div>
+
+      <!-- Keyboard Cheatsheet -->
+      <div class="keyboard-cheatsheet">
+        <span><span class="key-badge">Space</span> พลิกการ์ด</span>
+        <span><span class="key-badge">&larr;</span> <span class="key-badge">&rarr;</span> ก่อนหน้า/ถัดไป</span>
+        <span><span class="key-badge">S</span> ฟังเสียง</span>
+        <span><span class="key-badge">1</span> ต้องทบทวน</span>
+        <span><span class="key-badge">2</span> จำได้แล้ว</span>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         TAB 2: QUIZ PANE
+         ========================================================== -->
+    <div id="quizPane" class="tab-pane">
+
+      <!-- Quiz Setup Screen -->
+      <div id="quizSetupBox" class="quiz-panel-card" style="text-align: center;">
+        <div style="font-size: 3.2rem; margin-bottom: 10px;">🎯</div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 6px;">แบบทดสอบวัดความจำ</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; max-width: 400px;">
+          ฝึกตอบความหมายคำศัพท์ 4 ตัวเลือกเพื่อประเมินความแม่นยำและดึงศักยภาพความจำ
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 320px; margin-bottom: 26px; text-align: left;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">จำนวนข้อสอบ:</label>
+            <select id="quizLengthChoice" class="select-dropdown-styled" style="width: 100%;">
+              <option value="10">10 ข้อ (ฉบับรวดเร็ว)</option>
+              <option value="20" selected>20 ข้อ (แนะนำ)</option>
+              <option value="50">50 ข้อ (ฝึกซ้อมเข้มข้น)</option>
+              <option value="all">ทั้งหมด (110 ข้อ)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">หมวดคำที่ต้องการสอบ:</label>
+            <select id="quizPoolChoice" class="select-dropdown-styled" style="width: 100%;">
+              <option value="all">คำศัพท์ทั้งหมด (110 คำ)</option>
+              <option value="review">เฉพาะคำที่ "ยังจำไม่ได้"</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="deck-btn btn-primary-flip" style="padding: 14px 36px; font-size: 1.05rem; border-radius: 16px;" onclick="beginQuizSession()">
+          🚀 เริ่มทำแบบทดสอบ
+        </button>
+      </div>
+
+      <!-- Quiz Active Question Screen -->
+      <div id="quizActiveBox" class="quiz-panel-card" style="display: none;">
+        <div class="quiz-top-scoreboard">
+          <div class="quiz-stage-pill" id="quizCurrentStepBadge">ข้อ 1 / 20</div>
+          <div class="quiz-streak-tag" id="quizStreakIndicator">🔥 0 ข้อติด</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-muted);" id="quizScoreboardLive">คะแนน: 0</div>
+        </div>
+
+        <div class="quiz-prompt-headline">คำศัพท์นี้มีความหมายว่าอย่างไร?</div>
+        <div class="quiz-lead-word">
+          <span id="quizWordDisplay">Word</span>
+          <button class="speech-bubble-btn" onclick="speakQuizPromptWord()" title="ฟังเสียงอ่าน">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+        </div>
+
+        <div class="quiz-choices-stack" id="quizChoicesList">
+          <!-- 4 option buttons dynamically injected -->
+        </div>
+      </div>
+
+      <!-- Quiz Result Summary Screen -->
+      <div id="quizResultBox" class="quiz-panel-card quiz-result-shelf" style="display: none;">
+        <div style="font-size: 3.5rem;" id="resultMedalEmoji">🏆</div>
+        <div class="score-medal-circle">
+          <div class="score-digits" id="finalScoreDigits">18/20</div>
+          <div class="score-percent-label" id="finalScorePercent">90%</div>
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;" id="finalResultTitle">ยอดเยี่ยมมาก!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 26px; max-width: 420px;" id="finalResultFeedback">
+          คุณจำคำศัพท์ชุดนี้ได้อย่างแม่นยำ ฝึกฝนอีกนิดก็เต็มแล้ว
+        </p>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+          <button class="deck-btn btn-primary-flip" onclick="resetAndRestartQuiz()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            ทำใหม่อีกครั้ง
+          </button>
+          <button class="deck-btn" onclick="switchActiveTab('flashcards')">
+            🎴 กลับไปท่อง Flashcard
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================
+         TAB 3: WORD LIST PANE
+         ========================================================== -->
+    <div id="wordlistPane" class="tab-pane">
+      <div class="wordlist-search-deck">
+        <input type="text" id="filterSearchQuery" class="search-field-input" placeholder="🔍 ค้นหาคำศัพท์ (อังกฤษ หรือ ไทย)..." oninput="renderWordCatalog()">
+        <select id="filterStatusSelect" class="select-dropdown-styled" onchange="renderWordCatalog()">
+          <option value="all">ทั้งหมด (110)</option>
+          <option value="review">เฉพาะที่ต้องทบทวน</option>
+          <option value="mastered">เฉพาะที่จำได้แล้ว</option>
+        </select>
+      </div>
+
+      <div class="words-scroll-list" id="wordCatalogContainer">
+        <!-- Rendered items -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast Element -->
+  <div class="app-toast-alert" id="toastBox">
+    <span id="toastIcon">💡</span>
+    <span id="toastMsg">แจ้งเตือน</span>
+  </div>
+
+  <script>
+    // ==========================================================
+    // DATA & APP STATE
+    // ==========================================================
+    const masterVocabDeck = [
+  {
+    "word": "addiction (n.)",
+    "meaning": "การเสพติด"
+  },
+  {
+    "word": "approach (v.)",
+    "meaning": "เข้าใกล้, เข้าหา, วิธีการ"
+  },
+  {
+    "word": "assign (v.)",
+    "meaning": "มอบหมาย"
+  },
+  {
+    "word": "baseline (n.)",
+    "meaning": "เส้นพื้นฐาน, เกณฑ์มาตรฐาน"
+  },
+  {
+    "word": "centenarian (n.)",
+    "meaning": "ผู้ที่มีอายุ 100 ปีขึ้นไป"
+  },
+  {
+    "word": "chronic disease (n.)",
+    "meaning": "โรคเรื้อรัง"
+  },
+  {
+    "word": "dominate (v.)",
+    "meaning": "ครอบงำ, ควบคุม"
+  },
+  {
+    "word": "embarrassed (adj.)",
+    "meaning": "รู้สึกอับอาย, ขวยเขิน"
+  },
+  {
+    "word": "excess (adj./n.)",
+    "meaning": "ส่วนเกิน, มากเกินไป / ความมากเกินไป"
+  },
+  {
+    "word": "impair (v.)",
+    "meaning": "ทำให้แย่ลง, ทำให้อ่อนแอ, ทำให้บกพร่อง"
+  },
+  {
+    "word": "indulge in (phr. v.)",
+    "meaning": "หมกมุ่น, ปล่อยตัวตามใจใน"
+  },
+  {
+    "word": "intake (n.)",
+    "meaning": "ปริมาณที่บริโภคเข้าไป"
+  },
+  {
+    "word": "intervention (n.)",
+    "meaning": "การแทรกแซง (เพื่อแก้ไขปัญหา)"
+  },
+  {
+    "word": "life expectancy (n.)",
+    "meaning": "อายุขัยเฉลี่ย"
+  },
+  {
+    "word": "longevity (n.)",
+    "meaning": "ความมีอายุยืน"
+  },
+  {
+    "word": "optimal (adj.)",
+    "meaning": "เหมาะสมที่สุด, ดีที่สุด"
+  },
+  {
+    "word": "premature (adj.)",
+    "meaning": "ก่อนกำหนด"
+  },
+  {
+    "word": "realize (v.)",
+    "meaning": "ตระหนัก, เข้าใจอย่างชัดเจน"
+  },
+  {
+    "word": "root for (phr. v.)",
+    "meaning": "เอาใจช่วย, สนับสนุน"
+  },
+  {
+    "word": "unproven (adj.)",
+    "meaning": "ยังไม่ได้รับการพิสูจน์"
+  },
+  {
+    "word": "alleviate (v.)",
+    "meaning": "บรรเทา, ทำให้น้อยลง"
+  },
+  {
+    "word": "casually (adv.)",
+    "meaning": "อย่างไม่เป็นทางการ, สบายๆ"
+  },
+  {
+    "word": "commute (v./n.)",
+    "meaning": "เดินทางไปกลับที่ทำงาน / การเดินทางไปทำงาน"
+  },
+  {
+    "word": "compel (v.)",
+    "meaning": "บังคับ, บีบบังคับ"
+  },
+  {
+    "word": "coordinate (v.)",
+    "meaning": "ประสานงาน"
+  },
+  {
+    "word": "cutting-edge (adj.)",
+    "meaning": "ล้ำยุค, ทันสมัยที่สุด"
+  },
+  {
+    "word": "iconic (adj.)",
+    "meaning": "ซึ่งเป็นสัญลักษณ์, มีชื่อเสียงโด่งดัง"
+  },
+  {
+    "word": "illegally (adv.)",
+    "meaning": "อย่างผิดกฎหมาย"
+  },
+  {
+    "word": "incentive (n.)",
+    "meaning": "สิ่งจูงใจ, แรงจูงใจ"
+  },
+  {
+    "word": "impediment (n.)",
+    "meaning": "อุปสรรค, สิ่งกีดขวาง"
+  },
+  {
+    "word": "navigate (v.)",
+    "meaning": "นำทาง, หาเส้นทาง"
+  },
+  {
+    "word": "necessity (n.)",
+    "meaning": "ความจำเป็น, สิ่งจำเป็น"
+  },
+  {
+    "word": "picturesque (adj.)",
+    "meaning": "สวยงามเหมือนภาพวาด"
+  },
+  {
+    "word": "scarce (adj.)",
+    "meaning": "ขาดแคลน, หายาก"
+  },
+  {
+    "word": "secure (adj.)",
+    "meaning": "ปลอดภัย, มั่นคง"
+  },
+  {
+    "word": "shortage (n.)",
+    "meaning": "ความขาดแคลน"
+  },
+  {
+    "word": "slash (v.)",
+    "meaning": "ฟัน, ตัดราคา/ลดลงอย่างมาก"
+  },
+  {
+    "word": "staple (n.)",
+    "meaning": "สินค้าหลัก, อาหารหลัก"
+  },
+  {
+    "word": "strain (n.)",
+    "meaning": "ความตึงเครียด, ภาระหนัก"
+  },
+  {
+    "word": "stroll (v./n.)",
+    "meaning": "เดินเล่น / การเดินเล่น"
+  },
+  {
+    "word": "cardiovascular (adj.)",
+    "meaning": "เกี่ยวกับหัวใจและหลอดเลือด"
+  },
+  {
+    "word": "contributor (n.)",
+    "meaning": "ปัจจัยที่มีส่วนทำให้เกิด, ผู้บริจาค"
+  },
+  {
+    "word": "restriction (n.)",
+    "meaning": "การจำกัด, ข้อจำกัด"
+  },
+  {
+    "word": "refined (adj.)",
+    "meaning": "ผ่านการกลั่น/ทำให้บริสุทธิ์ (เช่น น้ำตาลทรายขาว), ขัดเกลาแล้ว"
+  },
+  {
+    "word": "sober (adj.)",
+    "meaning": "ไม่เมา, มีสติ, สุขุม"
+  },
+  {
+    "word": "diverse (adj.)",
+    "meaning": "หลากหลาย"
+  },
+  {
+    "word": "pattern (n.)",
+    "meaning": "รูปแบบ"
+  },
+  {
+    "word": "strategy (n.)",
+    "meaning": "กลยุทธ์, แผนการ"
+  },
+  {
+    "word": "capacity (n.)",
+    "meaning": "ความจุ, ความสามารถในการรับ"
+  },
+  {
+    "word": "pedestrian (n.)",
+    "meaning": "คนเดินเท้า"
+  },
+  {
+    "word": "pavement (n.)",
+    "meaning": "ทางเท้า, ฟุตบาท"
+  },
+  {
+    "word": "infrastructure (n.)",
+    "meaning": "โครงสร้างพื้นฐาน (เช่น ถนน, ไฟฟ้า)"
+  },
+  {
+    "word": "emission (n.)",
+    "meaning": "การปล่อยออกมา (เช่น ก๊าซ, มลพิษ)"
+  },
+  {
+    "word": "mode (n.)",
+    "meaning": "วิธีการ, รูปแบบ"
+  },
+  {
+    "word": "automobile (n.)",
+    "meaning": "รถยนต์"
+  },
+  {
+    "word": "mobility (n.)",
+    "meaning": "ความสามารถในการเคลื่อนที่, ความคล่องตัว"
+  },
+  {
+    "word": "sustainable (adj.)",
+    "meaning": "ยั่งยืน"
+  },
+  {
+    "word": "provincial (adj.)",
+    "meaning": "เกี่ยวกับจังหวัด, ส่วนภูมิภาค"
+  },
+  {
+    "word": "standard (n.)",
+    "meaning": "มาตรฐาน"
+  },
+  {
+    "word": "installation (n.)",
+    "meaning": "การติดตั้ง"
+  },
+  {
+    "word": "daunting (adj.)",
+    "meaning": "น่าหวั่นเกรง, ที่ทำให้เสียกำลังใจ"
+  },
+  {
+    "word": "environmental (adj.)",
+    "meaning": "เกี่ยวกับสิ่งแวดล้อม"
+  },
+  {
+    "word": "cheerful (adj.)",
+    "meaning": "ร่าเริง, แจ่มใส"
+  },
+  {
+    "word": "resident (n.)",
+    "meaning": "ผู้อยู่อาศัย"
+  },
+  {
+    "word": "historic (adj.)",
+    "meaning": "ที่มีความสำคัญทางประวัติศาสตร์"
+  },
+  {
+    "word": "sedentary (adj.)",
+    "meaning": "ซึ่งนั่งๆ นอนๆ, ไม่ค่อยออกกำลังกาย"
+  },
+  {
+    "word": "cognitive (adj.)",
+    "meaning": "เกี่ยวกับกระบวนการรับรู้/การใช้ความคิด"
+  },
+  {
+    "word": "mortality (n.)",
+    "meaning": "อัตราการตาย, ความตาย"
+  },
+  {
+    "word": "resilience (n.)",
+    "meaning": "ความยืดหยุ่น, ความสามารถในการฟื้นตัวจากภาวะยากลำบาก"
+  },
+  {
+    "word": "nourishment (n.)",
+    "meaning": "การบำรุงเลี้ยง, อาหารที่บำรุงร่างกาย"
+  },
+  {
+    "word": "moderate (adj./v.)",
+    "meaning": "ปานกลาง / ทำให้บรรเทาลง"
+  },
+  {
+    "word": "metabolism (n.)",
+    "meaning": "กระบวนการเผาผลาญอาหารในร่างกาย"
+  },
+  {
+    "word": "vulnerable (adj.)",
+    "meaning": "อ่อนแอ, เปราะบาง, เสี่ยงต่อการรับอันตราย"
+  },
+  {
+    "word": "vitality (n.)",
+    "meaning": "พลังชีวิต, ความมีชีวิตชีวา"
+  },
+  {
+    "word": "habitual (adj.)",
+    "meaning": "ที่ทำเป็นนิสัย, เป็นประจำ"
+  },
+  {
+    "word": "prolong (v.)",
+    "meaning": "ยืดเวลา, ทำให้ยาวนานขึ้น"
+  },
+  {
+    "word": "restrictive (adj.)",
+    "meaning": "ซึ่งจำกัด, ซึ่งหวงห้าม"
+  },
+  {
+    "word": "consumption (n.)",
+    "meaning": "การบริโภค"
+  },
+  {
+    "word": "well-balanced (adj.)",
+    "meaning": "ซึ่งสมดุล, ได้สัดส่วนดี"
+  },
+  {
+    "word": "decline (n./v.)",
+    "meaning": "การลดลง / เสื่อมลง, ปฏิเสธ"
+  },
+  {
+    "word": "wellbeing (n.)",
+    "meaning": "ความเป็นอยู่ที่ดี, สุขภาวะ"
+  },
+  {
+    "word": "susceptible (adj.)",
+    "meaning": "อ่อนแอ, ติดเชื้อได้ง่าย, อ่อนไหว"
+  },
+  {
+    "word": "longevity-boosting (adj.)",
+    "meaning": "ที่ช่วยส่งเสริมให้มีอายุยืนยาว"
+  },
+  {
+    "word": "urbanization (n.)",
+    "meaning": "การขยายตัวของเมือง, ความเป็นเมือง"
+  },
+  {
+    "word": "congestion (n.)",
+    "meaning": "ความแออัด (มักใช้กับการจราจร)"
+  },
+  {
+    "word": "pedestrian-friendly (adj.)",
+    "meaning": "เป็นมิตรต่อคนเดินเท้า (เดินสะดวก, ปลอดภัย)"
+  },
+  {
+    "word": "accessibility (n.)",
+    "meaning": "การเข้าถึงได้ง่าย, สิ่งอำนวยความสะดวก"
+  },
+  {
+    "word": "municipality (n.)",
+    "meaning": "เทศบาล"
+  },
+  {
+    "word": "gridlock (n.)",
+    "meaning": "สภาพการจราจรติดขัดอย่างหนักจนขยับไม่ได้"
+  },
+  {
+    "word": "eco-friendly (adj.)",
+    "meaning": "เป็นมิตรต่อสิ่งแวดล้อม"
+  },
+  {
+    "word": "renewable (adj.)",
+    "meaning": "หมุนเวียน, ทดแทนได้ (เช่น พลังงาน)"
+  },
+  {
+    "word": "densely populated (adj.)",
+    "meaning": "มีประชากรอาศัยอยู่หนาแน่น"
+  },
+  {
+    "word": "public transit (n.)",
+    "meaning": "ระบบขนส่งสาธารณะ"
+  },
+  {
+    "word": "feasible (adj.)",
+    "meaning": "ซึ่งเป็นไปได้, ในทางปฏิบัติทำได้"
+  },
+  {
+    "word": "carbon footprint (n.)",
+    "meaning": "รอยเท้าคาร์บอน (ปริมาณการปล่อยก๊าซเรือนกระจก)"
+  },
+  {
+    "word": "proximity (n.)",
+    "meaning": "ความใกล้ชิด, บริเวณใกล้เคียง"
+  },
+  {
+    "word": "liveability (n.)",
+    "meaning": "ความน่าอยู่"
+  },
+  {
+    "word": "urban sprawl (n.)",
+    "meaning": "การขยายตัวของเมืองออกไปบริเวณรอบนอกอย่างไม่เป็นระเบียบ"
+  },
+  {
+    "word": "transformation (n.)",
+    "meaning": "การเปลี่ยนแปลงรูปร่าง/สภาพ"
+  },
+  {
+    "word": "suburban (adj.)",
+    "meaning": "เกี่ยวกับชานเมือง"
+  },
+  {
+    "word": "adherence (n.)",
+    "meaning": "การยึดมั่น, การปฏิบัติตาม (กฎเกณฑ์/คำแนะนำ)"
+  },
+  {
+    "word": "detrimental (adj.)",
+    "meaning": "เป็นอันตราย, ก่อให้เกิดความเสียหาย"
+  },
+  {
+    "word": "exacerbate (v.)",
+    "meaning": "ทำให้แย่ลง, ทำให้รุนแรงขึ้น"
+  },
+  {
+    "word": "incorporation (n.)",
+    "meaning": "การรวมเข้าด้วยกัน, การผสมผสาน"
+  },
+  {
+    "word": "substantially (adv.)",
+    "meaning": "อย่างมาก, อย่างมีนัยสำคัญ"
+  },
+  {
+    "word": "metropolitan (adj.)",
+    "meaning": "เกี่ยวกับเมืองหลวง/มหานคร"
+  },
+  {
+    "word": "implementation (n.)",
+    "meaning": "การนำไปปฏิบัติ"
+  },
+  {
+    "word": "revitalization (n.)",
+    "meaning": "การฟื้นฟู, การทำให้กลับมามีชีวิตชีวาอีกครั้ง"
+  },
+  {
+    "word": "disparity (n.)",
+    "meaning": "ความแตกต่าง, ความเหลื่อมล้ำ"
+  },
+  {
+    "word": "interconnectivity (n.)",
+    "meaning": "การเชื่อมโยงถึงกันและกัน"
+  }
+];
+
+    let activeDeck = [...masterVocabDeck];
+    let currentDeckIndex = 0;
+    let currentFilterType = 'all';
+
+    // LocalStorage Keys
+    const KEY_MASTERED = 'vocab_mastered_set_v2';
+    const KEY_REVIEW = 'vocab_review_set_v2';
+    const KEY_THEME = 'vocab_theme_pref';
+    const KEY_SFX = 'vocab_sfx_pref';
+
+    let masteredWords = new Set(JSON.parse(localStorage.getItem(KEY_MASTERED) || '[]'));
+    let reviewWords = new Set(JSON.parse(localStorage.getItem(KEY_REVIEW) || '[]'));
+    let isSfxEnabled = localStorage.getItem(KEY_SFX) !== 'false';
+    let voiceSpeed = 1.0;
+
+    // Auto Play State
+    let isAutoPlaying = false;
+    let autoPlayTimer = null;
+
+    // DOM References
+    const mainFlashcard = document.getElementById('mainFlashcard');
+    const frontWordText = document.getElementById('frontWordText');
+    const frontPosTag = document.getElementById('frontPosTag');
+    const backMeaningText = document.getElementById('backMeaningText');
+    const backWordSubtitle = document.getElementById('backWordSubtitle');
+    const cardProgressText = document.getElementById('cardProgressText');
+    const cardPercentText = document.getElementById('cardPercentText');
+    const cardProgressFill = document.getElementById('cardProgressFill');
+    const cardTagFront = document.getElementById('cardTagFront');
+    const cardTagBack = document.getElementById('cardTagBack');
+    const watermarkIndex = document.getElementById('watermarkIndex');
+    const watermarkIndexBack = document.getElementById('watermarkIndexBack');
+
+    // ==========================================================
+    // AUDIO & SOUND SYNTHESIZER (Zero External Dependency)
+    // ==========================================================
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration, gainValue = 0.15) {
+      if (!isSfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainValue, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function soundFlip() {
+      playTone(480, 'sine', 0.12, 0.1);
+    }
+
+    function soundCorrect() {
+      if (!isSfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord
+        notes.forEach((freq, idx) => {
+          setTimeout(() => playTone(freq, 'triangle', 0.25, 0.18), idx * 80);
+        });
+      } catch (e) {}
+    }
+
+    function soundWrong() {
+      if (!isSfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        playTone(220, 'sawtooth', 0.3, 0.12);
+      } catch (e) {}
+    }
+
+    function soundClick() {
+      playTone(600, 'sine', 0.05, 0.05);
+    }
+
+    function toggleSfx() {
+      isSfxEnabled = !isSfxEnabled;
+      localStorage.setItem(KEY_SFX, isSfxEnabled);
+      const btn = document.getElementById('sfxBtn');
+      btn.classList.toggle('active', isSfxEnabled);
+      showToastNotification(isSfxEnabled ? '🔊 เปิดเสียงเอฟเฟกต์แล้ว' : '🔇 ปิดเสียงเอฟเฟกต์แล้ว', '🔊');
+    }
+
+    // ==========================================================
+    // THEME ENGINE
+    // ==========================================================
+    function initTheme() {
+      const saved = localStorage.getItem(KEY_THEME) || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+      updateThemeIcon(saved);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem(KEY_THEME, next);
+      updateThemeIcon(next);
+      soundClick();
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('themeIcon');
+      if (theme === 'dark') {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+      } else {
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      }
+    }
+
+    // ==========================================================
+    // VOICE SPEED
+    // ==========================================================
+    function toggleVoiceSpeed() {
+      const speeds = [0.8, 1.0, 1.2];
+      let nextIdx = (speeds.indexOf(voiceSpeed) + 1) % speeds.length;
+      voiceSpeed = speeds[nextIdx];
+      document.getElementById('speedLabel').innerText = voiceSpeed.toFixed(1) + 'x';
+      showToastNotification(`ปรับความเร็วเสียงอ่านเป็น ${voiceSpeed.toFixed(1)}x`, '⚡');
+      soundClick();
+    }
+
+    // ==========================================================
+    // TEXT-TO-SPEECH (TTS)
+    // ==========================================================
+    function sanitizeSpeechWord(text) {
+      return text.replace(/\(.*?\)/g, '').replace(/\//g, ' or ').trim();
+    }
+
+    function pronounceWord(text) {
+      if (!('speechSynthesis' in window)) {
+        showToastNotification('เบราว์เซอร์นี้ไม่รองรับการออกเสียง', '⚠️');
+        return;
+      }
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = voiceSpeed;
+
+      const buttons = document.querySelectorAll('.speech-bubble-btn');
+      buttons.forEach(b => b.classList.add('is-speaking'));
+
+      utterance.onend = () => buttons.forEach(b => b.classList.remove('is-speaking'));
+      utterance.onerror = () => buttons.forEach(b => b.classList.remove('is-speaking'));
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakCurrentCard(e) {
+      if (e) e.stopPropagation();
+      if (!activeDeck[currentDeckIndex]) return;
+      pronounceWord(sanitizeSpeechWord(activeDeck[currentDeckIndex].word));
+    }
+
+    // ==========================================================
+    // DATA HELPERS & STORAGE
+    // ==========================================================
+    function parseWordPOS(fullWord) {
+      const match = fullWord.match(/^(.*?)\s*(\([^)]+\))?$/);
+      if (match) {
+        const base = match[1].trim();
+        const pos = match[2] ? match[2].trim() : '';
+        let posClass = '';
+        if (pos.includes('n.')) posClass = 'noun';
+        else if (pos.includes('v.')) posClass = 'verb';
+        else if (pos.includes('adj.')) posClass = 'adj';
+        else if (pos.includes('adv.')) posClass = 'adv';
+        return { base, pos, posClass };
+      }
+      return { base: fullWord, pos: '', posClass: '' };
+    }
+
+    function saveState() {
+      localStorage.setItem(KEY_MASTERED, JSON.stringify([...masteredWords]));
+      localStorage.setItem(KEY_REVIEW, JSON.stringify([...reviewWords]));
+      refreshStatCounters();
+    }
+
+    function refreshStatCounters() {
+      const total = masterVocabDeck.length;
+      document.getElementById('statTotalNumber').innerText = total;
+      document.getElementById('statMasteredNumber').innerText = masteredWords.size;
+      document.getElementById('statReviewNumber').innerText = reviewWords.size;
+
+      document.getElementById('countAll').innerText = total;
+      document.getElementById('countReview').innerText = reviewWords.size;
+      document.getElementById('countMastered').innerText = masteredWords.size;
+    }
+
+    // ==========================================================
+    // FLASHCARD DISPLAY & LOGIC
+    // ==========================================================
+    function applyDeckFilter(type, btnElement) {
+      currentFilterType = type;
+      document.querySelectorAll('.filter-chip-btn').forEach(b => b.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+
+      if (type === 'review') {
+        activeDeck = masterVocabDeck.filter(item => reviewWords.has(item.word));
+      } else if (type === 'mastered') {
+        activeDeck = masterVocabDeck.filter(item => masteredWords.has(item.word));
+      } else {
+        activeDeck = [...masterVocabDeck];
+      }
+
+      currentDeckIndex = 0;
+      renderCurrentCard();
+      soundClick();
+    }
+
+    function renderCurrentCard() {
+      mainFlashcard.classList.remove('is-flipped');
+
+      if (activeDeck.length === 0) {
+        frontWordText.innerText = 'ไม่มีคำศัพท์ในหมวดนี้';
+        frontPosTag.style.display = 'none';
+        backMeaningText.innerText = 'ลองเลือกหมวดอื่น หรือท่องในหมวดคำศัพท์ทั้งหมด';
+        backWordSubtitle.innerText = '';
+        cardProgressText.innerText = '0 / 0';
+        cardPercentText.innerText = '0%';
+        cardProgressFill.style.width = '0%';
+        watermarkIndex.innerText = '--';
+        watermarkIndexBack.innerText = '--';
+        updateStatusPillTag('');
+        return;
+      }
+
+      if (currentDeckIndex >= activeDeck.length) {
+        currentDeckIndex = 0;
+      }
+
+      const item = activeDeck[currentDeckIndex];
+      const parsed = parseWordPOS(item.word);
+      const total = activeDeck.length;
+      const curNum = currentDeckIndex + 1;
+      const pct = Math.round((curNum / total) * 100);
+
+      setTimeout(() => {
+        frontWordText.innerText = parsed.base;
+        if (parsed.pos) {
+          frontPosTag.innerText = parsed.pos;
+          frontPosTag.className = 'pos-pill-tag ' + parsed.posClass;
+          frontPosTag.style.display = 'inline-block';
+        } else {
+          frontPosTag.style.display = 'none';
+        }
+
+        backMeaningText.innerText = item.meaning;
+        backWordSubtitle.innerText = item.word;
+
+        const formattedIndex = curNum < 10 ? '0' + curNum : curNum;
+        watermarkIndex.innerText = formattedIndex;
+        watermarkIndexBack.innerText = formattedIndex;
+
+        cardProgressText.innerText = `การ์ดที่ ${curNum} จาก ${total}`;
+        cardPercentText.innerText = `${pct}%`;
+        cardProgressFill.style.width = `${pct}%`;
+
+        updateStatusPillTag(item.word);
+      }, 120);
+    }
+
+    function updateStatusPillTag(word) {
+      if (masteredWords.has(word)) {
+        setStatusUI(cardTagFront, '✅ จำได้แล้ว', 'badge-mastered');
+        setStatusUI(cardTagBack, '✅ จำได้แล้ว', 'badge-mastered');
+      } else if (reviewWords.has(word)) {
+        setStatusUI(cardTagFront, '⚠️ ต้องทบทวน', 'badge-review');
+        setStatusUI(cardTagBack, '⚠️ ต้องทบทวน', 'badge-review');
+      } else {
+        setStatusUI(cardTagFront, 'ยังไม่ระบุ', 'badge-unmarked');
+        setStatusUI(cardTagBack, 'ยังไม่ระบุ', 'badge-unmarked');
+      }
+    }
+
+    function setStatusUI(el, text, cls) {
+      el.innerText = text;
+      el.className = 'status-badge-pill ' + cls;
+    }
+
+    function flipCurrentCard() {
+      if (activeDeck.length === 0) return;
+      mainFlashcard.classList.toggle('is-flipped');
+      soundFlip();
+    }
+
+    function navigateCard(direction) {
+      if (activeDeck.length <= 1) return;
+      currentDeckIndex = (currentDeckIndex + direction + activeDeck.length) % activeDeck.length;
+      renderCurrentCard();
+      soundClick();
+    }
+
+    function shuffleDeckCards() {
+      if (activeDeck.length <= 1) return;
+      for (let i = activeDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [activeDeck[i], activeDeck[j]] = [activeDeck[j], activeDeck[i]];
+      }
+      currentDeckIndex = 0;
+      renderCurrentCard();
+      showToastNotification('🔀 สลับลำดับคำศัพท์ในสำรับแล้ว!', '🔀');
+      soundFlip();
+    }
+
+    function markCardStatus(status) {
+      if (activeDeck.length === 0) return;
+      const currentWord = activeDeck[currentDeckIndex].word;
+
+      if (status === 'mastered') {
+        masteredWords.add(currentWord);
+        reviewWords.delete(currentWord);
+        showToastNotification('✅ บันทึก: จำได้แล้ว!', '✅');
+        soundCorrect();
+
+        if (masteredWords.size === masterVocabDeck.length) {
+          triggerConfettiBlast();
+          showToastNotification('🎉 ยอดเยี่ยมที่สุด! คุณจำได้ครบทุกคำในคลังศัพท์แล้ว!', '👑');
+        }
+      } else {
+        reviewWords.add(currentWord);
+        masteredWords.delete(currentWord);
+        showToastNotification('⚠️ บันทึก: ต้องทบทวน', '⚠️');
+        soundClick();
+      }
+
+      saveState();
+      updateStatusPillTag(currentWord);
+
+      setTimeout(() => {
+        if (currentFilterType !== 'all') {
+          applyDeckFilter(currentFilterType, document.querySelector('.filter-chip-btn.active'));
+        } else {
+          navigateCard(1);
+        }
+      }, 240);
+    }
+
+    // ==========================================================
+    // AUTO PLAY (SLIDESHOW) MODE
+    // ==========================================================
+    function toggleAutoPlay() {
+      isAutoPlaying = !isAutoPlaying;
+      const btn = document.getElementById('autoplayBtn');
+      const label = document.getElementById('autoplayLabel');
+
+      if (isAutoPlaying) {
+        btn.classList.add('playing');
+        label.innerText = 'หยุดเล่น';
+        showToastNotification('▶ เริ่มโหมดเล่นและออกเสียงอัตโนมัติ', '▶');
+        runAutoPlayCycle();
+      } else {
+        btn.classList.remove('playing');
+        label.innerText = 'เล่นอัตโนมัติ';
+        clearTimeout(autoPlayTimer);
+        showToastNotification('⏸ หยุดโหมดอัตโนมัติแล้ว', '⏸');
+      }
+      soundClick();
+    }
+
+    function runAutoPlayCycle() {
+      if (!isAutoPlaying || activeDeck.length === 0) return;
+
+      // 1. Ensure flipped to front
+      mainFlashcard.classList.remove('is-flipped');
+
+      // 2. Speak English word
+      setTimeout(() => {
+        if (!isAutoPlaying) return;
+        speakCurrentCard();
+
+        // 3. Flip to Thai meaning after speech
+        autoPlayTimer = setTimeout(() => {
+          if (!isAutoPlaying) return;
+          flipCurrentCard();
+
+          // 4. Advance to next card
+          autoPlayTimer = setTimeout(() => {
+            if (!isAutoPlaying) return;
+            navigateCard(1);
+            runAutoPlayCycle();
+          }, 3200);
+
+        }, 2200);
+
+      }, 300);
+    }
+
+    // ==========================================================
+    // MOBILE SWIPE GESTURES
+    // ==========================================================
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const cardStageEl = document.getElementById('cardTouchArea');
+
+    cardStageEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    cardStageEl.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].screenX - touchStartX;
+      const diffY = e.changedTouches[0].screenY - touchStartY;
+
+      if (Math.abs(diffX) > 60 && Math.abs(diffY) < 50) {
+        if (diffX < 0) {
+          navigateCard(1); // Swipe left = Next
+        } else {
+          navigateCard(-1); // Swipe right = Prev
+        }
+      }
+    }, { passive: true });
+
+    // ==========================================================
+    // TAB SWITCHING
+    // ==========================================================
+    function switchActiveTab(tabKey) {
+      if (isAutoPlaying) toggleAutoPlay(); // stop autoplay on switch
+
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', (tabKey === 'flashcards' && idx === 0) || (tabKey === 'quiz' && idx === 1) || (tabKey === 'wordlist' && idx === 2));
+      });
+
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+      if (tabKey === 'flashcards') {
+        document.getElementById('flashcardsPane').classList.add('active');
+        renderCurrentCard();
+      } else if (tabKey === 'quiz') {
+        document.getElementById('quizPane').classList.add('active');
+      } else if (tabKey === 'wordlist') {
+        document.getElementById('wordlistPane').classList.add('active');
+        renderWordCatalog();
+      }
+
+      soundClick();
+    }
+
+    // ==========================================================
+    // KEYBOARD LISTENER
+    // ==========================================================
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('flashcardsPane').classList.contains('active')) return;
+      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') return;
+
+      if (e.key === 'ArrowRight') {
+        navigateCard(1);
+      } else if (e.key === 'ArrowLeft') {
+        navigateCard(-1);
+      } else if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        flipCurrentCard();
+      } else if (e.key === 's' || e.key === 'S') {
+        speakCurrentCard();
+      } else if (e.key === '1') {
+        markCardStatus('review');
+      } else if (e.key === '2') {
+        markCardStatus('mastered');
+      }
+    });
+
+    // ==========================================================
+    // TAB 2: QUIZ LOGIC
+    // ==========================================================
+    let quizDeck = [];
+    let quizStepIdx = 0;
+    let quizLiveScore = 0;
+    let quizComboStreak = 0;
+    let quizLocked = false;
+
+    function beginQuizSession() {
+      const len = document.getElementById('quizLengthChoice').value;
+      const poolChoice = document.getElementById('quizPoolChoice').value;
+
+      let pool = [...masterVocabDeck];
+      if (poolChoice === 'review') {
+        pool = masterVocabDeck.filter(item => reviewWords.has(item.word));
+        if (pool.length < 4) {
+          alert('มีคำในกลุ่ม "ยังจำไม่ได้" น้อยกว่า 4 คำ กรุณาเลือกกลุ่มคำทั้งหมด หรือท่องการ์ดเพิ่มก่อนนะ!');
+          return;
+        }
+      }
+
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      const total = len === 'all' ? shuffled.length : Math.min(parseInt(len), shuffled.length);
+
+      quizDeck = shuffled.slice(0, total);
+      quizStepIdx = 0;
+      quizLiveScore = 0;
+      quizComboStreak = 0;
+
+      document.getElementById('quizSetupBox').style.display = 'none';
+      document.getElementById('quizResultBox').style.display = 'none';
+      document.getElementById('quizActiveBox').style.display = 'flex';
+
+      loadQuizStep();
+      soundClick();
+    }
+
+    function loadQuizStep() {
+      quizLocked = false;
+      const item = quizDeck[quizStepIdx];
+
+      document.getElementById('quizCurrentStepBadge').innerText = `ข้อ ${quizStepIdx + 1} / ${quizDeck.length}`;
+      document.getElementById('quizScoreboardLive').innerText = `คะแนน: ${quizLiveScore}`;
+      document.getElementById('quizStreakIndicator').innerText = quizComboStreak > 1 ? `🔥 ${quizComboStreak} ข้อติด!` : '';
+      document.getElementById('quizWordDisplay').innerText = item.word;
+
+      // Wrongs
+      const wrongList = masterVocabDeck.filter(w => w.word !== item.word);
+      const chosenWrongs = wrongList.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+      const options = [
+        { text: item.meaning, isAns: true },
+        ...chosenWrongs.map(w => ({ text: w.meaning, isAns: false }))
+      ].sort(() => 0.5 - Math.random());
+
+      const container = document.getElementById('quizChoicesList');
+      container.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-choice-row';
+        btn.innerHTML = `
+          <span class="choice-alpha-label">${letters[idx]}</span>
+          <span>${opt.text}</span>
+        `;
+        btn.onclick = () => onSelectQuizOption(btn, opt.isAns, item);
+        container.appendChild(btn);
+      });
+
+      // Auto speak quiz prompt
+      setTimeout(() => {
+        pronounceWord(sanitizeSpeechWord(item.word));
+      }, 150);
+    }
+
+    function speakQuizPromptWord() {
+      if (!quizDeck[quizStepIdx]) return;
+      pronounceWord(sanitizeSpeechWord(quizDeck[quizStepIdx].word));
+    }
+
+    function onSelectQuizOption(btnEl, isAns, item) {
+      if (quizLocked) return;
+      quizLocked = true;
+
+      const allBtns = document.querySelectorAll('.quiz-choice-row');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isAns) {
+        btnEl.classList.add('choice-correct');
+        quizLiveScore++;
+        quizComboStreak++;
+        soundCorrect();
+      } else {
+        btnEl.classList.add('choice-wrong');
+        quizComboStreak = 0;
+        soundWrong();
+
+        allBtns.forEach(b => {
+          if (b.innerText.includes(item.meaning)) {
+            b.classList.add('choice-correct');
+          }
+        });
+
+        // Automatically note as review
+        reviewWords.add(item.word);
+        masteredWords.delete(item.word);
+        saveState();
+      }
+
+      document.getElementById('quizScoreboardLive').innerText = `คะแนน: ${quizLiveScore}`;
+      document.getElementById('quizStreakIndicator').innerText = quizComboStreak > 1 ? `🔥 ${quizComboStreak} ข้อติด!` : '';
+
+      setTimeout(() => {
+        if (quizStepIdx + 1 < quizDeck.length) {
+          quizStepIdx++;
+          loadQuizStep();
+        } else {
+          showQuizSummary();
+        }
+      }, isAns ? 950 : 1600);
+    }
+
+    function showQuizSummary() {
+      document.getElementById('quizActiveBox').style.display = 'none';
+      const resultBox = document.getElementById('quizResultBox');
+      resultBox.style.display = 'flex';
+
+      const total = quizDeck.length;
+      const pct = Math.round((quizLiveScore / total) * 100);
+
+      document.getElementById('finalScoreDigits').innerText = `${quizLiveScore}/${total}`;
+      document.getElementById('finalScorePercent').innerText = `${pct}%`;
+
+      const emoji = document.getElementById('resultMedalEmoji');
+      const title = document.getElementById('finalResultTitle');
+      const desc = document.getElementById('finalResultFeedback');
+
+      if (pct === 100) {
+        emoji.innerText = '👑';
+        title.innerText = 'สมบูรณ์แบบ! เต็ม 100%';
+        desc.innerText = 'ความจำของคุณยอดเยี่ยมมาก ไร้ที่ติเลย!';
+        triggerConfettiBlast();
+      } else if (pct >= 80) {
+        emoji.innerText = '🌟';
+        title.innerText = 'ยอดเยี่ยมมาก!';
+        desc.innerText = 'คุณทำคะแนนได้ดีมาก จำได้เกือบครบทุกคำแล้ว';
+        triggerConfettiBlast();
+      } else if (pct >= 50) {
+        emoji.innerText = '👍';
+        title.innerText = 'เก่งมาก ทำได้ดีแล้ว!';
+        desc.innerText = 'ลองทบทวนคำศัพท์ที่ยังไม่แม่นใน Flashcards ซ้ำอีกรอบนะ';
+      } else {
+        emoji.innerText = '💪';
+        title.innerText = 'พยายามต่อไปนะ!';
+        desc.innerText = 'การฝึกฝนซ้ำๆ เป็นกุญแจสำคัญ ฝึกท่องการ์ดบ่อยๆ เดี๋ยวก็จำได้ขึ้นใจ!';
+      }
+    }
+
+    function resetAndRestartQuiz() {
+      document.getElementById('quizResultBox').style.display = 'none';
+      document.getElementById('quizSetupBox').style.display = 'flex';
+      soundClick();
+    }
+
+    // ==========================================================
+    // TAB 3: WORD LIST CATALOG
+    // ==========================================================
+    function renderWordCatalog() {
+      const q = (document.getElementById('filterSearchQuery').value || '').toLowerCase().trim();
+      const statusFilter = document.getElementById('filterStatusSelect').value;
+      const container = document.getElementById('wordCatalogContainer');
+
+      const filtered = masterVocabDeck.filter(item => {
+        const matchesQ = item.word.toLowerCase().includes(q) || item.meaning.toLowerCase().includes(q);
+        if (!matchesQ) return false;
+
+        if (statusFilter === 'review') return reviewWords.has(item.word);
+        if (statusFilter === 'mastered') return masteredWords.has(item.word);
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <div style="font-size: 2.2rem; margin-bottom: 8px;">🔍</div>
+            <div style="font-weight: 600;">ไม่พบคำศัพท์ที่ตรงกับ "${q}"</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      filtered.forEach(item => {
+        const isM = masteredWords.has(item.word);
+        const isR = reviewWords.has(item.word);
+
+        let badgeHtml = '<span class="status-badge-pill badge-unmarked">ยังไม่ระบุ</span>';
+        if (isM) badgeHtml = '<span class="status-badge-pill badge-mastered">✅ จำได้แล้ว</span>';
+        else if (isR) badgeHtml = '<span class="status-badge-pill badge-review">⚠️ ทบทวน</span>';
+
+        const row = document.createElement('div');
+        row.className = 'word-row-card';
+        row.innerHTML = `
+          <div class="word-row-left">
+            <button class="speech-bubble-btn" style="width: 36px; height: 36px;" onclick="speakListRowWord(event, '${item.word.replace(/'/g, "\\'")}')" title="ฟังเสียง">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+            <div>
+              <div class="word-row-en">${item.word}</div>
+              <div class="word-row-th">${item.meaning}</div>
+            </div>
+          </div>
+          <div>
+            ${badgeHtml}
+          </div>
+        `;
+
+        row.onclick = (e) => {
+          if (e.target.closest('.speech-bubble-btn')) return;
+          jumpDirectlyToCard(item.word);
+        };
+
+        container.appendChild(row);
+      });
+    }
+
+    function speakListRowWord(e, word) {
+      e.stopPropagation();
+      pronounceWord(sanitizeSpeechWord(word));
+    }
+
+    function jumpDirectlyToCard(word) {
+      switchActiveTab('flashcards');
+      applyDeckFilter('all', document.querySelectorAll('.filter-chip-btn')[0]);
+      const idx = activeDeck.findIndex(v => v.word === word);
+      if (idx !== -1) {
+        currentDeckIndex = idx;
+        renderCurrentCard();
+      }
+    }
+
+    // ==========================================================
+    // TOAST NOTIFICATIONS
+    // ==========================================================
+    let toastTimer = null;
+    function showToastNotification(message, icon = '💡') {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastMsg').innerText = message;
+      document.getElementById('toastIcon').innerText = icon;
+      box.classList.add('visible');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        box.classList.remove('visible');
+      }, 2200);
+    }
+
+    // ==========================================================
+    // LIGHTWEIGHT CONFETTI ENGINE
+    // ==========================================================
+    function triggerConfettiBlast() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#4f46e5', '#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: canvas.width * 0.5,
+          y: canvas.height * 0.5,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.5) * 16 - 3,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vrot: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      let frames = 0;
+      function renderConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.35; // gravity
+          p.rotation += p.vrot;
+          p.opacity -= 0.012;
+
+          if (p.opacity > 0) {
+            alive = true;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = Math.max(0, p.opacity);
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+          }
+        });
+
+        frames++;
+        if (alive && frames < 140) {
+          requestAnimationFrame(renderConfetti);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      renderConfetti();
+    }
+
+    // ==========================================================
+    // INITIALIZATION
+    // ==========================================================
+    initTheme();
+    refreshStatCounters();
+    renderCurrentCard();
+  </script>
+</body>
+</html>
