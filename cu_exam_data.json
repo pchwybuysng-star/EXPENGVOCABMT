@@ -1,0 +1,2002 @@
+[
+  {
+    "id": 1,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Epidemiological researchers analyzing dietary habits warned that diets high in added sugars, refined grains, and processed meats are responsible for millions of ________ deaths worldwide each year.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "premature"
+      },
+      {
+        "label": "B",
+        "text": "longevity"
+      },
+      {
+        "label": "C",
+        "text": "optimal"
+      },
+      {
+        "label": "D",
+        "text": "unproven"
+      }
+    ],
+    "answer": "A",
+    "explanation": "premature deaths หมายถึง การเสียชีวิตก่อนวัยอันควร จากการบริโภคอาหารที่ไม่ดีต่อสุขภาพ"
+  },
+  {
+    "id": 2,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Health scientists state that if a young adult transitions from an unhealthy eating pattern to an ________ diet rich in legumes and whole grains, she can gain up to ten extra years of life.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "embarrassed"
+      },
+      {
+        "label": "B",
+        "text": "optimal"
+      },
+      {
+        "label": "C",
+        "text": "excessive"
+      },
+      {
+        "label": "D",
+        "text": "alienated"
+      }
+    ],
+    "answer": "B",
+    "explanation": "optimal diet หมายถึง อาหารที่เหมาะสมหรือดีที่สุดต่อสุขภาพ"
+  },
+  {
+    "id": 3,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Clinical studies consistently indicate that excessive sodium ________ is a primary driver of high blood pressure and cardiovascular disorders across global populations.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "intervention"
+      },
+      {
+        "label": "B",
+        "text": "baseline"
+      },
+      {
+        "label": "C",
+        "text": "intake"
+      },
+      {
+        "label": "D",
+        "text": "addiction"
+      }
+    ],
+    "answer": "C",
+    "explanation": "sodium intake หมายถึง ปริมาณการบริโภค/การรับประทานโซเดียมเข้าสู่ร่างกาย"
+  },
+  {
+    "id": 4,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "In regions like Okinawa and Sardinia, researchers observed that the average ________ consumes very little alcohol, eats mostly plant-based foods, and stays physically active well past age 100.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "centenarian"
+      },
+      {
+        "label": "B",
+        "text": "commuter"
+      },
+      {
+        "label": "C",
+        "text": "pedestrian"
+      },
+      {
+        "label": "D",
+        "text": "consumer"
+      }
+    ],
+    "answer": "A",
+    "explanation": "centenarian หมายถึง ผู้ที่มีอายุ 100 ปีขึ้นไป (Okinawa & Sardinia มีคนอายุยืนเกิน 100 ปีจำนวนมาก)"
+  },
+  {
+    "id": 5,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Middle-aged individuals who strictly adhere to Mediterranean dietary habits are far more likely to enter their senior years completely free of any debilitating ________.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "retreat centre"
+      },
+      {
+        "label": "B",
+        "text": "chronic disease"
+      },
+      {
+        "label": "C",
+        "text": "baseline"
+      },
+      {
+        "label": "D",
+        "text": "intervention"
+      }
+    ],
+    "answer": "B",
+    "explanation": "chronic disease หมายถึง โรคเรื้อรัง (เช่น เบาหวาน ความดัน โรคหัวใจ)"
+  },
+  {
+    "id": 6,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Nutritionists frequently advise people not to ________ salty snacks and fatty processed meats if they intend to preserve cognitive sharpness into old age.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "root for"
+      },
+      {
+        "label": "B",
+        "text": "dominate in"
+      },
+      {
+        "label": "C",
+        "text": "indulge in"
+      },
+      {
+        "label": "D",
+        "text": "assign to"
+      }
+    ],
+    "answer": "C",
+    "explanation": "indulge in หมายถึง ดื่มด่ำ/ตามใจปาก/เสพติดกับสิ่งที่ไม่ดีต่อสุขภาพมากเกินไป"
+  },
+  {
+    "id": 7,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Extreme caloric restriction might show promising findings in small animal models, but in humans, it remains unverified and may severely ________ daily quality of life.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "impair"
+      },
+      {
+        "label": "B",
+        "text": "alleviate"
+      },
+      {
+        "label": "C",
+        "text": "realize"
+      },
+      {
+        "label": "D",
+        "text": "coordinate"
+      }
+    ],
+    "answer": "A",
+    "explanation": "impair หมายถึง ทำให้อ่อนแอลง เสื่อมเสีย หรือบกพร่อง (impair daily quality of life)"
+  },
+  {
+    "id": 8,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "While many wellness influencers promote severe fasting as a viable ________ strategy, clinical nutritionists urge caution until conclusive human data is established.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "addiction"
+      },
+      {
+        "label": "B",
+        "text": "longevity"
+      },
+      {
+        "label": "C",
+        "text": "threshold"
+      },
+      {
+        "label": "D",
+        "text": "impediment"
+      }
+    ],
+    "answer": "B",
+    "explanation": "longevity strategy หมายถึง กลยุทธ์เพื่อการมีชีวิตและอายุที่ยืนยาว"
+  },
+  {
+    "id": 9,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Claims asserting that taking mega-doses of herbal supplements can permanently reverse biological aging are considered scientifically ________ and potentially dangerous.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "unproven"
+      },
+      {
+        "label": "B",
+        "text": "optimal"
+      },
+      {
+        "label": "C",
+        "text": "diverse"
+      },
+      {
+        "label": "D",
+        "text": "iconic"
+      }
+    ],
+    "answer": "A",
+    "explanation": "unproven หมายถึง ยังไม่ได้รับการพิสูจน์หรือยืนยันตามหลักวิทยาศาสตร์"
+  },
+  {
+    "id": 10,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "The widespread adoption of balanced, nutrient-dense nutrition across entire communities has the power to dramatically extend overall ________.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "life expectancy"
+      },
+      {
+        "label": "B",
+        "text": "chronic disease"
+      },
+      {
+        "label": "C",
+        "text": "retreat centre"
+      },
+      {
+        "label": "D",
+        "text": "baseline"
+      }
+    ],
+    "answer": "A",
+    "explanation": "life expectancy หมายถึง อายุขัยเฉลี่ยของประชากร"
+  },
+  {
+    "id": 11,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "During the height of his career, the celebrated author fought a grueling battle against severe alcohol ________ that nearly shattered his family ties.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "intake"
+      },
+      {
+        "label": "B",
+        "text": "addiction"
+      },
+      {
+        "label": "C",
+        "text": "longevity"
+      },
+      {
+        "label": "D",
+        "text": "incentive"
+      }
+    ],
+    "answer": "B",
+    "explanation": "alcohol addiction หมายถึง การเสพติดแอลกอฮอล์ (ในบทความเรื่อง Stephen King)"
+  },
+  {
+    "id": 12,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "When Stephen King initially furnished his private study, he chose a massive oak desk that was large enough to completely ________ the entire room.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "dominate"
+      },
+      {
+        "label": "B",
+        "text": "commute"
+      },
+      {
+        "label": "C",
+        "text": "alleviate"
+      },
+      {
+        "label": "D",
+        "text": "assign"
+      }
+    ],
+    "answer": "A",
+    "explanation": "dominate หมายถึง ครอบงำหรือกินพื้นที่เด่นที่สุดในห้อง"
+  },
+  {
+    "id": 13,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Because the novelist was constantly intoxicated and absorbed in his work, he gradually became entirely ________ from his spouse and children.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "unproven"
+      },
+      {
+        "label": "B",
+        "text": "alienated"
+      },
+      {
+        "label": "C",
+        "text": "optimal"
+      },
+      {
+        "label": "D",
+        "text": "secure"
+      }
+    ],
+    "answer": "B",
+    "explanation": "alienated from หมายถึง แปลกแยกหรือเหินห่างจากคนรอบข้างและครอบครัว"
+  },
+  {
+    "id": 14,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "It was only after a decisive ________ organized by his caring family members that King agreed to seek treatment and eliminate the oversized desk.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "intervention"
+      },
+      {
+        "label": "B",
+        "text": "baseline"
+      },
+      {
+        "label": "C",
+        "text": "addiction"
+      },
+      {
+        "label": "D",
+        "text": "necessity"
+      }
+    ],
+    "answer": "A",
+    "explanation": "intervention หมายถึง การเข้าแทรกแซง/ช่วยเหลือโดยครอบครัวเพื่อให้เข้ารับการบำบัด"
+  },
+  {
+    "id": 15,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "King eventually concluded that life is not a mere support system for art, suggesting that people must re-evaluate how they ________ their professional commitments.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "assign"
+      },
+      {
+        "label": "B",
+        "text": "approach"
+      },
+      {
+        "label": "C",
+        "text": "impair"
+      },
+      {
+        "label": "D",
+        "text": "commiserate"
+      }
+    ],
+    "answer": "B",
+    "explanation": "approach หมายถึง ทัศนคติหรือวิธีในการเข้าหาและจัดการกับภาระงาน"
+  },
+  {
+    "id": 16,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "At the beginning of his career, the young writer drafted an ambitious ten-year career plan with specific target dates ________ to every milestone.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "assigned"
+      },
+      {
+        "label": "B",
+        "text": "indulged"
+      },
+      {
+        "label": "C",
+        "text": "impaired"
+      },
+      {
+        "label": "D",
+        "text": "dominated"
+      }
+    ],
+    "answer": "A",
+    "explanation": "assigned to หมายถึง กำหนดหรือมอบหมายเป้าหมายเวลาให้แต่ละขั้น"
+  },
+  {
+    "id": 17,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "When evaluating cardiovascular fitness improvements, sports physiologists must first record each participant's physiological ________ prior to training.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "centenarian"
+      },
+      {
+        "label": "B",
+        "text": "baseline"
+      },
+      {
+        "label": "C",
+        "text": "intervention"
+      },
+      {
+        "label": "D",
+        "text": "accolade"
+      }
+    ],
+    "answer": "B",
+    "explanation": "baseline หมายถึง ค่าเริ่มต้นหรือเกณฑ์มาตรฐานก่อนเริ่มการทดลอง/ฝึกฝน"
+  },
+  {
+    "id": 18,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "After discovering that not a single bookstore had his newly launched novel on display, the author felt deeply ________ and disappointed.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "embarrassed"
+      },
+      {
+        "label": "B",
+        "text": "optimal"
+      },
+      {
+        "label": "C",
+        "text": "unproven"
+      },
+      {
+        "label": "D",
+        "text": "picturesque"
+      }
+    ],
+    "answer": "A",
+    "explanation": "embarrassed หมายถึง รู้สึกอับอายหรือเคอะเขิน"
+  },
+  {
+    "id": 19,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Following twelve months of tireless dedication and sleepless nights, the author's lifelong dream of publishing a novel was finally ________.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "alienated"
+      },
+      {
+        "label": "B",
+        "text": "realized"
+      },
+      {
+        "label": "C",
+        "text": "impaired"
+      },
+      {
+        "label": "D",
+        "text": "coordinated"
+      }
+    ],
+    "answer": "B",
+    "explanation": "realized หมายถึง ความฝันกลายเป็นจริงหรือบรรลุผลสำเร็จ (dream was realized)"
+  },
+  {
+    "id": 20,
+    "part": "PART I: Vocabulary in Context - Unit 1",
+    "prompt": "Despite all the setbacks during the writing process, his wife remained his staunchest supporter, constantly ________ him through every hardship.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "indulging in"
+      },
+      {
+        "label": "B",
+        "text": "rooting for"
+      },
+      {
+        "label": "C",
+        "text": "dominating over"
+      },
+      {
+        "label": "D",
+        "text": "commuting with"
+      }
+    ],
+    "answer": "B",
+    "explanation": "rooting for หมายถึง คอยเชียร์ ให้กำลังใจ และสนับสนุน"
+  },
+  {
+    "id": 21,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "According to the United Nations tourism reports, ________ allows travelers to intimately engage with local culture and explore heritage districts on foot.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "rapid transit"
+      },
+      {
+        "label": "B",
+        "text": "walking tourism"
+      },
+      {
+        "label": "C",
+        "text": "centralized heating"
+      },
+      {
+        "label": "D",
+        "text": "smart mobility"
+      }
+    ],
+    "answer": "B",
+    "explanation": "walking tourism หมายถึง การท่องเที่ยวด้วยการเดินเท้าสำรวจย่านวัฒนธรรม"
+  },
+  {
+    "id": 22,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Pha Kram Road in Sakon Nakhon province has grown famous because it is located very close to the ________ Wat Phra Tat Choeng Chum.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "iconic"
+      },
+      {
+        "label": "B",
+        "text": "unproven"
+      },
+      {
+        "label": "C",
+        "text": "scarce"
+      },
+      {
+        "label": "D",
+        "text": "alienated"
+      }
+    ],
+    "answer": "A",
+    "explanation": "iconic หมายถึง โดดเด่น เป็นสัญลักษณ์สำคัญของพื้นที่"
+  },
+  {
+    "id": 23,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Wheelchair users often struggle to move smoothly through city streets because vendor stalls, uneven curbs, and utility poles act as serious ________ on pavements.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "incentives"
+      },
+      {
+        "label": "B",
+        "text": "staples"
+      },
+      {
+        "label": "C",
+        "text": "impediments"
+      },
+      {
+        "label": "D",
+        "text": "accolades"
+      }
+    ],
+    "answer": "C",
+    "explanation": "impediments หมายถึง อุปสรรค หรือสิ่งกีดขวางบนทางเท้า"
+  },
+  {
+    "id": 24,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Without well-connected pedestrian pathways and standardized signage, foreign tourists find it exceptionally difficult to ________ the historic quarter safely.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "navigate"
+      },
+      {
+        "label": "B",
+        "text": "slash"
+      },
+      {
+        "label": "C",
+        "text": "compel"
+      },
+      {
+        "label": "D",
+        "text": "indulge"
+      }
+    ],
+    "answer": "A",
+    "explanation": "navigate หมายถึง การนำทาง ค้นหาเส้นทาง และเดินทางในพื้นที่ได้อย่างถูกต้อง"
+  },
+  {
+    "id": 25,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "In suburban districts where buses and feeder systems rarely operate, owning a private automobile becomes an absolute ________ for daily commuters.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "necessity"
+      },
+      {
+        "label": "B",
+        "text": "impediment"
+      },
+      {
+        "label": "C",
+        "text": "accolade"
+      },
+      {
+        "label": "D",
+        "text": "intervention"
+      }
+    ],
+    "answer": "A",
+    "explanation": "necessity หมายถึง สิ่งจำเป็นอย่างยิ่งยวดต่อการดำรงชีวิต"
+  },
+  {
+    "id": 26,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Urban planners pointed out that Bangkok's road space is remarkably ________, comprising barely 7% of the metropolitan area compared to 28% in New York.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "expansive"
+      },
+      {
+        "label": "B",
+        "text": "scarce"
+      },
+      {
+        "label": "C",
+        "text": "picturesque"
+      },
+      {
+        "label": "D",
+        "text": "optimal"
+      }
+    ],
+    "answer": "B",
+    "explanation": "scarce หมายถึง ขาดแคลน มีสัดส่วนน้อยมาก (มีเพียง 7%)"
+  },
+  {
+    "id": 27,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Transportation experts argue that simply building more expressways will never permanently ________ Bangkok's gridlock unless public transit is expanded.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "coordinate"
+      },
+      {
+        "label": "B",
+        "text": "alleviate"
+      },
+      {
+        "label": "C",
+        "text": "dominate"
+      },
+      {
+        "label": "D",
+        "text": "impair"
+      }
+    ],
+    "answer": "B",
+    "explanation": "alleviate หมายถึง บรรเทาหรือลดความรุนแรงของปัญหาการจราจรติดขัด"
+  },
+  {
+    "id": 28,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "On sunny spring mornings, local residents and tourists love to ________ leisurely through the green pathways of Copenhagen's public gardens.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "stroll"
+      },
+      {
+        "label": "B",
+        "text": "compel"
+      },
+      {
+        "label": "C",
+        "text": "slash"
+      },
+      {
+        "label": "D",
+        "text": "commute"
+      }
+    ],
+    "answer": "A",
+    "explanation": "stroll หมายถึง เดินเล่น เดินทอดน่องอย่างสบายอารมณ์"
+  },
+  {
+    "id": 29,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Nyhavn is widely celebrated as one of Denmark's most ________ areas, featuring colorful 17th-century townhouses reflecting on the serene canal water.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "scarce"
+      },
+      {
+        "label": "B",
+        "text": "run-down"
+      },
+      {
+        "label": "C",
+        "text": "picturesque"
+      },
+      {
+        "label": "D",
+        "text": "premature"
+      }
+    ],
+    "answer": "C",
+    "explanation": "picturesque หมายถึง สวยงามราวกับภาพวาด ทิวทัศน์งดงาม"
+  },
+  {
+    "id": 30,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Over the past decade, Copenhagen has earned numerous international ________, including being recognized as the European Green Capital and Most Livable City.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "accolades"
+      },
+      {
+        "label": "B",
+        "text": "impediments"
+      },
+      {
+        "label": "C",
+        "text": "baselines"
+      },
+      {
+        "label": "D",
+        "text": "addictions"
+      }
+    ],
+    "answer": "A",
+    "explanation": "accolades หมายถึง รางวัล การยกย่องเชิดชูเกียรติในระดับสากล"
+  },
+  {
+    "id": 31,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Copenhagen's smart transport infrastructure integrates ________ sensor networks with real-time tracking apps to optimize urban transit efficiency.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "cutting-edge"
+      },
+      {
+        "label": "B",
+        "text": "unproven"
+      },
+      {
+        "label": "C",
+        "text": "deserted"
+      },
+      {
+        "label": "D",
+        "text": "alienated"
+      }
+    ],
+    "answer": "A",
+    "explanation": "cutting-edge หมายถึง ล้ำสมัย ไฮเทค ล่าสุด"
+  },
+  {
+    "id": 32,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "The remarkable fact that bicycles outnumber cars in the Danish capital has ________ municipal authorities to design extensive protected cycling lanes.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "compelled"
+      },
+      {
+        "label": "B",
+        "text": "alienated"
+      },
+      {
+        "label": "C",
+        "text": "impaired"
+      },
+      {
+        "label": "D",
+        "text": "strolled"
+      }
+    ],
+    "answer": "A",
+    "explanation": "compelled หมายถึง ผลักดัน บังคับหรือกระตุ้นให้ต้องดำเนินการ"
+  },
+  {
+    "id": 33,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Copenhagen's renowned 'Green Wave' system ________ traffic signals along major avenues so cyclists travelling at 20 km/h encounter only green lights.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "slashes"
+      },
+      {
+        "label": "B",
+        "text": "coordinates"
+      },
+      {
+        "label": "C",
+        "text": "realizes"
+      },
+      {
+        "label": "D",
+        "text": "navigates"
+      }
+    ],
+    "answer": "B",
+    "explanation": "coordinates หมายถึง การจัดจังหวะหรือประสานสัญญาณไฟจราจรให้เป็นระบบ"
+  },
+  {
+    "id": 34,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "The city council introduced economic ________, such as lower bike purchase taxes and subsidized repairs, to motivate commuters to abandon their cars.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "shortages"
+      },
+      {
+        "label": "B",
+        "text": "incentives"
+      },
+      {
+        "label": "C",
+        "text": "strains"
+      },
+      {
+        "label": "D",
+        "text": "baselines"
+      }
+    ],
+    "answer": "B",
+    "explanation": "economic incentives หมายถึง แรงจูงใจหรือสิ่งกระตุ้นทางเศรษฐกิจ"
+  },
+  {
+    "id": 35,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Promoting daily cycling is not just a temporary fad; it has become an indispensable ________ of Denmark's long-term sustainability framework.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "staple"
+      },
+      {
+        "label": "B",
+        "text": "impediment"
+      },
+      {
+        "label": "C",
+        "text": "intervention"
+      },
+      {
+        "label": "D",
+        "text": "threshold"
+      }
+    ],
+    "answer": "A",
+    "explanation": "staple หมายถึง สิ่งสำคัญหลักหรือองค์ประกอบพื้นฐานที่ขาดไม่ได้"
+  },
+  {
+    "id": 36,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Thanks to intelligent sensors that dim streetlights when no pedestrians or cyclists are nearby, the municipality ________ its lighting budget by 76%.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "increased"
+      },
+      {
+        "label": "B",
+        "text": "slashed"
+      },
+      {
+        "label": "C",
+        "text": "navigated"
+      },
+      {
+        "label": "D",
+        "text": "assigned"
+      }
+    ],
+    "answer": "B",
+    "explanation": "slashed หมายถึง ตัดลดลงอย่างมาก (ตัดลดงบลงถึง 76%)"
+  },
+  {
+    "id": 37,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Modern metropolises must urgently adopt renewable energy sources to alleviate decades of severe environmental ________ caused by fossil fuel emissions.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "baseline"
+      },
+      {
+        "label": "B",
+        "text": "strain"
+      },
+      {
+        "label": "C",
+        "text": "accolade"
+      },
+      {
+        "label": "D",
+        "text": "centenarian"
+      }
+    ],
+    "answer": "B",
+    "explanation": "environmental strain หมายถึง ภาระความตึงเครียดหรือความกดดันต่อสิ่งแวดล้อม"
+  },
+  {
+    "id": 38,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Thousands of suburban workers in Nonthaburi must ________ long distances to central Bangkok every weekday morning.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "stroll"
+      },
+      {
+        "label": "B",
+        "text": "commute"
+      },
+      {
+        "label": "C",
+        "text": "dominate"
+      },
+      {
+        "label": "D",
+        "text": "root"
+      }
+    ],
+    "answer": "B",
+    "explanation": "commute หมายถึง การเดินทางไปกลับระหว่างบ้านกับที่ทำงานเป็นประจำ"
+  },
+  {
+    "id": 39,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Pedestrians on pedestrian walkways frequently complain about motorcyclists who ________ ride on sidewalks during rush hours, endangering walkers.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "casually"
+      },
+      {
+        "label": "B",
+        "text": "illegally"
+      },
+      {
+        "label": "C",
+        "text": "optimally"
+      },
+      {
+        "label": "D",
+        "text": "picturesquely"
+      }
+    ],
+    "answer": "B",
+    "explanation": "illegally หมายถึง อย่างผิดกฎหมาย (ขี่มอเตอร์ไซค์บนทางเท้า)"
+  },
+  {
+    "id": 40,
+    "part": "PART II: Vocabulary in Context - Unit 2",
+    "prompt": "Thailand's architectural research highlights that an acute ________ of dedicated pedestrian paths discourages residents from walking to work.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "shortage"
+      },
+      {
+        "label": "B",
+        "text": "accolade"
+      },
+      {
+        "label": "C",
+        "text": "incentive"
+      },
+      {
+        "label": "D",
+        "text": "necessity"
+      }
+    ],
+    "answer": "A",
+    "explanation": "shortage of หมายถึง การขาดแคลน (acute shortage = การขาดแคลนอย่างรุนแรง)"
+  },
+  {
+    "id": 41,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Walking streets are characterized by vibrant atmospheres where many people come together to enjoy food vendors, lively music, and entertainment.\"\nIn this context, the word \"vibrant\" most closely means:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "dark and tranquil"
+      },
+      {
+        "label": "B",
+        "text": "quiet and deserted"
+      },
+      {
+        "label": "C",
+        "text": "lively, energetic, and full of activity"
+      },
+      {
+        "label": "D",
+        "text": "dangerous and crowded"
+      }
+    ],
+    "answer": "C",
+    "explanation": "vibrant หมายถึง มีชีวิตชีวา คึกคัก เต็มไปด้วยพลังและกิจกรรม (lively, energetic)"
+  },
+  {
+    "id": 42,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"The small coastal town was renowned for its secluded beaches. Unlike the crowded resorts nearby, these stretches of sand were quiet and visited by very few travelers.\"\nWhich type of context clue helps the reader determine the meaning of \"secluded\"?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Appositive clue"
+      },
+      {
+        "label": "B",
+        "text": "Antonym / Contrast clue"
+      },
+      {
+        "label": "C",
+        "text": "Cause and effect clue"
+      },
+      {
+        "label": "D",
+        "text": "Monolingual definition clue"
+      }
+    ],
+    "answer": "B",
+    "explanation": "สังเกตคำว่า 'Unlike the crowded resorts nearby' เป็นคำตรงข้าม/เปรียบเทียบความขัดแย้ง (Antonym/Contrast)"
+  },
+  {
+    "id": 43,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"During her backpacking expedition, Lina embraced a very frugal lifestyle; she cooked her own meals in hostel kitchens and avoided unnecessary expenses to make her money last.\"\nWhat does the word \"frugal\" mean in this sentence?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Lavish and extravagant"
+      },
+      {
+        "label": "B",
+        "text": "Highly reckless with funds"
+      },
+      {
+        "label": "C",
+        "text": "Economical, thrifty, and careful with spending"
+      },
+      {
+        "label": "D",
+        "text": "Dangerous and unpredictable"
+      }
+    ],
+    "answer": "C",
+    "explanation": "frugal หมายถึง ประหยัด มัธยัสถ์ ระมัดระวังการใช้จ่าย (economical, thrifty)"
+  },
+  {
+    "id": 44,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Singapore's infrastructure, the country's basic systems, transport facilities, and public services, makes navigating unfamiliar neighborhoods easy for travelers.\"\nThe phrase set off by commas after \"infrastructure\" functions as which type of context clue?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Appositive"
+      },
+      {
+        "label": "B",
+        "text": "Antonym"
+      },
+      {
+        "label": "C",
+        "text": "Subordinating clause"
+      },
+      {
+        "label": "D",
+        "text": "Coordinating modifier"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Appositive คือ นามวลีที่วางระหว่างเครื่องหมายจุลภาคเพื่ออธิบายนามข้างหน้า"
+  },
+  {
+    "id": 45,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"The mountain pass was nearly impassable, completely blocked and unusable after three consecutive days of severe blizzards.\"\nThe words \"blocked and unusable\" serve as what type of context clue for \"impassable\"?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Antonym clue"
+      },
+      {
+        "label": "B",
+        "text": "Synonym clue"
+      },
+      {
+        "label": "C",
+        "text": "Metaphorical clue"
+      },
+      {
+        "label": "D",
+        "text": "Conditional clue"
+      }
+    ],
+    "answer": "B",
+    "explanation": "blocked and unusable มีความหมายเหมือนกับ impassable จึงเป็น Synonym clue"
+  },
+  {
+    "id": 46,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Her traveling style was truly spontaneous. She booked same-day trains, changed destinations without warning, and followed random advice from strangers.\"\nIn this passage, the author illustrates the meaning of \"spontaneous\" primarily by using:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Examples of her impulsive travel behaviors"
+      },
+      {
+        "label": "B",
+        "text": "An appositive noun phrase definition"
+      },
+      {
+        "label": "C",
+        "text": "A contrasting antonym introduced by 'however'"
+      },
+      {
+        "label": "D",
+        "text": "Scientific research data"
+      }
+    ],
+    "answer": "A",
+    "explanation": "ผู้เขียนให้ตัวอย่างการกระทำที่เป็นธรรมชาติ/ฉับพลัน (Examples of impulsive behaviors)"
+  },
+  {
+    "id": 47,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Historical sites such as ancient temples, preserved battlegrounds, and heritage monuments attract thousands of cultural visitors annually.\"\nThe words \"such as\" signal which type of context clue?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Synonym"
+      },
+      {
+        "label": "B",
+        "text": "Example"
+      },
+      {
+        "label": "C",
+        "text": "Antonym"
+      },
+      {
+        "label": "D",
+        "text": "Appositive"
+      }
+    ],
+    "answer": "B",
+    "explanation": "คำว่า 'such as' เป็นคำส่งสัญญาณบอกการให้ตัวอย่าง (Example clue)"
+  },
+  {
+    "id": 48,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Due to an intervention by his family, King got sober and got rid of that huge desk.\"\nIn the context of Stephen King's recovery from alcohol addiction, \"sober\" means:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "celebrated and famous"
+      },
+      {
+        "label": "B",
+        "text": "completely intoxicated"
+      },
+      {
+        "label": "C",
+        "text": "free from alcohol or drugs; not drunk"
+      },
+      {
+        "label": "D",
+        "text": "wealthy and accomplished"
+      }
+    ],
+    "answer": "C",
+    "explanation": "sober หมายถึง สร่างเมา เลิกดื่มสุรา/สารเสพติด (free from alcohol)"
+  },
+  {
+    "id": 49,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"His office became more a living room than a retreat centre, where his children came in to watch movies and share pizza.\"\nWhat does the phrase \"retreat centre\" mean in this context?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "A place where someone withdraws from others into isolation"
+      },
+      {
+        "label": "B",
+        "text": "A public shopping complex"
+      },
+      {
+        "label": "C",
+        "text": "A community sports pavilion"
+      },
+      {
+        "label": "D",
+        "text": "A busy commercial marketplace"
+      }
+    ],
+    "answer": "A",
+    "explanation": "retreat centre ในบริบทนี้คือ สถานที่ปลีกวิเวกตัดขาดจากผู้อื่นเข้าสู่ความโดดเดี่ยว"
+  },
+  {
+    "id": 50,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"We were supposed to be celebrating my book launch, but instead I wanted to commiserate over the missing copies.\"\nIn this context, the word \"commiserate\" means to:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "demand a full refund"
+      },
+      {
+        "label": "B",
+        "text": "express or feel sympathy and shared sorrow"
+      },
+      {
+        "label": "C",
+        "text": "celebrate enthusiastically with drinks"
+      },
+      {
+        "label": "D",
+        "text": "advertise products aggressively"
+      }
+    ],
+    "answer": "B",
+    "explanation": "commiserate หมายถึง แสดงความเห็นอกเห็นใจ ร่วมทุกข์ร่วมเสียใจด้วยกัน"
+  },
+  {
+    "id": 51,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Crossing the threshold, I stepped into a house full of people who shouted, 'Surprise!'\"\nWhat is the contextual definition of \"threshold\"?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "The top roof of a tall residential tower"
+      },
+      {
+        "label": "B",
+        "text": "The floor of an entrance or doorway to a building"
+      },
+      {
+        "label": "C",
+        "text": "A private office in the corner of a room"
+      },
+      {
+        "label": "D",
+        "text": "A small envelope placed on a table"
+      }
+    ],
+    "answer": "B",
+    "explanation": "threshold หมายถึง ธรณีประตู หรือทางเข้าประตูอาคาร (the floor of an entrance)"
+  },
+  {
+    "id": 52,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "In Reading Text 2 of Unit 2, what is the specific operational function of the 'Green Wave' in Copenhagen?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "It paints bicycle paths in bright green fluorescent paint across all suburbs."
+      },
+      {
+        "label": "B",
+        "text": "It coordinates traffic signals so cyclists maintaining 20 km/h hit green lights continuously."
+      },
+      {
+        "label": "C",
+        "text": "It charges green environmental fees to private vehicles entering the city centre."
+      },
+      {
+        "label": "D",
+        "text": "It plants evergreen trees along waterways to filter carbon emissions."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Green Wave ของโคเปนเฮเกนจะประสานสัญญาณไฟจราจรให้นักปั่นที่ขี่ด้วยความเร็ว 20 กม./ชม. เจอไฟเขียวตลอดทาง"
+  },
+  {
+    "id": 53,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "According to the passage on Copenhagen's sustainability, \"Project Air View\" represents a collaborative initiative between:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "The European Union, tourist agencies, and local bicycle stores"
+      },
+      {
+        "label": "B",
+        "text": "Google, university researchers, and the local municipal government"
+      },
+      {
+        "label": "C",
+        "text": "Car manufacturing companies, architectural faculties, and bus operators"
+      },
+      {
+        "label": "D",
+        "text": "International airlines and private environmental charities"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Project Air View คือความร่วมมือระหว่าง Google, นักวิจัยมหาวิทยาลัย และเทศบาลเมืองโคเปนเฮเกน"
+  },
+  {
+    "id": 54,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Road space is very scarce in Bangkok, accounting for only 7% of total area, while road area in New York is expansive, standing at 28%.\"\nWhat contrast word helps the reader deduce that \"scarce\" is the opposite of \"expansive\"?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "accounting"
+      },
+      {
+        "label": "B",
+        "text": "standing"
+      },
+      {
+        "label": "C",
+        "text": "while"
+      },
+      {
+        "label": "D",
+        "text": "only"
+      }
+    ],
+    "answer": "C",
+    "explanation": "คำว่า 'while' ทำหน้าที่เชื่อมประโยคแสดงความขัดแย้ง (Contrast clue)"
+  },
+  {
+    "id": 55,
+    "part": "PART III: Reading Skills & Context Clues",
+    "prompt": "\"Walking tourism, a form of travel where the primary mode of exploration and discovery is by foot, enables visitors to engage with local communities.\"\nThe grammatical structure explaining \"walking tourism\" between commas is classified as:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "an appositive"
+      },
+      {
+        "label": "B",
+        "text": "an antonym"
+      },
+      {
+        "label": "C",
+        "text": "a run-on sentence"
+      },
+      {
+        "label": "D",
+        "text": "a comma splice"
+      }
+    ],
+    "answer": "A",
+    "explanation": "ส่วนขยายคำนามระหว่างจุลภาคคือ Appositive (นามซ้อน)"
+  },
+  {
+    "id": 56,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "In the sentence: \"Reducing sugary foods, processed meats, and excess salt is critical for heart health,\" what is the complete grammatical subject?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Reducing sugary foods"
+      },
+      {
+        "label": "B",
+        "text": "Reducing sugary foods, processed meats, and excess salt"
+      },
+      {
+        "label": "C",
+        "text": "Excess salt"
+      },
+      {
+        "label": "D",
+        "text": "Critical for heart health"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Complete Subject (ประธานสมบูรณ์) คือ Gerund Phrase ทั้งหมดก่อนกริยา 'is'"
+  },
+  {
+    "id": 57,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "In the sentence: \"What you eat every day may determine how long you live,\" the subject belongs to which structural category?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "A compound proper noun"
+      },
+      {
+        "label": "B",
+        "text": "A noun clause"
+      },
+      {
+        "label": "C",
+        "text": "A gerund phrase"
+      },
+      {
+        "label": "D",
+        "text": "A prepositional phrase"
+      }
+    ],
+    "answer": "B",
+    "explanation": "'What you eat every day' คือ Noun Clause ที่ขึ้นต้นด้วย What ทำหน้าที่เป็นประธานของประโยค"
+  },
+  {
+    "id": 58,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Identify the complete predicate in the sentence: \"Long-term clinical studies reinforce these nutritional findings.\"",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Long-term clinical studies"
+      },
+      {
+        "label": "B",
+        "text": "reinforce these nutritional findings"
+      },
+      {
+        "label": "C",
+        "text": "these nutritional findings"
+      },
+      {
+        "label": "D",
+        "text": "reinforce"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Complete Predicate (ภาคแสดงสมบูรณ์) ประกอบด้วยกริยาและส่วนขยาย/กรรมทั้งหมด คือ 'reinforce these nutritional findings'"
+  },
+  {
+    "id": 59,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Which of the following sentences adheres to correct noun and determiner rules for countable and uncountable nouns?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "She provided many useful informations about healthy diets."
+      },
+      {
+        "label": "B",
+        "text": "The doctor suggested eating fresh fruit and whole grain every morning."
+      },
+      {
+        "label": "C",
+        "text": "He bought two new books about sustainable urban planning."
+      },
+      {
+        "label": "D",
+        "text": "Stephen King placed desk in the center of office."
+      }
+    ],
+    "answer": "C",
+    "explanation": "ข้อ C ถูกต้อง ('information' นับไม่ได้เติม s ไม่ได้, ข้อ D ขาด determiner หน้า desk/office)"
+  },
+  {
+    "id": 60,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Which sentence contains an error regarding singular countable nouns?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "The researcher wrote an informative article."
+      },
+      {
+        "label": "B",
+        "text": "Professor invited student to participate in the study."
+      },
+      {
+        "label": "C",
+        "text": "A balanced diet supports overall longevity."
+      },
+      {
+        "label": "D",
+        "text": "My sister adopted a rescue dog yesterday."
+      }
+    ],
+    "answer": "B",
+    "explanation": "คำนามนับได้เอกพจน์ (Singular Countable Nouns) เช่น Professor และ student ห้ามอยู่เดี่ยวๆ ต้องมี Determiner เช่น 'The professor invited a student'"
+  },
+  {
+    "id": 61,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Choose the sentence with the correct indefinite pronoun subject-verb agreement:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Everyone in our research lab are attending the seminar today."
+      },
+      {
+        "label": "B",
+        "text": "Everyone in our research lab is attending the seminar today."
+      },
+      {
+        "label": "C",
+        "text": "Nobody among the surveyed students were aware of the new rules."
+      },
+      {
+        "label": "D",
+        "text": "Somebody have left their bicycle near the library door."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Indefinite Pronouns เช่น Everyone, Nobody, Somebody ถือเป็นเอกพจน์ จึงต้องใช้กับกริยาเอกพจน์ 'is'"
+  },
+  {
+    "id": 62,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "In the sentence: \"Those massive oak desks occupy too much space in a small study,\" the word \"Those\" functions as:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "a demonstrative adjective"
+      },
+      {
+        "label": "B",
+        "text": "an indefinite pronoun"
+      },
+      {
+        "label": "C",
+        "text": "a possessive adjective"
+      },
+      {
+        "label": "D",
+        "text": "a reflexive pronoun"
+      }
+    ],
+    "answer": "A",
+    "explanation": "คำว่า 'Those' วางหน้านาม 'massive oak desks' ทำหน้าที่เป็น Demonstrative Adjective (คุณศัพท์ชี้เฉพาะ)"
+  },
+  {
+    "id": 63,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Which sentence correctly uses a possessive adjective rather than a possessive pronoun?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "The city redesigned its public transit corridors last year."
+      },
+      {
+        "label": "B",
+        "text": "That beautiful bicycle parked by the gate is her."
+      },
+      {
+        "label": "C",
+        "text": "The green water bottle on the table is their."
+      },
+      {
+        "label": "D",
+        "text": "The apartment near the subway station is our."
+      }
+    ],
+    "answer": "A",
+    "explanation": "'its' ขยายนาม 'public transit corridors' เป็น Possessive Adjective ที่ถูกต้อง (ข้อ B, C, D ต้องใช้ hers, theirs, ours)"
+  },
+  {
+    "id": 64,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "\"Stephen King placed his prized desk in the center of his study.\"\nWhat type of sentence is this?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Simple sentence"
+      },
+      {
+        "label": "B",
+        "text": "Compound sentence"
+      },
+      {
+        "label": "C",
+        "text": "Complex sentence"
+      },
+      {
+        "label": "D",
+        "text": "Compound-complex sentence"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Simple sentence มี 1 Independent Clause (ประธาน Stephen King + กริยา placed + กรรม his prized desk)"
+  },
+  {
+    "id": 65,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "\"I was sitting at my desk, and a sudden thought went through my mind.\"\nWhat type of sentence is this?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Simple sentence"
+      },
+      {
+        "label": "B",
+        "text": "Compound sentence"
+      },
+      {
+        "label": "C",
+        "text": "Complex sentence"
+      },
+      {
+        "label": "D",
+        "text": "Incomplete fragment"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Compound sentence ประกอบด้วย 2 Independent Clauses เชื่อมด้วยเครื่องหมายจุลภาคและ Coordinating Conjunction (, and)"
+  },
+  {
+    "id": 66,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "\"Although she had practiced her presentation for hours, she still felt nervous on stage.\"\nWhat type of sentence is this?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Simple sentence"
+      },
+      {
+        "label": "B",
+        "text": "Compound sentence"
+      },
+      {
+        "label": "C",
+        "text": "Complex sentence"
+      },
+      {
+        "label": "D",
+        "text": "Run-on sentence"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Complex sentence มี 1 Dependent Clause (ขึ้นต้นด้วย Although) + 1 Independent Clause"
+  },
+  {
+    "id": 67,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Choose the coordinating conjunction that best completes the compound sentence logically:\n\"We were supposed to be celebrating my book launch, ________ instead I sat in the corner feeling sorry for myself.\"",
+    "choices": [
+      {
+        "label": "A",
+        "text": "so"
+      },
+      {
+        "label": "B",
+        "text": "but"
+      },
+      {
+        "label": "C",
+        "text": "for"
+      },
+      {
+        "label": "D",
+        "text": "nor"
+      }
+    ],
+    "answer": "B",
+    "explanation": "ประโยคแสดงความขัดแย้งระหว่าง 'ควรจะได้ฉลอง' กับ 'นั่งเศร้าอยู่คนเดียว' จึงใช้ 'but'"
+  },
+  {
+    "id": 68,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Choose the subordinating conjunction that best completes the complex sentence logically:\n\"________ the big day arrived, nothing went right for the nervous author.\"",
+    "choices": [
+      {
+        "label": "A",
+        "text": "When"
+      },
+      {
+        "label": "B",
+        "text": "Because of"
+      },
+      {
+        "label": "C",
+        "text": "Although"
+      },
+      {
+        "label": "D",
+        "text": "Despite"
+      }
+    ],
+    "answer": "A",
+    "explanation": "When ตามด้วยประโยค (Clause) บอกเวลา 'เมื่อวันสำคัญมาถึง'"
+  },
+  {
+    "id": 69,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "In the complex sentence: \"Most people over 95 remain slim, though being slightly overweight appears to support daily functioning,\" which part is the dependent clause?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Most people over 95 remain slim"
+      },
+      {
+        "label": "B",
+        "text": "though being slightly overweight appears to support daily functioning"
+      },
+      {
+        "label": "C",
+        "text": "Most people over 95"
+      },
+      {
+        "label": "D",
+        "text": "appears to support daily functioning"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Dependent Clause (อนุประโยครอง) คือส่วนที่ขึ้นต้นด้วย Subordinating Conjunction 'though...'"
+  },
+  {
+    "id": 70,
+    "part": "PART IV: Language Focus - Sentences",
+    "prompt": "Which of the following groups of words is an independent clause capable of standing alone?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Because high salt intake contributes to hypertension"
+      },
+      {
+        "label": "B",
+        "text": "While she was waiting for the subway at Samrong station"
+      },
+      {
+        "label": "C",
+        "text": "The local government slashed electricity expenses significantly"
+      },
+      {
+        "label": "D",
+        "text": "If you adopt an optimal plant-based eating pattern"
+      }
+    ],
+    "answer": "C",
+    "explanation": "ข้อ C เป็น Independent Clause ที่สมบูรณ์ในตัวเอง (มีประธาน The local government + กริยา slashed + กรรม และมีความหมายสมบูรณ์)"
+  },
+  {
+    "id": 71,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "According to Unit 2 Language Focus, what is the distinct difference between \"bustling\" and \"vibrant\"?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "\"Bustling\" describes small empty villages, while \"vibrant\" describes polluted capitals."
+      },
+      {
+        "label": "B",
+        "text": "\"Bustling\" emphasizes busy activity and noise, whereas \"vibrant\" focuses on dynamic energy, culture, and life."
+      },
+      {
+        "label": "C",
+        "text": "\"Bustling\" has an entirely negative meaning, whereas \"vibrant\" is always neutral."
+      },
+      {
+        "label": "D",
+        "text": "\"Bustling\" is used only for indoor rooms, while \"vibrant\" refers only to highways."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Bustling เน้นความวุ่นวาย จอแจ มีกิจกรรมและการเคลื่อนไหว ส่วน Vibrant เน้นพลัง ความมีชีวิตชีวา สีสันทางวัฒนธรรม"
+  },
+  {
+    "id": 72,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "During the freezing winter months, tourist attractions that were crowded all summer often become completely ________, with almost no visitors in sight.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "bustling"
+      },
+      {
+        "label": "B",
+        "text": "deserted"
+      },
+      {
+        "label": "C",
+        "text": "packed"
+      },
+      {
+        "label": "D",
+        "text": "vibrant"
+      }
+    ],
+    "answer": "B",
+    "explanation": "deserted หมายถึง รกร้าง ไร้ผู้คน (almost no visitors in sight)"
+  },
+  {
+    "id": 73,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "In cold weather, Danish families often create a ________ indoor atmosphere by lighting candles, playing soft music, and serving hot cocoa.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "run-down"
+      },
+      {
+        "label": "B",
+        "text": "cosy"
+      },
+      {
+        "label": "C",
+        "text": "deserted"
+      },
+      {
+        "label": "D",
+        "text": "scarce"
+      }
+    ],
+    "answer": "B",
+    "explanation": "cosy หมายถึง อบอุ่นสบาย สบายใจ (แนวคิด hygge ของเดนมาร์ก)"
+  },
+  {
+    "id": 74,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "On Saturday nights, Ban Tad Thong Road becomes completely ________ with hungry university students waiting in long queues outside food stalls.",
+    "choices": [
+      {
+        "label": "A",
+        "text": "packed"
+      },
+      {
+        "label": "B",
+        "text": "spacious"
+      },
+      {
+        "label": "C",
+        "text": "run-down"
+      },
+      {
+        "label": "D",
+        "text": "deserted"
+      }
+    ],
+    "answer": "A",
+    "explanation": "packed with หมายถึง แน่นขนัด แออัดไปด้วยผู้คน"
+  },
+  {
+    "id": 75,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "\"The historic city of York is located ________ northern England, featuring ancient city walls and cobbled alleys.\"\nWhich preposition of place correctly completes the blank?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "on"
+      },
+      {
+        "label": "B",
+        "text": "at"
+      },
+      {
+        "label": "C",
+        "text": "in"
+      },
+      {
+        "label": "D",
+        "text": "by"
+      }
+    ],
+    "answer": "C",
+    "explanation": "ภูมิภาค ประเทศ หรือเมือง ใช้บุพบท 'in' (in northern England)"
+  },
+  {
+    "id": 76,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "\"There are dozens of charming cafés and traditional bakeries ________ the main street.\"\nWhich preposition of place correctly completes the blank?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "in"
+      },
+      {
+        "label": "B",
+        "text": "on"
+      },
+      {
+        "label": "C",
+        "text": "at"
+      },
+      {
+        "label": "D",
+        "text": "under"
+      }
+    ],
+    "answer": "B",
+    "explanation": "ชื่อถนนหรือบนถนน ใช้บุพบท 'on' (on the main street)"
+  },
+  {
+    "id": 77,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "\"The visiting professor asked all students to assemble promptly ________ the main entrance of the architectural hall.\"\nWhich preposition of place correctly completes the blank?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "on"
+      },
+      {
+        "label": "B",
+        "text": "at"
+      },
+      {
+        "label": "C",
+        "text": "in"
+      },
+      {
+        "label": "D",
+        "text": "into"
+      }
+    ],
+    "answer": "B",
+    "explanation": "จุดเฉพาะเจาะจง (Specific point) เช่น ประตูทางเข้า ใช้ 'at' (at the main entrance)"
+  },
+  {
+    "id": 78,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "Which sentence uses prepositions of place correctly according to Unit 2 rules?",
+    "choices": [
+      {
+        "label": "A",
+        "text": "She was reading a novel while sitting in the train to Samrong."
+      },
+      {
+        "label": "B",
+        "text": "She was reading a novel while sitting on the train to Samrong."
+      },
+      {
+        "label": "C",
+        "text": "She was reading a novel while sitting at the bus to Min Buri."
+      },
+      {
+        "label": "D",
+        "text": "She was reading a novel while sitting on a taxi during rush hour."
+      }
+    ],
+    "answer": "B",
+    "explanation": "ยานพาหนะสาธารณะขนาดใหญ่ที่ลุกเดินได้ (train, bus, plane) ใช้ 'on' (on the train), ส่วนรถยนต์ส่วนบุคคล/แท็กซี่ใช้ 'in' (in a taxi)"
+  },
+  {
+    "id": 79,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "Identify the sentence that contains an INCORRECT preposition of place:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "London is situated on the River Thames."
+      },
+      {
+        "label": "B",
+        "text": "My family spent our vacation in the Isle of Wight."
+      },
+      {
+        "label": "C",
+        "text": "There are wonderful paintings hanging on the museum walls."
+      },
+      {
+        "label": "D",
+        "text": "The conference will take place at 15 Craig Street."
+      }
+    ],
+    "answer": "B",
+    "explanation": "เกาะ (Islands) ต้องใช้บุพบท 'on' เช่น 'on the Isle of Wight' ไม่ใช้ 'in'"
+  },
+  {
+    "id": 80,
+    "part": "PART V: Describing Places & Prepositions",
+    "prompt": "Choose the sentence that combines vivid descriptive adjectives and correct prepositions of place accurately:",
+    "choices": [
+      {
+        "label": "A",
+        "text": "Bangkok is a bustling metropolis located on Thailand, known for lively night markets at the streets."
+      },
+      {
+        "label": "B",
+        "text": "Terry lives in a cosy apartment located at New York with run-down public parks in the roofs."
+      },
+      {
+        "label": "C",
+        "text": "Copenhagen is a vibrant city in Denmark, renowned for picturesque canals and cheerful cyclists on the roads."
+      },
+      {
+        "label": "D",
+        "text": "The museum has spacious galleries at London with historic paintings in the desk."
+      }
+    ],
+    "answer": "C",
+    "explanation": "ข้อ C ใช้ prepositions ถูกต้องทั้งหมด (city in Denmark, on the roads) และใช้คำคุณศัพท์บรรยายสถานที่ได้อย่างแม่นยำ"
+  }
+]
