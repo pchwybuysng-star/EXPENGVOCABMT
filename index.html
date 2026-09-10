@@ -593,6 +593,26 @@
       z-index: 1;
     }
 
+    .flashcard-3d.is-flipped .card-front-plane {
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .flashcard-3d.is-flipped .card-back-plane {
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .flashcard-3d:not(.is-flipped) .card-front-plane {
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .flashcard-3d:not(.is-flipped) .card-back-plane {
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .card-watermark {
       position: absolute;
       right: 20px;
@@ -2541,29 +2561,34 @@
     // FULLSCREEN MODE
     // ==========================================================
     function toggleFullscreen() {
+      const docEl = document.documentElement;
       if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        const docEl = document.documentElement;
         if (docEl.requestFullscreen) {
-          docEl.requestFullscreen();
+          docEl.requestFullscreen().catch(() => {});
         } else if (docEl.webkitRequestFullscreen) {
           docEl.webkitRequestFullscreen();
+        } else {
+          showToastNotification('อุปกรณ์นี้ไม่รองรับ Fullscreen (แนะนำเพิ่มไปที่หน้าจอโฮม)');
+          return;
         }
         triggerHaptic([15]);
       } else {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          document.exitFullscreen().catch(() => {});
         } else if (document.webkitExitFullscreen) {
           document.webkitExitFullscreen();
         }
         triggerHaptic([10]);
       }
-      updateFullscreenUI();
+      setTimeout(updateFullscreenUI, 100);
     }
 
     function updateFullscreenUI() {
       const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
       const btn = document.getElementById('fullscreenBtn');
       if (btn) btn.classList.toggle('active', isFull);
+      const mobBtn = document.getElementById('mobNavFullscreen');
+      if (mobBtn) mobBtn.classList.toggle('active', isFull);
     }
 
     document.addEventListener('fullscreenchange', updateFullscreenUI);
@@ -2715,9 +2740,16 @@
       btns.forEach(b => b.classList.add('is-speaking'));
       triggerHaptic([10]);
 
-      pronounceWord(cleanWord, () => {
-        btns.forEach(b => b.classList.remove('is-speaking'));
-      });
+      let hasCleared = false;
+      const clearSpeaking = () => {
+        if (!hasCleared) {
+          hasCleared = true;
+          btns.forEach(b => b.classList.remove('is-speaking'));
+        }
+      };
+
+      setTimeout(clearSpeaking, 3500);
+      pronounceWord(cleanWord, clearSpeaking);
     }
 
     function speakCurrentDef(e) {
@@ -2799,7 +2831,13 @@
 
       currentDeckPointer = 0;
       isCardFlipped = false;
-      document.getElementById('mainFlashcard').classList.remove('is-flipped');
+      const cardElem = document.getElementById('mainFlashcard');
+      if (cardElem) {
+        cardElem.style.transition = 'none';
+        cardElem.style.transform = 'rotateY(0deg)';
+        cardElem.classList.remove('is-flipped');
+        setTimeout(() => { if (cardElem) cardElem.style.transition = ''; }, 50);
+      }
       renderCurrentCard();
       triggerHaptic([10]);
     }
@@ -2862,7 +2900,17 @@
 
     function flipCurrentCard() {
       isCardFlipped = !isCardFlipped;
-      document.getElementById('mainFlashcard').classList.toggle('is-flipped', isCardFlipped);
+      const card = document.getElementById('mainFlashcard');
+      if (card) {
+        card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.3, 0.64, 1)';
+        card.style.transform = isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        card.classList.toggle('is-flipped', isCardFlipped);
+      }
+      const stampMastered = document.getElementById('stampMastered');
+      const stampReview = document.getElementById('stampReview');
+      if (stampMastered) stampMastered.style.opacity = '0';
+      if (stampReview) stampReview.style.opacity = '0';
+
       soundFlip();
       triggerHaptic([8]);
     }
@@ -2870,7 +2918,13 @@
     function navigateCard(direction) {
       if (filteredIndices.length <= 1) return;
       isCardFlipped = false;
-      document.getElementById('mainFlashcard').classList.remove('is-flipped');
+      const card = document.getElementById('mainFlashcard');
+      if (card) {
+        card.style.transition = 'none';
+        card.style.transform = 'rotateY(0deg)';
+        card.classList.remove('is-flipped');
+        setTimeout(() => { if (card) card.style.transition = ''; }, 50);
+      }
       soundClick();
       triggerHaptic([6]);
 
@@ -2885,7 +2939,13 @@
       }
       currentDeckPointer = 0;
       isCardFlipped = false;
-      document.getElementById('mainFlashcard').classList.remove('is-flipped');
+      const card = document.getElementById('mainFlashcard');
+      if (card) {
+        card.style.transition = 'none';
+        card.style.transform = 'rotateY(0deg)';
+        card.classList.remove('is-flipped');
+        setTimeout(() => { if (card) card.style.transition = ''; }, 50);
+      }
       renderCurrentCard();
       showToastNotification('🔀 สลับลำดับคำศัพท์เรียบร้อย');
       soundClick();
@@ -2974,8 +3034,22 @@
       let startTime = 0;
       let isDragging = false;
       let isHorizontalSwipe = false;
+      let lastTouchTime = 0;
 
       function onTouchStart(e) {
+        // Ignore synthetic mouse events fired by mobile browsers after touch
+        if (e.type === 'mousedown' && Date.now() - lastTouchTime < 600) {
+          return;
+        }
+        if (e.touches && e.touches.length > 0) {
+          lastTouchTime = Date.now();
+        }
+
+        // Do not flip or drag if user tapped buttons or audio triggers inside the card
+        if (e.target.closest('button, .speech-bubble-btn, .mini-speaker-btn, .card-def-en-box, .card-example-box')) {
+          return;
+        }
+
         if (isAutoPlaying) toggleAutoPlay();
         const touch = e.touches ? e.touches[0] : e;
         startX = touch.clientX;
@@ -3002,7 +3076,6 @@
             isHorizontalSwipe = true;
           } else if (Math.abs(dy) > 10) {
             isDragging = false;
-            card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             resetCardPosition();
             return;
           }
@@ -3023,15 +3096,18 @@
         }
       }
 
-      function onTouchEnd() {
+      function onTouchEnd(e) {
+        if (e && e.type === 'mouseup' && Date.now() - lastTouchTime < 600) {
+          return;
+        }
         if (!isDragging) return;
         isDragging = false;
         const dx = curX - startX;
         const dy = curY - startY;
         const duration = Date.now() - startTime;
 
-        if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && duration < 300) {
-          resetCardPosition();
+        // Quick tap on card: flip card cleanly
+        if (Math.abs(dx) < 14 && Math.abs(dy) < 14 && duration < 400) {
           flipCurrentCard();
           return;
         }
@@ -3041,7 +3117,7 @@
 
         if (dx > threshold || (dx > 40 && isFastSwipe)) {
           card.style.transition = 'transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease';
-          card.style.transform = `translate3d(120vw, ${dy}px, 0) rotate(28deg)`;
+          card.style.transform = `translate3d(120vw, ${dy}px, 0) rotate(28deg)` + (isCardFlipped ? ' rotateY(180deg)' : '');
           triggerHaptic([15]);
 
           if (gestureHint) gestureHint.style.opacity = '0';
@@ -3053,7 +3129,7 @@
 
         } else if (dx < -threshold || (dx < -40 && isFastSwipe)) {
           card.style.transition = 'transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease';
-          card.style.transform = `translate3d(-120vw, ${dy}px, 0) rotate(-28deg)`;
+          card.style.transform = `translate3d(-120vw, ${dy}px, 0) rotate(-28deg)` + (isCardFlipped ? ' rotateY(180deg)' : '');
           triggerHaptic([25]);
 
           if (gestureHint) gestureHint.style.opacity = '0';
@@ -3064,13 +3140,14 @@
           }, 260);
 
         } else {
-          card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
           resetCardPosition();
         }
       }
 
       function resetCardPosition() {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         card.style.transform = isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        card.classList.toggle('is-flipped', isCardFlipped);
         stampMastered.style.opacity = 0;
         stampReview.style.opacity = 0;
       }
@@ -3127,8 +3204,16 @@
         renderCurrentCard();
       } else if (tabKey === 'quiz') {
         document.getElementById('quizPane').classList.add('active');
+        const qPlay = document.getElementById('quizPlayBox');
+        if (qPlay && qPlay.style.display === 'flex' && !quizIsWaitingNext) {
+          startQuizTimer();
+        }
       } else if (tabKey === 'exam') {
         document.getElementById('examPane').classList.add('active');
+        const ePlay = document.getElementById('examPlayBox');
+        if (ePlay && ePlay.style.display === 'flex' && !examIsWaitingNext) {
+          startExamTimer();
+        }
       } else if (tabKey === 'wordlist') {
         document.getElementById('wordlistPane').classList.add('active');
         renderWordCatalog();
@@ -3409,7 +3494,21 @@
     const EXAM_RING_CIRCUMFERENCE = 2 * Math.PI * 30; // ~188.5
 
     function updateExamCountOptions() {
-      // Helper to adjust length options when user selects a specific part
+      const part = document.getElementById('examPartChoice').value;
+      const lengthSelect = document.getElementById('examLengthChoice');
+      if (!lengthSelect) return;
+
+      let maxCount = 80;
+      if (part === 'part1' || part === 'part2') maxCount = 20;
+      else if (part === 'part3' || part === 'part4') maxCount = 15;
+      else if (part === 'part5') maxCount = 10;
+
+      let html = '';
+      if (maxCount >= 10) html += '<option value="10">10 ข้อ (ฉบับด่วน)</option>';
+      if (maxCount >= 20) html += '<option value="20" selected>20 ข้อ (แนะนำ)</option>';
+      if (maxCount >= 40) html += '<option value="40">40 ข้อ (ครึ่งชุด)</option>';
+      html += `<option value="all" ${maxCount < 20 ? 'selected' : ''}>ทั้งหมดตามพาร์ต (${maxCount} ข้อ)</option>`;
+      lengthSelect.innerHTML = html;
     }
 
     function clearExamTimer() {
@@ -3810,6 +3909,14 @@
         filteredIndices = masterVocabDeck.map((_, i) => i);
         document.querySelectorAll('.filter-chip-btn').forEach((btn, i) => btn.classList.toggle('active', i === 0));
         currentDeckPointer = idx;
+        isCardFlipped = false;
+        const card = document.getElementById('mainFlashcard');
+        if (card) {
+          card.style.transition = 'none';
+          card.style.transform = 'rotateY(0deg)';
+          card.classList.remove('is-flipped');
+          setTimeout(() => { if (card) card.style.transition = ''; }, 50);
+        }
         switchActiveTab('flashcards');
         triggerHaptic([10]);
       }
@@ -3926,6 +4033,16 @@
           e.preventDefault();
           markCardStatus('mastered');
         }
+      }
+
+      // Quiz Mode Keyboard Support (1-4 or A-D)
+      const quizPane = document.getElementById('quizPane');
+      if (quizPane && quizPane.classList.contains('active')) {
+        const btns = document.querySelectorAll('#quizChoiceButtonsContainer .quiz-option-btn');
+        if (['1', 'a', 'A'].includes(e.key) && btns[0] && !btns[0].disabled) btns[0].click();
+        else if (['2', 'b', 'B'].includes(e.key) && btns[1] && !btns[1].disabled) btns[1].click();
+        else if (['3', 'c', 'C'].includes(e.key) && btns[2] && !btns[2].disabled) btns[2].click();
+        else if (['4', 'd', 'D'].includes(e.key) && btns[3] && !btns[3].disabled) btns[3].click();
       }
 
       // Exam Mode Keyboard Support
