@@ -1072,8 +1072,9 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
+    
     /* ==========================================================
-       SCREEN ZOOM STEPPER & QUICK PICKER CONTROLLER
+       SCREEN ZOOM STEPPER & MODAL CONTROLLER
        ========================================================== */
     .zoom-stepper-widget {
       position: relative;
@@ -1105,6 +1106,7 @@
       border-radius: var(--radius-sm);
       cursor: pointer;
       transition: all 0.15s ease;
+      touch-action: manipulation;
     }
 
     .zoom-step-btn:hover {
@@ -1131,9 +1133,10 @@
       border-radius: var(--radius-sm);
       cursor: pointer;
       transition: all 0.2s ease;
-      min-width: 54px;
+      min-width: 52px;
       justify-content: center;
       user-select: none;
+      touch-action: manipulation;
     }
 
     .zoom-level-pill:hover {
@@ -1142,42 +1145,52 @@
       transform: translateY(-1px);
     }
 
-    .zoom-level-pill svg {
-      transition: transform 0.2s ease;
+    /* Floating Screen Zoom Modal Backdrop & Card */
+    .zoom-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 99998;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: max(68px, env(safe-area-inset-top, 68px));
+      padding-left: 14px;
+      padding-right: 14px;
+      animation: zoomBackdropFade 0.18s ease;
+      touch-action: manipulation;
     }
 
-    .zoom-level-pill:hover svg {
-      transform: scale(1.15);
+    @keyframes zoomBackdropFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* Floating Quick Zoom Picker Menu */
     .zoom-picker-popup {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      width: 290px;
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      width: 100%;
+      max-width: 330px;
+      background: var(--bg-card-front);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      padding: 12px 14px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      z-index: 10001;
-      animation: zoomPopupIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 12px;
+      animation: zoomModalPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
     }
 
-    @keyframes zoomPopupIn {
+    @keyframes zoomModalPop {
       from {
         opacity: 0;
-        transform: translateY(-8px) scale(0.95);
+        transform: scale(0.92) translateY(-10px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
       }
     }
 
@@ -1185,7 +1198,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--text-main);
     }
@@ -1195,10 +1208,11 @@
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 0.88rem;
-      padding: 2px 6px;
-      border-radius: 6px;
+      font-size: 1rem;
+      padding: 4px 8px;
+      border-radius: 8px;
       transition: all 0.15s ease;
+      touch-action: manipulation;
     }
 
     .zoom-picker-close:hover {
@@ -1207,24 +1221,24 @@
     }
 
     .zoom-presets-row {
-      display: flex;
-      gap: 5px;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
     }
 
     .zoom-chip-btn {
-      flex: 1;
-      padding: 6px 0;
+      padding: 8px 0;
       border: 1px solid var(--border-color);
       background: var(--bg-body);
       color: var(--text-main);
       font-family: var(--font-en);
-      font-size: 0.74rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 700;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s ease;
       text-align: center;
+      touch-action: manipulation;
     }
 
     .zoom-chip-btn:hover {
@@ -1252,15 +1266,16 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      padding: 6px 8px;
+      padding: 8px 6px;
       border: 1px solid var(--border-color);
       background: var(--bg-body);
       color: var(--text-main);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s ease;
+      touch-action: manipulation;
     }
 
     .zoom-quick-step-btn:hover {
@@ -1270,16 +1285,17 @@
     }
 
     .zoom-quick-reset-btn {
-      padding: 6px 10px;
+      padding: 8px 10px;
       border: 1px dashed var(--border-color);
       background: transparent;
       color: var(--text-muted);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s ease;
       white-space: nowrap;
+      touch-action: manipulation;
     }
 
     .zoom-quick-reset-btn:hover {
@@ -1288,7 +1304,7 @@
     }
 
     .zoom-hint-text {
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       color: var(--text-subtle);
       line-height: 1.3;
       border-top: 1px solid var(--border-color);
@@ -1299,7 +1315,407 @@
       text-align: center;
     }
 
+/* ==========================================================
+       QUIZ & EXAM PANELS
+       ========================================================== */
+    .quiz-panel-card {
+      background: var(--bg-card-front);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .select-dropdown-styled {
+      background: var(--bg-body);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+      transition: border-color 0.2s ease;
+    }
+
+    .select-dropdown-styled:focus {
+      border-color: var(--primary);
+    }
+
+    .quiz-question-box {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .quiz-prompt-word {
+      font-family: var(--font-en);
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-glass);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      touch-action: manipulation;
+    }
+
+    .quiz-option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .quiz-option-btn:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .quiz-option-btn.correct {
+      background: var(--success) !important;
+      color: #ffffff !important;
+      border-color: var(--success) !important;
+      box-shadow: 0 4px 18px var(--success-glow);
+    }
+
+    .quiz-option-btn.wrong {
+      background: var(--danger) !important;
+      color: #ffffff !important;
+      border-color: var(--danger) !important;
+      box-shadow: 0 4px 18px var(--danger-glow);
+    }
+
+    .opt-letter-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-glass-subtle);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 0.88rem;
+      flex-shrink: 0;
+    }
+
+    /* Countdown Timer Rings (Both 10s and 90s) */
+    .quiz-timer-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-timer-ring {
+      position: relative;
+      width: 72px;
+      height: 72px;
+    }
+
+    .quiz-timer-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .quiz-timer-ring .ring-bg {
+      fill: none;
+      stroke: var(--border-color);
+      stroke-width: 5;
+    }
+
+    .quiz-timer-ring .ring-fg {
+      fill: none;
+      stroke: var(--success);
+      stroke-width: 5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.15s linear, stroke 0.3s ease;
+    }
+
+    .quiz-timer-ring .ring-fg.warn { stroke: var(--warning); }
+    .quiz-timer-ring .ring-fg.danger { stroke: var(--danger); }
+
+    .quiz-timer-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      transition: color 0.3s ease;
+    }
+
+    .quiz-timer-text.warn { color: var(--warning); }
+    .quiz-timer-text.danger {
+      color: var(--danger);
+      animation: timer-pulse 0.5s infinite alternate;
+    }
+
+    @keyframes timer-pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.15); }
+    }
+
+    .quiz-timeout-flash {
+      animation: timeout-shake 0.4s ease;
+    }
+
+    @keyframes timeout-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
     /* ==========================================================
+       SPECIAL EXAM MODE (90-SECOND CU MIDTERM) STYLES
+       ========================================================== */
+    .exam-part-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--primary-light);
+      color: var(--primary);
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .exam-question-card {
+      width: 100%;
+      background: var(--bg-body);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      text-align: left;
+      position: relative;
+    }
+
+    .exam-question-text {
+      font-family: var(--font-en);
+      font-size: 1.08rem;
+      line-height: 1.6;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .exam-blank-box {
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      padding: 0 4px;
+      letter-spacing: 1px;
+    }
+
+    .exam-explanation-box {
+      width: 100%;
+      background: var(--bg-body);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 14px 14px 0;
+      padding: 14px 16px;
+      margin-top: 14px;
+      text-align: left;
+      animation: fadeInPane 0.3s ease;
+    }
+
+    .exam-explanation-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exam-review-card {
+      width: 100%;
+      background: var(--bg-card-front);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 10px;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    /* Word Catalog Pane */
+    .wordlist-search-bar {
+      width: 100%;
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      margin-bottom: 12px;
+    }
+
+    .search-input-field {
+      width: 100%;
+      padding: 14px 18px 14px 44px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .search-input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .search-icon-inside {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .catalog-list-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .catalog-item-card {
+      background: var(--bg-card-front);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .catalog-item-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .catalog-word-col { flex: 1; }
+
+    .catalog-word-lead {
+      font-family: var(--font-en);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .catalog-def-text {
+      font-size: 0.84rem;
+      color: var(--primary);
+      font-style: italic;
+      margin-bottom: 3px;
+    }
+
+    .catalog-meaning-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .catalog-example-text {
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      margin-top: 4px;
+    }
+
+    
+  
+
+    /* ==========================================================
+       TOAST NOTIFICATION (FLOATING TOP DYNAMIC PILL)
+       ========================================================== */
+    .toast-pill {
+      position: fixed;
+      top: max(16px, env(safe-area-inset-top, 16px));
+      bottom: auto !important;
+      left: 50%;
+      transform: translateX(-50%) translateY(-24px);
+      background: rgba(15, 23, 42, 0.94);
+      color: #ffffff;
+      padding: 9px 20px;
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999999;
+      white-space: nowrap;
+      max-width: calc(100vw - 32px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    [data-theme="dark"] .toast-pill {
+      background: rgba(255, 255, 255, 0.96);
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .toast-pill.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+/* ==========================================================
        MOBILE ERGONOMIC BOTTOM DOCK (THUMB ZONE)
        ========================================================== */
     .mobile-bottom-dock {
@@ -1350,8 +1766,9 @@
       }
 
       .zoom-step-btn {
-        width: 25px;
-        height: 25px;
+        width: 26px;
+        height: 26px;
+        display: flex !important;
       }
 
       .zoom-level-pill {
@@ -1360,27 +1777,7 @@
         min-width: 48px;
       }
 
-      @keyframes zoomPopupInMobile {
-        from {
-          opacity: 0;
-          transform: translateX(-50%) translateY(-8px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0) scale(1);
-        }
-      }
-
-      .zoom-picker-popup {
-        position: fixed;
-        top: 60px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: calc(100vw - 28px);
-        max-width: 320px;
-        animation: zoomPopupInMobile 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
+      
 
       .nav-tabs-container {
         display: none;
@@ -1845,20 +2242,7 @@
         100% { opacity: 0; pointer-events: none; }
       }
 
-      /* ── 16. Toast position: above bottom dock ── */
-      .toast-pill {
-        top: auto;
-        bottom: calc(126px + env(safe-area-inset-bottom, 0px));
-        transform: translateX(-50%) translateY(16px);
-      }
-
-      .toast-pill.show {
-        transform: translateX(-50%) translateY(0);
-      }
-
-      body:not(.has-thumb-dock) .toast-pill {
-        bottom: calc(72px + env(safe-area-inset-bottom, 0px));
-      }
+      
 
       /* ── 17. Flashcard tools bar: wrap gracefully ── */
       .flashcard-tools-bar {
@@ -2006,7 +2390,9 @@
       }
 
       .zoom-step-btn {
-        display: none;
+        width: 26px;
+        height: 26px;
+        display: flex !important;
       }
 
       .zoom-level-pill {
@@ -2143,384 +2529,7 @@
       }
     }
 
-    /* ==========================================================
-       QUIZ & EXAM PANELS
-       ========================================================== */
-    .quiz-panel-card {
-      background: var(--bg-card-front);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
-
-    .select-dropdown-styled {
-      background: var(--bg-body);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      outline: none;
-      cursor: pointer;
-      width: 100%;
-      transition: border-color 0.2s ease;
-    }
-
-    .select-dropdown-styled:focus {
-      border-color: var(--primary);
-    }
-
-    .quiz-question-box {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .quiz-prompt-word {
-      font-family: var(--font-en);
-      font-size: 2.3rem;
-      font-weight: 800;
-      margin-bottom: 4px;
-      color: var(--text-main);
-    }
-
-    .quiz-options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .quiz-option-btn {
-      width: 100%;
-      min-height: 56px;
-      padding: 14px 18px;
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--border-color);
-      background: var(--bg-glass);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      touch-action: manipulation;
-    }
-
-    .quiz-option-btn:hover:not(:disabled) {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      transform: translateX(4px);
-    }
-
-    .quiz-option-btn:active:not(:disabled) {
-      transform: scale(0.98);
-    }
-
-    .quiz-option-btn.correct {
-      background: var(--success) !important;
-      color: #ffffff !important;
-      border-color: var(--success) !important;
-      box-shadow: 0 4px 18px var(--success-glow);
-    }
-
-    .quiz-option-btn.wrong {
-      background: var(--danger) !important;
-      color: #ffffff !important;
-      border-color: var(--danger) !important;
-      box-shadow: 0 4px 18px var(--danger-glow);
-    }
-
-    .opt-letter-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--bg-glass-subtle);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-en);
-      font-weight: 700;
-      font-size: 0.88rem;
-      flex-shrink: 0;
-    }
-
-    /* Countdown Timer Rings (Both 10s and 90s) */
-    .quiz-timer-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
-
-    .quiz-timer-ring {
-      position: relative;
-      width: 72px;
-      height: 72px;
-    }
-
-    .quiz-timer-ring svg {
-      transform: rotate(-90deg);
-    }
-
-    .quiz-timer-ring .ring-bg {
-      fill: none;
-      stroke: var(--border-color);
-      stroke-width: 5;
-    }
-
-    .quiz-timer-ring .ring-fg {
-      fill: none;
-      stroke: var(--success);
-      stroke-width: 5;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.15s linear, stroke 0.3s ease;
-    }
-
-    .quiz-timer-ring .ring-fg.warn { stroke: var(--warning); }
-    .quiz-timer-ring .ring-fg.danger { stroke: var(--danger); }
-
-    .quiz-timer-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-en);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text-main);
-      transition: color 0.3s ease;
-    }
-
-    .quiz-timer-text.warn { color: var(--warning); }
-    .quiz-timer-text.danger {
-      color: var(--danger);
-      animation: timer-pulse 0.5s infinite alternate;
-    }
-
-    @keyframes timer-pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.15); }
-    }
-
-    .quiz-timeout-flash {
-      animation: timeout-shake 0.4s ease;
-    }
-
-    @keyframes timeout-shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-6px); }
-      40% { transform: translateX(6px); }
-      60% { transform: translateX(-4px); }
-      80% { transform: translateX(4px); }
-    }
-
-    /* ==========================================================
-       SPECIAL EXAM MODE (90-SECOND CU MIDTERM) STYLES
-       ========================================================== */
-    .exam-part-badge {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: var(--primary-light);
-      color: var(--primary);
-      letter-spacing: 0.3px;
-      margin-bottom: 10px;
-      border: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .exam-question-card {
-      width: 100%;
-      background: var(--bg-body);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 18px 20px;
-      margin-bottom: 20px;
-      text-align: left;
-      position: relative;
-    }
-
-    .exam-question-text {
-      font-family: var(--font-en);
-      font-size: 1.08rem;
-      line-height: 1.6;
-      font-weight: 500;
-      color: var(--text-main);
-    }
-
-    .exam-blank-box {
-      font-weight: 800;
-      color: var(--primary);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      padding: 0 4px;
-      letter-spacing: 1px;
-    }
-
-    .exam-explanation-box {
-      width: 100%;
-      background: var(--bg-body);
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--primary);
-      border-radius: 0 14px 14px 0;
-      padding: 14px 16px;
-      margin-top: 14px;
-      text-align: left;
-      animation: fadeInPane 0.3s ease;
-    }
-
-    .exam-explanation-title {
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .exam-review-card {
-      width: 100%;
-      background: var(--bg-card-front);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      margin-bottom: 10px;
-      text-align: left;
-      font-size: 0.92rem;
-    }
-
-    /* Word Catalog Pane */
-    .wordlist-search-bar {
-      width: 100%;
-      position: sticky;
-      top: 10px;
-      z-index: 10;
-      margin-bottom: 12px;
-    }
-
-    .search-input-field {
-      width: 100%;
-      padding: 14px 18px 14px 44px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      background: var(--bg-glass);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      outline: none;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
-    }
-
-    .search-input-field:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
-    }
-
-    .search-icon-inside {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-
-    .catalog-list-scroll {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .catalog-item-card {
-      background: var(--bg-card-front);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .catalog-item-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .catalog-word-col { flex: 1; }
-
-    .catalog-word-lead {
-      font-family: var(--font-en);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 2px;
-    }
-
-    .catalog-def-text {
-      font-size: 0.84rem;
-      color: var(--primary);
-      font-style: italic;
-      margin-bottom: 3px;
-    }
-
-    .catalog-meaning-text {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .catalog-example-text {
-      font-size: 0.82rem;
-      color: var(--text-subtle);
-      margin-top: 4px;
-    }
-
-    /* Toast Notification */
-    .toast-pill {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-30px);
-      background: var(--text-main);
-      color: var(--bg-body);
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 0.86rem;
-      font-weight: 600;
-      box-shadow: var(--shadow-lg);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 99999;
-    }
-
-    .toast-pill.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
+    </style>
 </head>
 <body>
 
@@ -2533,6 +2542,46 @@
 
   <!-- Toast Notification -->
   <div class="toast-pill" id="appToast">แจ้งเตือน</div>
+  <!-- Floating Screen Zoom Modal Backdrop & Popup -->
+  <div class="zoom-modal-backdrop" id="zoomModalBackdrop" style="display: none;" onclick="handleZoomBackdropClick(event)">
+    <div class="zoom-picker-popup" id="zoomPickerPopup" role="dialog" aria-modal="true" aria-label="เลือกขนาดหน้าจอ">
+      <div class="zoom-picker-header">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 1.1rem;">🔍</span>
+          <strong style="font-size: 0.95rem;">ปรับขนาดหน้าจอ</strong>
+        </div>
+        <button class="zoom-picker-close" onclick="toggleZoomPicker(false)" title="ปิด" aria-label="ปิดหน้าต่าง">✕</button>
+      </div>
+
+      <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 2px;">เลือกระดับ % ที่ต้องการ:</div>
+      <div class="zoom-presets-row">
+        <button class="zoom-chip-btn" data-zoom="70" onclick="setAppZoom(70)">70%</button>
+        <button class="zoom-chip-btn" data-zoom="80" onclick="setAppZoom(80)">80%</button>
+        <button class="zoom-chip-btn" data-zoom="90" onclick="setAppZoom(90)">90%</button>
+        <button class="zoom-chip-btn active" data-zoom="100" onclick="setAppZoom(100)">100%</button>
+        <button class="zoom-chip-btn" data-zoom="110" onclick="setAppZoom(110)">110%</button>
+        <button class="zoom-chip-btn" data-zoom="120" onclick="setAppZoom(120)">120%</button>
+      </div>
+
+      <div class="zoom-stepper-row">
+        <button class="zoom-quick-step-btn" onclick="adjustAppZoom(-10)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>ย่อ (-10%)</span>
+        </button>
+        <button class="zoom-quick-reset-btn" onclick="setAppZoom(100)">
+          <span>รีเซ็ต 100%</span>
+        </button>
+        <button class="zoom-quick-step-btn" onclick="adjustAppZoom(10)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/></svg>
+          <span>ขยาย (+10%)</span>
+        </button>
+      </div>
+
+      <div class="zoom-hint-text">
+        <span>💡 คีย์ลัด: <strong>Cmd/Ctrl +/-</strong> (รีเซ็ต: Cmd/Ctrl 0)</span>
+      </div>
+    </div>
+  </div>
 
   <div class="app-wrapper">
 
@@ -2558,38 +2607,7 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
 
-          <!-- Floating Zoom Picker Menu -->
-          <div class="zoom-picker-popup" id="zoomPickerPopup" style="display: none;">
-            <div class="zoom-picker-header">
-              <span>🔍 ปรับขนาดหน้าจอ (Zoom)</span>
-              <button class="zoom-picker-close" onclick="toggleZoomPicker(false)" title="ปิด">✕</button>
-            </div>
-            <div class="zoom-presets-row">
-              <button class="zoom-chip-btn" data-zoom="70" onclick="setAppZoom(70)">70%</button>
-              <button class="zoom-chip-btn" data-zoom="80" onclick="setAppZoom(80)">80%</button>
-              <button class="zoom-chip-btn" data-zoom="90" onclick="setAppZoom(90)">90%</button>
-              <button class="zoom-chip-btn active" data-zoom="100" onclick="setAppZoom(100)">100%</button>
-              <button class="zoom-chip-btn" data-zoom="110" onclick="setAppZoom(110)">110%</button>
-              <button class="zoom-chip-btn" data-zoom="120" onclick="setAppZoom(120)">120%</button>
-            </div>
-            <div class="zoom-stepper-row">
-              <button class="zoom-quick-step-btn" onclick="adjustAppZoom(-10)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span>ย่อ (-10%)</span>
-              </button>
-              <button class="zoom-quick-reset-btn" onclick="setAppZoom(100)">
-                <span>รีเซ็ต 100%</span>
-              </button>
-              <button class="zoom-quick-step-btn" onclick="adjustAppZoom(10)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span>ขยาย (+10%)</span>
-              </button>
-            </div>
-            <div class="zoom-hint-text">
-              <span>💡 คีย์ลัด: <strong>Cmd/Ctrl +/-</strong> (รีเซ็ต: Cmd/Ctrl 0)</span>
-            </div>
           </div>
-        </div>
 
         <!-- Haptic Vibration Toggle -->
         <button class="tool-btn active" id="hapticBtn" onclick="toggleHaptic()" title="เปิด/ปิดระบบสั่น (Haptic)">
@@ -3186,7 +3204,17 @@
       currentAppZoom = clamped;
 
       const zoomFactor = currentAppZoom / 100;
-      document.body.style.zoom = zoomFactor.toString();
+      
+      // Clear any legacy body.style.zoom to prevent coordinate/dock bugs
+      if (document.body.style.zoom) {
+        document.body.style.zoom = '';
+      }
+
+      // Apply zoom to app-wrapper cleanly
+      const appWrapper = document.querySelector('.app-wrapper');
+      if (appWrapper) {
+        appWrapper.style.zoom = zoomFactor.toString();
+      }
       document.documentElement.style.setProperty('--app-zoom-level', zoomFactor.toString());
 
       const display = document.getElementById('zoomDisplayLabel');
@@ -3202,7 +3230,7 @@
       } catch (e) {}
 
       if (notify) {
-        showToastNotification(`🔍 ปรับขนาดหน้าจอ: ${currentAppZoom}%`);
+        showToastNotification(`🔍 ขนาดหน้าจอ: ${currentAppZoom}%`);
         triggerHaptic([6]);
         soundClick();
       }
@@ -3225,13 +3253,13 @@
     }
 
     function toggleZoomPicker(forceState) {
-      const popup = document.getElementById('zoomPickerPopup');
-      if (!popup) return;
+      const backdrop = document.getElementById('zoomModalBackdrop');
+      if (!backdrop) return;
 
-      const isVisible = (popup.style.display !== 'none' && popup.style.display !== '');
+      const isVisible = (backdrop.style.display !== 'none' && backdrop.style.display !== '');
       const shouldShow = (typeof forceState === 'boolean') ? forceState : !isVisible;
 
-      popup.style.display = shouldShow ? 'flex' : 'none';
+      backdrop.style.display = shouldShow ? 'flex' : 'none';
       if (shouldShow) {
         document.querySelectorAll('.zoom-chip-btn').forEach(btn => {
           const val = parseInt(btn.getAttribute('data-zoom'), 10);
@@ -3239,6 +3267,12 @@
         });
         soundClick();
         triggerHaptic([4]);
+      }
+    }
+
+    function handleZoomBackdropClick(e) {
+      if (e.target && e.target.id === 'zoomModalBackdrop') {
+        toggleZoomPicker(false);
       }
     }
 
@@ -4671,12 +4705,15 @@
     let toastTimer = null;
     function showToastNotification(message) {
       const toast = document.getElementById('appToast');
+      if (!toast) return;
       toast.textContent = message;
+      toast.classList.remove('show');
+      void toast.offsetWidth; // Force DOM reflow to cleanly re-trigger popup animation
       toast.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => {
         toast.classList.remove('show');
-      }, 2000);
+      }, 2200);
     }
 
     // ==========================================================
