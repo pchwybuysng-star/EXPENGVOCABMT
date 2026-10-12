@@ -335,7 +335,7 @@
        ========================================================== */
     .nav-tabs-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       background: var(--bg-glass);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -2081,6 +2081,347 @@
     }
 
     /* ==========================================================
+       WRITING PRACTICE
+       ========================================================== */
+    .writing-mode-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .writing-mode-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 14px;
+      text-align: left;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-sunken);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+    }
+
+    .writing-mode-card:hover { border-color: var(--border-focus); }
+
+    .writing-mode-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .wm-icon { font-size: 1.4rem; line-height: 1; margin-bottom: 4px; }
+    .wm-title { font-weight: 600; font-size: 0.92rem; }
+    .writing-mode-card.active .wm-title { color: var(--primary); }
+    .wm-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.4; }
+
+    .writing-journal {
+      width: 100%;
+      text-align: left;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .writing-journal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .writing-journal-head .review-heading { margin-bottom: 0; }
+
+    #writingJournalList {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .journal-item {
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+
+    .journal-word {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .journal-date { font-size: 0.72rem; color: var(--text-subtle); margin-left: 6px; }
+
+    .journal-sentence {
+      font-family: var(--font-en);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin-top: 2px;
+    }
+
+    .journal-empty {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 14px;
+      text-align: center;
+      border: 1px dashed var(--border-strong);
+      border-radius: 12px;
+    }
+
+    .writing-prompt-card {
+      width: 100%;
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .wp-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .wp-main {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .wp-target {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wp-sub {
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .wp-sentence {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      line-height: 1.65;
+      text-align: left;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-strong);
+    }
+
+    .wp-th-sentence {
+      font-size: 1.12rem;
+      line-height: 1.65;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .wp-chip-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .wp-chip {
+      font-family: var(--font-en);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .wp-hint {
+      margin-top: 12px;
+      font-family: var(--font-en);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--warning);
+    }
+
+    .writing-answer-wrap { width: 100%; margin-bottom: 12px; }
+
+    .writing-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-family: var(--font-en);
+      font-size: 1.05rem;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+
+    .writing-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-light);
+    }
+
+    .writing-input:disabled { opacity: 0.75; }
+
+    .writing-input.is-ok { border-color: var(--success); box-shadow: 0 0 0 4px var(--success-light); }
+    .writing-input.is-bad { border-color: var(--danger); box-shadow: 0 0 0 4px var(--danger-light); }
+
+    .writing-textarea {
+      resize: vertical;
+      min-height: 96px;
+      line-height: 1.6;
+      font-family: var(--font-en), var(--font-body);
+    }
+
+    .writing-input-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      margin-top: 6px;
+      padding: 0 4px;
+    }
+
+    .writing-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .writing-check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 8px 0 4px;
+    }
+
+    .writing-check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .writing-check-list .ck-ok { color: var(--success); font-weight: 700; flex-shrink: 0; }
+    .writing-check-list .ck-bad { color: var(--danger); font-weight: 700; flex-shrink: 0; }
+
+    .writing-model {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .writing-model-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .tok-hit { color: var(--success); font-weight: 700; }
+    .tok-miss { color: var(--danger); text-decoration: underline wavy; text-underline-offset: 3px; }
+    .diff-bad { color: var(--danger); background: var(--danger-light); border-radius: 3px; text-decoration: line-through; }
+    .diff-add { color: var(--success); background: var(--success-light); border-radius: 3px; }
+
+    .writing-score-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: var(--border-strong);
+      overflow: hidden;
+      margin: 8px 0 2px;
+    }
+
+    .writing-score-bar > span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .writing-override {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .writing-override .tool-action-pill-btn { padding: 4px 12px; font-size: 0.76rem; }
+
+    .writing-review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .writing-review-user { font-family: var(--font-en); margin: 4px 0 6px; line-height: 1.55; }
+
+    @media (max-width: 768px) {
+      .writing-mode-grid { grid-template-columns: 1fr; gap: 8px; }
+      .writing-mode-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 12px;
+        align-items: center;
+        padding: 12px 14px;
+      }
+      .wm-icon { grid-row: span 2; margin-bottom: 0; }
+      .writing-prompt-card { padding: 16px; }
+      .wp-main { font-size: 1.25rem; }
+      .wp-target { font-size: 1.8rem; }
+      .wp-th-sentence { font-size: 1rem; }
+      .writing-input { font-size: 16px; }
+      .writing-kbd-hint { display: none; }
+      #writingNextBtnContainer {
+        position: sticky;
+        bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+        background: linear-gradient(to bottom, transparent, var(--bg-surface) 30%);
+        padding: 14px 0 6px;
+        z-index: 10;
+      }
+    }
+
+    /* ==========================================================
        TOAST
        ========================================================== */
     .toast-pill {
@@ -2577,19 +2918,23 @@
 
     <!-- Nav Tabs (Desktop) -->
     <div class="nav-tabs-container">
-      <button class="tab-btn active" onclick="switchActiveTab('flashcards')">
+      <button class="tab-btn active" data-tab="flashcards" onclick="switchActiveTab('flashcards')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
         การ์ดคำศัพท์
       </button>
-      <button class="tab-btn" onclick="switchActiveTab('quiz')">
+      <button class="tab-btn" data-tab="quiz" onclick="switchActiveTab('quiz')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         ทายศัพท์สปีด
       </button>
-      <button class="tab-btn" onclick="switchActiveTab('exam')">
+      <button class="tab-btn" data-tab="writing" onclick="switchActiveTab('writing')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        ฝึกเขียน
+      </button>
+      <button class="tab-btn" data-tab="exam" onclick="switchActiveTab('exam')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         ข้อสอบ Midterm
       </button>
-      <button class="tab-btn" onclick="switchActiveTab('wordlist')">
+      <button class="tab-btn" data-tab="wordlist" onclick="switchActiveTab('wordlist')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="4" cy="18" r="1.5"/></svg>
         คลังศัพท์
       </button>
@@ -3019,6 +3364,145 @@
     </div>
 
     <!-- ==========================================================
+         TAB: WRITING PRACTICE PANE
+         ========================================================== -->
+    <div id="writingPane" class="tab-pane">
+
+      <!-- Writing Setup Screen -->
+      <div id="writingSetupBox" class="quiz-panel-card panel-hero">
+        <div class="panel-icon">✍️</div>
+        <div class="panel-eyebrow">Writing Practice</div>
+        <h2 class="panel-title">ฝึกเขียนภาษาอังกฤษ</h2>
+        <p class="panel-desc">
+          ฝึกสะกดคำ แปลประโยค และแต่งประโยคด้วยคำศัพท์ในบทเรียน ระบบจะตรวจและบอกจุดที่ควรแก้ทันที
+        </p>
+
+        <div class="writing-mode-grid" role="radiogroup" aria-label="เลือกโหมดฝึกเขียน">
+          <button class="writing-mode-card active" data-mode="spell" onclick="selectWritingMode('spell')" role="radio" aria-checked="true">
+            <span class="wm-icon">🔤</span>
+            <span class="wm-title">สะกดคำศัพท์</span>
+            <span class="wm-desc">ดูความหมาย แล้วพิมพ์คำภาษาอังกฤษให้ถูก</span>
+          </button>
+          <button class="writing-mode-card" data-mode="translate" onclick="selectWritingMode('translate')" role="radio" aria-checked="false">
+            <span class="wm-icon">🔁</span>
+            <span class="wm-title">แปลไทย → อังกฤษ</span>
+            <span class="wm-desc">แปลประโยคตัวอย่าง เทียบกับคำตอบต้นแบบ</span>
+          </button>
+          <button class="writing-mode-card" data-mode="compose" onclick="selectWritingMode('compose')" role="radio" aria-checked="false">
+            <span class="wm-icon">📝</span>
+            <span class="wm-title">แต่งประโยคเอง</span>
+            <span class="wm-desc">ใช้คำที่กำหนดแต่งประโยค ตรวจตามเกณฑ์ 5 ข้อ</span>
+          </button>
+        </div>
+
+        <div class="form-stack">
+          <div class="form-grid-2">
+            <div>
+              <label class="form-label" for="writingLengthChoice">จำนวนข้อ</label>
+              <select id="writingLengthChoice" class="select-dropdown-styled">
+                <option value="5">5 ข้อ</option>
+                <option value="10" selected>10 ข้อ (แนะนำ)</option>
+                <option value="20">20 ข้อ</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="writingPoolChoice">หมวดคำ</label>
+              <select id="writingPoolChoice" class="select-dropdown-styled">
+                <option value="all">คำศัพท์ทั้งหมด</option>
+                <option value="review">เฉพาะคำที่ "ต้องทบทวน"</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="deck-btn btn-primary-flip btn-lg" onclick="beginWritingSession()">
+            ✍️ เริ่มฝึกเขียน
+          </button>
+        </div>
+
+        <div class="writing-journal" id="writingJournalBox">
+          <div class="writing-journal-head">
+            <h3 class="review-heading">📒 สมุดประโยคของฉัน</h3>
+            <button class="tool-action-pill-btn" id="writingJournalClearBtn" onclick="clearWritingJournal()">ล้างทั้งหมด</button>
+          </div>
+          <div id="writingJournalList"></div>
+        </div>
+      </div>
+
+      <!-- Writing Active Screen -->
+      <div id="writingPlayBox" class="quiz-panel-card" style="display: none; width: 100%;">
+        <div class="play-meta-row">
+          <span id="writingProgressStatus">ข้อที่ 1 / 10</span>
+          <span class="live-score" id="writingLiveScore">คะแนน: 0</span>
+        </div>
+
+        <div class="progress-bar-track play-progress">
+          <div class="progress-bar-value" id="writingProgressFill" style="width: 10%;"></div>
+        </div>
+
+        <div class="exam-part-badge" id="writingModeBadge">สะกดคำศัพท์</div>
+
+        <!-- Prompt -->
+        <div class="writing-prompt-card" id="writingPromptCard"></div>
+
+        <!-- Answer input -->
+        <div class="writing-answer-wrap">
+          <input type="text" id="writingAnswerInput" class="writing-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="พิมพ์คำศัพท์ภาษาอังกฤษ...">
+          <textarea id="writingAnswerArea" class="writing-input writing-textarea" rows="3" autocomplete="off" spellcheck="false" placeholder="เขียนประโยคภาษาอังกฤษที่นี่..." style="display: none;"></textarea>
+          <div class="writing-input-meta">
+            <span id="writingWordCount">0 คำ</span>
+            <span class="writing-kbd-hint" id="writingKbdHint">กด Enter เพื่อตรวจ</span>
+          </div>
+        </div>
+
+        <div class="writing-actions" id="writingActionsRow">
+          <button class="deck-btn" id="writingHintBtn" onclick="revealWritingHint()">💡 คำใบ้</button>
+          <button class="deck-btn" id="writingSkipBtn" onclick="skipWritingItem()">ข้าม</button>
+          <button class="deck-btn btn-primary-flip writing-check-btn" id="writingCheckBtn" onclick="checkWritingAnswer()">ตรวจคำตอบ</button>
+        </div>
+
+        <div id="writingFeedbackShelf" style="width: 100%;"></div>
+
+        <div id="writingNextBtnContainer" style="display: none; width: 100%; margin-top: 14px;">
+          <button class="deck-btn btn-primary-flip btn-lg" onclick="goToNextWritingItem()">
+            ข้อถัดไป
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Writing Summary Screen -->
+      <div id="writingSummaryBox" class="quiz-panel-card panel-hero" style="display: none; width: 100%;">
+        <div class="panel-icon" id="writingSummaryEmoji">🏆</div>
+        <div class="panel-eyebrow">Writing Complete</div>
+        <h2 class="panel-title" id="writingSummaryTitle">เขียนได้ยอดเยี่ยม!</h2>
+        <div class="result-score-hero" id="writingSummaryScoreNum">8 / 10</div>
+
+        <div class="result-stats">
+          <div class="result-row">
+            <span>โหมด</span>
+            <strong id="writingSummaryMode">สะกดคำศัพท์</strong>
+          </div>
+          <div class="result-row">
+            <span>ความแม่นยำ</span>
+            <strong class="is-success" id="writingSummaryAccuracyPct">80%</strong>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="deck-btn" onclick="resetWritingToSetup()">เลือกโหมดใหม่</button>
+          <button class="deck-btn btn-primary-flip" onclick="beginWritingSession()">ฝึกต่ออีกชุด</button>
+        </div>
+
+        <div class="exam-review-wrap">
+          <h3 class="review-heading">📋 ทบทวนคำตอบทุกข้อ</h3>
+          <div id="writingReviewContainer" class="writing-review-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================
          TAB 4: WORD CATALOG PANE
          ========================================================== -->
     <div id="wordlistPane" class="tab-pane">
@@ -3074,9 +3558,14 @@
         <span>ทายศัพท์</span>
       </button>
 
+      <button class="mobile-nav-item" id="mobNavWriting" onclick="switchActiveTab('writing')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        <span>ฝึกเขียน</span>
+      </button>
+
       <button class="mobile-nav-item" id="mobNavExam" onclick="switchActiveTab('exam')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>ข้อสอบ CU</span>
+        <span>ข้อสอบ</span>
       </button>
 
       <button class="mobile-nav-item" id="mobNavCatalog" onclick="switchActiveTab('wordlist')">
@@ -3868,13 +4357,8 @@
       triggerHaptic([8]);
 
       // Desktop tabs (4 tabs)
-      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
-        btn.classList.toggle('active', 
-          (tabKey === 'flashcards' && idx === 0) || 
-          (tabKey === 'quiz' && idx === 1) || 
-          (tabKey === 'exam' && idx === 2) || 
-          (tabKey === 'wordlist' && idx === 3)
-        );
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabKey);
       });
 
       // Mobile bottom nav
@@ -3886,6 +4370,8 @@
       if (mobQuiz) mobQuiz.classList.toggle('active', tabKey === 'quiz');
       if (mobExam) mobExam.classList.toggle('active', tabKey === 'exam');
       if (mobCat) mobCat.classList.toggle('active', tabKey === 'wordlist');
+      const mobWriting = document.getElementById('mobNavWriting');
+      if (mobWriting) mobWriting.classList.toggle('active', tabKey === 'writing');
 
       // Mobile thumb actions visibility (Only in Flashcards mode)
       const thumbActions = document.getElementById('mobileThumbActions');
@@ -3917,6 +4403,9 @@
         if (ePlay && ePlay.style.display === 'flex' && !examIsWaitingNext) {
           startExamTimer();
         }
+      } else if (tabKey === 'writing') {
+        document.getElementById('writingPane').classList.add('active');
+        renderWritingJournal();
       } else if (tabKey === 'wordlist') {
         document.getElementById('wordlistPane').classList.add('active');
         renderWordCatalog();
@@ -4549,6 +5038,601 @@
     }
 
     // ==========================================================
+    // TAB: WRITING PRACTICE ENGINE (SPELL / TRANSLATE / COMPOSE)
+    // ==========================================================
+    const WRITING_MODE_LABELS = {
+      spell: 'สะกดคำศัพท์',
+      translate: 'แปลไทย → อังกฤษ',
+      compose: 'แต่งประโยคเอง'
+    };
+    const WRITING_JOURNAL_KEY = 'vocab_writing_journal';
+    const WRITING_JOURNAL_LIMIT = 50;
+    const COMPOSE_MIN_WORDS = 8;
+    const TRANSLATE_PASS_RATIO = 0.6;
+    const WRITING_STOPWORDS = new Set([
+      'a', 'an', 'the', 'and', 'or', 'but', 'so', 'of', 'to', 'in', 'on', 'at', 'for', 'with', 'by', 'from',
+      'as', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'am', 'it', 'its', 'this', 'that', 'these',
+      'those', 'he', 'she', 'they', 'we', 'i', 'you', 'his', 'her', 'their', 'our', 'my', 'your', 'him',
+      'them', 'us', 'me', 'has', 'have', 'had', 'do', 'does', 'did', 'will', 'would', 'can', 'could',
+      'should', 'may', 'might', 'must', 'not', 'very', 'more', 'most', 'than', 'then', 'there', 'which',
+      'who', 'whom', 'what', 'when', 'where', 'into', 'about', 'after', 'before', 'during', 'each', 'every'
+    ]);
+
+    let writingMode = 'spell';
+    let writingPool = [];
+    let writingStepIndex = 0;
+    let writingScore = 0;
+    let writingHintLevel = 0;
+    let writingAnswered = false;
+    let writingLog = [];
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function getBaseWord(rawWord) {
+      return rawWord.replace(/\s*\([^)]*\)/g, '').trim();
+    }
+
+    function getPosLabel(rawWord) {
+      const match = rawWord.match(/\(([^)]*)\)/);
+      return match ? match[1] : '';
+    }
+
+    // Regex that accepts common inflections of every token, e.g. "indulge in" also matches "indulged in"
+    function buildWordFormRegex(baseWord, flags = 'i') {
+      const tokenPatterns = baseWord.toLowerCase().split(/[\s-]+/).map(tok => {
+        const forms = new Set([tok, tok + 's', tok + 'es', tok + 'd', tok + 'ed', tok + 'ing',
+          tok + tok.slice(-1) + 'ed', tok + tok.slice(-1) + 'ing']);
+        if (tok.endsWith('e')) forms.add(tok.slice(0, -1) + 'ing');
+        if (tok.endsWith('y')) { forms.add(tok.slice(0, -1) + 'ies'); forms.add(tok.slice(0, -1) + 'ied'); }
+        const sorted = [...forms].sort((a, b) => b.length - a.length)
+          .map(f => f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        return '(?:' + sorted.join('|') + ')';
+      });
+      return new RegExp('\\b' + tokenPatterns.join('[\\s-]+') + '\\b', flags);
+    }
+
+    function tokenizeEnglish(text) {
+      return (text.toLowerCase().match(/[a-z]+(?:['-][a-z]+)*/g) || []);
+    }
+
+    function stemToken(tok) {
+      if (tok.length > 5 && tok.endsWith('ies')) return tok.slice(0, -3) + 'y';
+      if (tok.length > 5 && tok.endsWith('ing')) return tok.slice(0, -3);
+      if (tok.length > 4 && tok.endsWith('ed')) return tok.slice(0, -2);
+      if (tok.length > 3 && tok.endsWith('s') && !tok.endsWith('ss')) return tok.slice(0, -1);
+      return tok;
+    }
+
+    function stemsMatch(a, b) {
+      if (a === b) return true;
+      // tolerate trailing-e differences: "realiz" vs "realize"
+      return a.replace(/e$/, '') === b.replace(/e$/, '');
+    }
+
+    function countWords(text) {
+      return (text.trim().match(/\S+/g) || []).length;
+    }
+
+    function levenshtein(a, b) {
+      const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+      for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        }
+      }
+      return dp[a.length][b.length];
+    }
+
+    // Character diff via LCS: marks letters the user got wrong and letters they missed
+    function renderSpellingDiff(userText, answer) {
+      const a = userText, b = answer;
+      const lcs = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+      for (let i = a.length - 1; i >= 0; i--) {
+        for (let j = b.length - 1; j >= 0; j--) {
+          lcs[i][j] = a[i].toLowerCase() === b[j].toLowerCase() ? lcs[i + 1][j + 1] + 1 : Math.max(lcs[i + 1][j], lcs[i][j + 1]);
+        }
+      }
+      let i = 0, j = 0, userHtml = '', answerHtml = '';
+      while (i < a.length && j < b.length) {
+        if (a[i].toLowerCase() === b[j].toLowerCase()) {
+          userHtml += escapeHtml(a[i]); answerHtml += escapeHtml(b[j]); i++; j++;
+        } else if (lcs[i + 1][j] >= lcs[i][j + 1]) {
+          userHtml += `<span class="diff-bad">${escapeHtml(a[i])}</span>`; i++;
+        } else {
+          answerHtml += `<span class="diff-add">${escapeHtml(b[j])}</span>`; j++;
+        }
+      }
+      while (i < a.length) { userHtml += `<span class="diff-bad">${escapeHtml(a[i])}</span>`; i++; }
+      while (j < b.length) { answerHtml += `<span class="diff-add">${escapeHtml(b[j])}</span>`; j++; }
+      return { userHtml, answerHtml };
+    }
+
+    function selectWritingMode(mode) {
+      writingMode = mode;
+      document.querySelectorAll('.writing-mode-card').forEach(card => {
+        const isActive = card.dataset.mode === mode;
+        card.classList.toggle('active', isActive);
+        card.setAttribute('aria-checked', isActive ? 'true' : 'false');
+      });
+      triggerHaptic([8]);
+    }
+
+    function beginWritingSession() {
+      const lengthChoice = parseInt(document.getElementById('writingLengthChoice').value, 10);
+      const poolChoice = document.getElementById('writingPoolChoice').value;
+
+      let candidates = [...masterVocabDeck];
+      if (poolChoice === 'review') {
+        candidates = masterVocabDeck.filter(item => cardStatuses[item.word] === 'review');
+        if (candidates.length === 0) {
+          showToastNotification('ยังไม่มีคำที่ "ต้องทบทวน" ระบบจะใช้คำศัพท์ทั้งหมดแทน');
+          candidates = [...masterVocabDeck];
+        }
+      }
+
+      for (let i = candidates.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+      }
+
+      writingPool = candidates.slice(0, Math.min(lengthChoice, candidates.length));
+      writingStepIndex = 0;
+      writingScore = 0;
+      writingLog = [];
+
+      document.getElementById('writingSetupBox').style.display = 'none';
+      document.getElementById('writingSummaryBox').style.display = 'none';
+      document.getElementById('writingPlayBox').style.display = 'flex';
+
+      loadWritingStep();
+    }
+
+    function getActiveWritingField() {
+      return writingMode === 'spell'
+        ? document.getElementById('writingAnswerInput')
+        : document.getElementById('writingAnswerArea');
+    }
+
+    function buildSpellHintPattern(answer) {
+      let revealed = 0;
+      return answer.split('').map(ch => {
+        if (!/[a-z]/i.test(ch)) return ch === ' ' ? '  ' : ch;
+        revealed++;
+        return revealed <= writingHintLevel ? ch : '_';
+      }).join(' ');
+    }
+
+    function renderWritingPrompt() {
+      const item = writingPool[writingStepIndex];
+      const base = getBaseWord(item.word);
+      const pos = getPosLabel(item.word);
+      const card = document.getElementById('writingPromptCard');
+      const posChip = pos ? `<span class="wp-chip">${escapeHtml(pos)}</span>` : '';
+      let html = '';
+
+      if (writingMode === 'spell') {
+        const letterCount = base.replace(/[^a-z]/gi, '').length;
+        const blanked = (item.example_en || '').replace(buildWordFormRegex(base, 'gi'), '<span class="exam-blank-box">_____</span>');
+        html = `
+          <div class="wp-label">ความหมาย</div>
+          <div class="wp-main">${escapeHtml(item.meaning)}</div>
+          ${item.definition_en ? `<div class="wp-sub">${escapeHtml(item.definition_en)}</div>` : ''}
+          <div class="wp-chip-row">${posChip}<span class="wp-chip">${letterCount} ตัวอักษร</span>${base.includes(' ') ? '<span class="wp-chip">มีเว้นวรรค</span>' : ''}</div>
+          ${blanked ? `<div class="wp-sentence">💬 ${blanked}</div>` : ''}
+          ${writingHintLevel > 0 ? `<div class="wp-hint">${escapeHtml(buildSpellHintPattern(base))}</div>` : ''}
+        `;
+      } else if (writingMode === 'translate') {
+        html = `
+          <div class="wp-label">แปลประโยคนี้เป็นภาษาอังกฤษ</div>
+          <div class="wp-th-sentence">${escapeHtml(item.example_th || item.meaning)}</div>
+          <div class="wp-chip-row"><span class="wp-chip">ต้องใช้คำ: ${escapeHtml(base)}</span>${posChip}</div>
+          ${writingHintLevel > 0 ? `<div class="wp-sub" style="margin-top: 10px;">💡 ${escapeHtml(item.meaning)} — ${escapeHtml(item.definition_en || '')}</div>` : ''}
+        `;
+      } else {
+        html = `
+          <div class="wp-label">แต่งประโยคโดยใช้คำว่า</div>
+          <div class="wp-target">${escapeHtml(base)}
+            <button class="mini-speaker-btn" onclick="pronounceWord(sanitizeSpeechWord(getBaseWord(writingPool[writingStepIndex].word)))" title="ฟังเสียงอ่าน">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+          </div>
+          <div class="wp-main" style="font-size: 1.05rem; margin: 8px 0 4px;">${escapeHtml(item.meaning)}</div>
+          ${item.definition_en ? `<div class="wp-sub">${escapeHtml(item.definition_en)}</div>` : ''}
+          <div class="wp-chip-row">${posChip}<span class="wp-chip">อย่างน้อย ${COMPOSE_MIN_WORDS} คำ</span></div>
+          ${writingHintLevel > 0 ? `<div class="wp-sentence">💡 ตัวอย่าง: ${escapeHtml(item.example_en || '')}</div>` : ''}
+        `;
+      }
+      card.innerHTML = html;
+    }
+
+    function loadWritingStep() {
+      writingAnswered = false;
+      writingHintLevel = 0;
+
+      const total = writingPool.length;
+      document.getElementById('writingProgressStatus').textContent = `ข้อที่ ${writingStepIndex + 1} / ${total}`;
+      document.getElementById('writingLiveScore').textContent = `คะแนน: ${writingScore}`;
+      document.getElementById('writingProgressFill').style.width = `${((writingStepIndex + 1) / total) * 100}%`;
+      document.getElementById('writingModeBadge').textContent = WRITING_MODE_LABELS[writingMode];
+
+      const input = document.getElementById('writingAnswerInput');
+      const area = document.getElementById('writingAnswerArea');
+      const isSpell = writingMode === 'spell';
+      input.style.display = isSpell ? 'block' : 'none';
+      area.style.display = isSpell ? 'none' : 'block';
+      [input, area].forEach(el => {
+        el.value = '';
+        el.disabled = false;
+        el.classList.remove('is-ok', 'is-bad');
+      });
+      area.placeholder = writingMode === 'translate' ? 'พิมพ์คำแปลภาษาอังกฤษที่นี่...' : 'แต่งประโยคภาษาอังกฤษที่นี่...';
+      document.getElementById('writingKbdHint').textContent = isSpell ? 'กด Enter เพื่อตรวจ' : 'กด Ctrl/⌘ + Enter เพื่อตรวจ';
+      updateWritingWordCount();
+
+      document.getElementById('writingActionsRow').style.display = 'grid';
+      document.getElementById('writingHintBtn').disabled = false;
+      document.getElementById('writingFeedbackShelf').innerHTML = '';
+      document.getElementById('writingNextBtnContainer').style.display = 'none';
+
+      renderWritingPrompt();
+
+      if (window.innerWidth > 768) {
+        setTimeout(() => getActiveWritingField().focus(), 50);
+      }
+    }
+
+    function updateWritingWordCount() {
+      const field = getActiveWritingField();
+      const label = document.getElementById('writingWordCount');
+      if (!field || !label) return;
+      label.textContent = writingMode === 'spell'
+        ? `${field.value.replace(/[^a-z]/gi, '').length} ตัวอักษร`
+        : `${countWords(field.value)} คำ`;
+    }
+
+    function revealWritingHint() {
+      if (writingAnswered) return;
+      const item = writingPool[writingStepIndex];
+      const letters = getBaseWord(item.word).replace(/[^a-z]/gi, '').length;
+      if (writingMode === 'spell') {
+        if (writingHintLevel >= letters - 1) {
+          showToastNotification('ใช้คำใบ้ครบแล้ว ลองพิมพ์ดูนะ!');
+          return;
+        }
+        writingHintLevel++;
+      } else {
+        writingHintLevel = 1;
+        document.getElementById('writingHintBtn').disabled = true;
+      }
+      renderWritingPrompt();
+      soundClick();
+      triggerHaptic([8]);
+    }
+
+    function skipWritingItem() {
+      if (writingAnswered) return;
+      checkWritingAnswer(true);
+    }
+
+    function gradeSpelling(item, answerText) {
+      const base = getBaseWord(item.word);
+      const normalize = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
+      const loose = s => normalize(s).replace(/[\s-]/g, '');
+      const isCorrect = normalize(answerText) === normalize(base) || (answerText.trim() !== '' && loose(answerText) === loose(base));
+      const distance = levenshtein(loose(answerText), loose(base));
+      return { isCorrect, isClose: !isCorrect && answerText.trim() !== '' && distance <= 2, base };
+    }
+
+    function gradeTranslation(item, answerText) {
+      const base = getBaseWord(item.word);
+      const model = item.example_en || '';
+      const userStems = tokenizeEnglish(answerText).map(stemToken);
+      const keyTokens = [...new Set(tokenizeEnglish(model).filter(t => !WRITING_STOPWORDS.has(t)))];
+      const hits = keyTokens.filter(t => userStems.some(u => stemsMatch(u, stemToken(t))));
+      const ratio = keyTokens.length ? hits.length / keyTokens.length : 0;
+      const usesTarget = buildWordFormRegex(base).test(answerText);
+
+      const hitSet = new Set(hits);
+      const modelHtml = model.replace(/[A-Za-z]+(?:['-][A-Za-z]+)*/g, w => {
+        const lw = w.toLowerCase();
+        if (WRITING_STOPWORDS.has(lw)) return escapeHtml(w);
+        return `<span class="${hitSet.has(lw) ? 'tok-hit' : 'tok-miss'}">${escapeHtml(w)}</span>`;
+      });
+
+      return {
+        isCorrect: usesTarget && ratio >= TRANSLATE_PASS_RATIO,
+        ratio, usesTarget, hits: hits.length, totalKeys: keyTokens.length, modelHtml, base
+      };
+    }
+
+    function gradeComposition(item, answerText) {
+      const base = getBaseWord(item.word);
+      const text = answerText.trim();
+      const words = countWords(text);
+      const lowerWords = tokenizeEnglish(text);
+      const repeated = lowerWords.find((w, i) => i > 0 && w === lowerWords[i - 1]);
+      const checks = [
+        { ok: buildWordFormRegex(base).test(text), label: `ใช้คำว่า "${base}" ในประโยค`, key: true },
+        { ok: words >= COMPOSE_MIN_WORDS, label: `ความยาวอย่างน้อย ${COMPOSE_MIN_WORDS} คำ (ตอนนี้ ${words} คำ)` },
+        { ok: /^[A-Z"']/.test(text), label: 'ขึ้นต้นประโยคด้วยตัวพิมพ์ใหญ่' },
+        { ok: /[.!?]["']?$/.test(text), label: 'จบประโยคด้วยเครื่องหมาย . ! หรือ ?' },
+        {
+          ok: !/[฀-๿]/.test(text) && !repeated && !/(^|\s)i(\s|'|$)/.test(text),
+          label: repeated ? `มีคำซ้ำติดกัน ("${repeated} ${repeated}")`
+            : /[฀-๿]/.test(text) ? 'มีตัวอักษรภาษาไทยปนอยู่'
+            : /(^|\s)i(\s|'|$)/.test(text) ? 'สรรพนาม "I" ต้องเป็นตัวพิมพ์ใหญ่เสมอ'
+            : 'ไม่มีคำซ้ำ / ภาษาไทยปน / ตัว "i" เล็ก'
+        }
+      ];
+      const passed = checks.filter(c => c.ok).length;
+      return { isCorrect: checks[0].ok && passed >= 4, checks, passed, base };
+    }
+
+    function checkWritingAnswer(isSkip = false) {
+      if (writingAnswered) return;
+      const field = getActiveWritingField();
+      const answerText = isSkip ? '' : field.value;
+
+      if (!isSkip && !answerText.trim()) {
+        showToastNotification('พิมพ์คำตอบก่อนนะ ✍️');
+        field.focus();
+        return;
+      }
+
+      writingAnswered = true;
+      const item = writingPool[writingStepIndex];
+      const feedback = document.getElementById('writingFeedbackShelf');
+      let result;
+      let bodyHtml = '';
+      let titleHtml = '';
+
+      if (writingMode === 'spell') {
+        result = gradeSpelling(item, answerText);
+        if (result.isCorrect) {
+          titleHtml = `🎉 สะกดถูกต้อง!${writingHintLevel ? ` <span>• ใช้คำใบ้ ${writingHintLevel} ตัว</span>` : ''}`;
+          bodyHtml = `<strong>${escapeHtml(result.base)}</strong> — ${escapeHtml(item.meaning)}`;
+        } else if (isSkip) {
+          titleHtml = '⏭️ ข้ามข้อนี้';
+          bodyHtml = `คำตอบคือ <strong>${escapeHtml(result.base)}</strong>`;
+        } else {
+          const diff = renderSpellingDiff(answerText.trim(), result.base);
+          titleHtml = result.isClose ? '🤏 เกือบถูกแล้ว! ตรวจตัวสะกดอีกนิด' : '❌ ยังสะกดไม่ถูก';
+          bodyHtml = `
+            <div>คุณพิมพ์: <span style="font-family: var(--font-en); font-weight: 600;">${diff.userHtml}</span></div>
+            <div>ที่ถูกต้อง: <span style="font-family: var(--font-en); font-weight: 600;">${diff.answerHtml}</span></div>
+          `;
+        }
+        pronounceWord(sanitizeSpeechWord(result.base));
+      } else if (writingMode === 'translate') {
+        result = gradeTranslation(item, answerText);
+        const pct = Math.round(result.ratio * 100);
+        const barColor = result.isCorrect ? 'var(--success)' : pct >= 40 ? 'var(--warning)' : 'var(--danger)';
+        titleHtml = isSkip ? '⏭️ ข้ามข้อนี้' : result.isCorrect ? `🎉 แปลได้ดีมาก! <span>• ตรงคำสำคัญ ${pct}%</span>` : `📝 ยังไม่ผ่านเกณฑ์ <span>• ตรงคำสำคัญ ${pct}%</span>`;
+        bodyHtml = `
+          ${isSkip ? '' : `
+          <div class="writing-score-bar"><span style="width: ${pct}%; background: ${barColor};"></span></div>
+          <ul class="writing-check-list">
+            <li><span class="${result.usesTarget ? 'ck-ok' : 'ck-bad'}">${result.usesTarget ? '✓' : '✗'}</span> ใช้คำว่า "${escapeHtml(result.base)}"</li>
+            <li><span class="${result.ratio >= TRANSLATE_PASS_RATIO ? 'ck-ok' : 'ck-bad'}">${result.ratio >= TRANSLATE_PASS_RATIO ? '✓' : '✗'}</span> ครอบคลุมคำสำคัญ ${result.hits}/${result.totalKeys} คำ (เกณฑ์ ${Math.round(TRANSLATE_PASS_RATIO * 100)}%)</li>
+          </ul>`}
+          <div class="writing-model">
+            <div class="writing-model-label">
+              <span>คำตอบต้นแบบ ${isSkip ? '' : '(เขียว = คุณใช้แล้ว, แดง = ยังขาด)'}</span>
+              <button class="mini-speaker-btn" onclick="pronounceWord(writingPool[${writingStepIndex}].example_en)" title="ฟังเสียงอ่าน">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+            </div>
+            ${isSkip ? escapeHtml(item.example_en || '') : result.modelHtml}
+          </div>
+          ${!isSkip && !result.isCorrect ? `
+          <div class="writing-override" id="writingOverrideRow">
+            <span>ระบบเทียบจากคำสำคัญ ถ้าความหมายของคุณถูกแต่ใช้คำต่างไป</span>
+            <button class="tool-action-pill-btn" onclick="overrideWritingAsCorrect()">✓ นับว่าถูก</button>
+          </div>` : ''}
+        `;
+      } else {
+        result = gradeComposition(item, answerText);
+        titleHtml = isSkip ? '⏭️ ข้ามข้อนี้' : result.isCorrect ? `🎉 ประโยคผ่านเกณฑ์! <span>• ${result.passed}/5 ข้อ</span>` : `📝 ยังไม่ผ่านเกณฑ์ <span>• ${result.passed}/5 ข้อ</span>`;
+        bodyHtml = `
+          ${isSkip ? '' : `<ul class="writing-check-list">
+            ${result.checks.map(c => `<li><span class="${c.ok ? 'ck-ok' : 'ck-bad'}">${c.ok ? '✓' : '✗'}</span> ${escapeHtml(c.label)}</li>`).join('')}
+          </ul>`}
+          <div class="writing-model">
+            <div class="writing-model-label"><span>ประโยคตัวอย่างจากบทเรียน</span></div>
+            ${escapeHtml(item.example_en || '')}
+          </div>
+          ${result.isCorrect ? '<div class="writing-override">📒 บันทึกลงสมุดประโยคของคุณแล้ว</div>' : ''}
+        `;
+        if (result.isCorrect) saveToWritingJournal(result.base, answerText.trim());
+      }
+
+      const isCorrect = !isSkip && result.isCorrect;
+      if (isCorrect) {
+        writingScore++;
+        soundCorrect();
+        triggerHaptic([15, 50, 20]);
+      } else {
+        soundWrong();
+        triggerHaptic([35, 40, 35]);
+      }
+
+      writingLog.push({ item, answer: answerText.trim(), isCorrect, isSkip });
+
+      field.disabled = true;
+      field.classList.add(isCorrect ? 'is-ok' : 'is-bad');
+      document.getElementById('writingLiveScore').textContent = `คะแนน: ${writingScore}`;
+      document.getElementById('writingActionsRow').style.display = 'none';
+
+      feedback.innerHTML = `
+        <div class="exam-explanation-box ${isCorrect ? 'is-ok' : 'is-bad'}" id="writingFeedbackBox">
+          <div class="exam-explanation-title">${titleHtml}</div>
+          <div class="exam-explanation-body">${bodyHtml}</div>
+        </div>
+      `;
+
+      const nextContainer = document.getElementById('writingNextBtnContainer');
+      nextContainer.style.display = 'block';
+      setTimeout(() => nextContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    }
+
+    function overrideWritingAsCorrect() {
+      const lastLog = writingLog[writingLog.length - 1];
+      if (!lastLog || lastLog.isCorrect) return;
+      lastLog.isCorrect = true;
+      lastLog.isOverride = true;
+      writingScore++;
+      document.getElementById('writingLiveScore').textContent = `คะแนน: ${writingScore}`;
+      const box = document.getElementById('writingFeedbackBox');
+      if (box) {
+        box.classList.remove('is-bad');
+        box.classList.add('is-ok');
+      }
+      const row = document.getElementById('writingOverrideRow');
+      if (row) row.innerHTML = '✓ นับข้อนี้ว่าถูกแล้ว';
+      const field = getActiveWritingField();
+      field.classList.remove('is-bad');
+      field.classList.add('is-ok');
+      soundCorrect();
+    }
+
+    function goToNextWritingItem() {
+      if (!writingAnswered) return;
+      writingStepIndex++;
+      if (writingStepIndex < writingPool.length) {
+        loadWritingStep();
+      } else {
+        showWritingSummary();
+      }
+    }
+
+    function showWritingSummary() {
+      document.getElementById('writingPlayBox').style.display = 'none';
+      document.getElementById('writingSummaryBox').style.display = 'flex';
+
+      const total = writingPool.length;
+      const pct = total ? Math.round((writingScore / total) * 100) : 0;
+      document.getElementById('writingSummaryScoreNum').textContent = `${writingScore} / ${total}`;
+      document.getElementById('writingSummaryAccuracyPct').textContent = `${pct}%`;
+      document.getElementById('writingSummaryMode').textContent = WRITING_MODE_LABELS[writingMode];
+
+      const emoji = document.getElementById('writingSummaryEmoji');
+      const title = document.getElementById('writingSummaryTitle');
+      if (pct >= 80) {
+        emoji.textContent = '🏆';
+        title.textContent = 'เขียนได้ยอดเยี่ยม!';
+        triggerConfettiBlast();
+      } else if (pct >= 50) {
+        emoji.textContent = '💪';
+        title.textContent = 'ทำได้ดี ฝึกอีกนิดจะคล่องขึ้น!';
+      } else {
+        emoji.textContent = '📚';
+        title.textContent = 'ลองทบทวนคำศัพท์แล้วฝึกใหม่นะ!';
+      }
+
+      document.getElementById('writingReviewContainer').innerHTML = writingLog.map((log, idx) => {
+        const base = getBaseWord(log.item.word);
+        const status = log.isCorrect
+          ? `<span class="review-status-ok">✅ ${log.isOverride ? 'นับว่าถูก' : 'ผ่าน'}</span>`
+          : `<span class="review-status-bad">${log.isSkip ? '⏭️ ข้าม' : '❌ ยังไม่ผ่าน'}</span>`;
+        const prompt = writingMode === 'translate' ? (log.item.example_th || log.item.meaning) : log.item.meaning;
+        const modelAnswer = writingMode === 'spell' ? base : (log.item.example_en || '');
+        return `
+          <div class="exam-review-card ${log.isCorrect ? 'is-ok' : 'is-bad'}">
+            <div class="review-head">
+              <strong>ข้อ ${idx + 1} · <span style="font-family: var(--font-display);">${escapeHtml(base)}</span></strong>
+              ${status}
+            </div>
+            <div class="review-part">${escapeHtml(prompt)}</div>
+            <div class="writing-review-user">${log.answer ? '✍️ ' + escapeHtml(log.answer) : '<span class="review-time">(ไม่ได้ตอบ)</span>'}</div>
+            <div class="review-answer"><strong>${writingMode === 'spell' ? 'คำที่ถูก' : 'ต้นแบบ'}:</strong> ${escapeHtml(modelAnswer)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function resetWritingToSetup() {
+      document.getElementById('writingSummaryBox').style.display = 'none';
+      document.getElementById('writingPlayBox').style.display = 'none';
+      document.getElementById('writingSetupBox').style.display = 'flex';
+      renderWritingJournal();
+    }
+
+    function loadWritingJournal() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(WRITING_JOURNAL_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveToWritingJournal(word, sentence) {
+      const journal = loadWritingJournal();
+      journal.unshift({ word, sentence, date: new Date().toISOString() });
+      try {
+        localStorage.setItem(WRITING_JOURNAL_KEY, JSON.stringify(journal.slice(0, WRITING_JOURNAL_LIMIT)));
+      } catch (err) {
+        // storage full or blocked: journal is a convenience, ignore
+      }
+    }
+
+    function renderWritingJournal() {
+      const list = document.getElementById('writingJournalList');
+      const clearBtn = document.getElementById('writingJournalClearBtn');
+      if (!list) return;
+      const journal = loadWritingJournal();
+      if (clearBtn) clearBtn.style.display = journal.length ? 'inline-flex' : 'none';
+      if (!journal.length) {
+        list.innerHTML = '<div class="journal-empty">ประโยคที่คุณแต่งผ่านเกณฑ์ในโหมด "แต่งประโยคเอง" จะถูกเก็บไว้ที่นี่</div>';
+        return;
+      }
+      list.innerHTML = journal.slice(0, 10).map(entry => {
+        const d = new Date(entry.date);
+        const dateText = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
+        return `
+          <div class="journal-item">
+            <span class="journal-word">${escapeHtml(entry.word)}</span><span class="journal-date">${dateText}</span>
+            <div class="journal-sentence">${escapeHtml(entry.sentence)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function clearWritingJournal() {
+      if (!confirm('ต้องการล้างประโยคทั้งหมดในสมุดใช่ไหม?')) return;
+      try { localStorage.removeItem(WRITING_JOURNAL_KEY); } catch (err) { /* ignore */ }
+      renderWritingJournal();
+      showToastNotification('ล้างสมุดประโยคแล้ว');
+    }
+
+    (function initWritingInputs() {
+      const input = document.getElementById('writingAnswerInput');
+      const area = document.getElementById('writingAnswerArea');
+      if (!input || !area) return;
+      input.addEventListener('input', updateWritingWordCount);
+      area.addEventListener('input', updateWritingWordCount);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          e.stopPropagation(); // keep the window handler from treating this Enter as "next"
+          checkWritingAnswer();
+        }
+      });
+      area.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          e.stopPropagation(); // keep the window handler from treating this Enter as "next"
+          checkWritingAnswer();
+        }
+      });
+      renderWritingJournal();
+    })();
+
+    // ==========================================================
     // TAB 4: WORD CATALOG CONTROLLER
     // ==========================================================
     function renderWordCatalog() {
@@ -4741,8 +5825,17 @@
         }
       }
 
+      // Writing practice: Enter moves on once the answer has been checked
+      if (e.key === 'Enter' && writingAnswered &&
+          document.getElementById('writingPane').classList.contains('active') &&
+          document.getElementById('writingPlayBox').style.display === 'flex') {
+        e.preventDefault();
+        goToNextWritingItem();
+        return;
+      }
+
       const activeElement = document.activeElement;
-      if (activeElement && activeElement.tagName === 'INPUT') return;
+      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) return;
 
       const flashcardsPane = document.getElementById('flashcardsPane');
       if (flashcardsPane.classList.contains('active')) {
