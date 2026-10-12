@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f3ee" id="themeColorMeta">
+  <title>EXPENG Workbook · Unit 3–4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================
+       DESIGN TOKENS (shared with index.html)
+       ========================================================== */
+    :root {
+      --font-body: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-en: 'Plus Jakarta Sans', 'Prompt', sans-serif;
+      --font-display: 'Fraunces', Georgia, 'Prompt', serif;
+
+      --primary: #5b4bdb;
+      --primary-hover: #4a3bc7;
+      --primary-light: #efedff;
+      --primary-soft: #e3dffd;
+      --primary-glow: rgba(91, 75, 219, 0.22);
+      --accent: #e0607e;
+      --teal: #0e8f8a;
+      --teal-light: #e3f5f4;
+
+      --success: #0f9f6e;
+      --success-light: #e7f7f0;
+      --success-glow: rgba(15, 159, 110, 0.22);
+      --danger: #e5484d;
+      --danger-light: #fdeeee;
+      --warning: #e0900b;
+      --warning-light: #fdf4e3;
+
+      --bg-body: #f5f3ee;
+      --bg-surface: #ffffff;
+      --bg-sunken: #f9f8f5;
+      --bg-glass: rgba(255, 255, 255, 0.78);
+
+      --text-main: #1d1b26;
+      --text-muted: #6a6676;
+      --text-subtle: #a19dab;
+
+      --border-color: rgba(29, 27, 38, 0.08);
+      --border-strong: rgba(29, 27, 38, 0.14);
+      --border-focus: #8f84ec;
+
+      --shadow-sm: 0 1px 2px rgba(29, 27, 38, 0.04), 0 1px 3px rgba(29, 27, 38, 0.04);
+      --shadow-md: 0 4px 12px -2px rgba(29, 27, 38, 0.06), 0 2px 4px rgba(29, 27, 38, 0.03);
+      --shadow-lg: 0 24px 48px -16px rgba(29, 27, 38, 0.18);
+      --shadow-card: 0 30px 60px -28px rgba(65, 50, 160, 0.25), 0 10px 20px -12px rgba(29, 27, 38, 0.08);
+
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #8b7ff5;
+      --primary-hover: #9d93f7;
+      --primary-light: rgba(139, 127, 245, 0.14);
+      --primary-soft: rgba(139, 127, 245, 0.24);
+      --primary-glow: rgba(139, 127, 245, 0.35);
+      --accent: #f07c98;
+      --teal: #3cc7c0;
+      --teal-light: rgba(60, 199, 192, 0.13);
+
+      --success: #34c792;
+      --success-light: rgba(52, 199, 146, 0.13);
+      --success-glow: rgba(52, 199, 146, 0.3);
+      --danger: #f2686c;
+      --danger-light: rgba(242, 104, 108, 0.13);
+      --warning: #f5b544;
+      --warning-light: rgba(245, 181, 68, 0.13);
+
+      --bg-body: #0f0e14;
+      --bg-surface: #18171f;
+      --bg-sunken: #121118;
+      --bg-glass: rgba(27, 26, 35, 0.78);
+
+      --text-main: #f2f1f6;
+      --text-muted: #a5a2b3;
+      --text-subtle: #6f6c7c;
+
+      --border-color: rgba(255, 255, 255, 0.07);
+      --border-strong: rgba(255, 255, 255, 0.13);
+      --border-focus: #8b7ff5;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+      --shadow-card: 0 30px 60px -28px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    /* ==========================================================
+       BASE
+       ========================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html { scroll-padding-top: 90px; }
+
+    html, body {
+      font-family: var(--font-body);
+      background: var(--bg-body);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 0 16px 80px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(600px 400px at 100% 0%, var(--primary-glow), transparent 70%),
+        radial-gradient(500px 400px at 0% 100%, rgba(14, 143, 138, 0.12), transparent 70%);
+    }
+
+    button, input, select, textarea { font-family: inherit; color: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    ::selection { background: var(--primary-soft); }
+    a { color: var(--primary); }
+    mark { background: var(--warning-light); color: inherit; padding: 0 3px; border-radius: 4px; }
+    s { opacity: 0.55; }
+
+    .wrap { max-width: 860px; margin: 0 auto; }
+
+    /* ==========================================================
+       TOP BAR
+       ========================================================== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 0 -16px;
+      padding: max(10px, env(safe-area-inset-top)) 16px 10px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .topbar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(140deg, var(--primary), var(--teal) 130%);
+      box-shadow: 0 6px 16px -4px var(--primary-glow);
+    }
+
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+    .brand-name { font-family: var(--font-en); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; }
+    .brand-sub { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .topbar-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+    .icon-btn {
+      height: 36px;
+      min-width: 36px;
+      padding: 0 10px;
+      border-radius: 11px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+    }
+
+    .icon-btn:hover { color: var(--primary); border-color: var(--border-focus); }
+
+    /* ==========================================================
+       COMMON UI
+       ========================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s var(--ease);
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .btn:hover { border-color: var(--border-focus); color: var(--primary); }
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 10px 22px -10px var(--primary-glow);
+    }
+
+    .btn-primary:hover { background: var(--primary-hover); color: #fff; }
+
+    .btn-sm { padding: 6px 12px; font-size: 0.8rem; border-radius: 10px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .muted { color: var(--text-muted); }
+    .tip {
+      background: var(--warning-light);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: max(16px, env(safe-area-inset-top));
+      transform: translate(-50%, -20px);
+      background: rgba(29, 27, 38, 0.94);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.3s var(--spring);
+      z-index: 999;
+      max-width: calc(100vw - 32px);
+      text-align: center;
+    }
+
+    [data-theme="dark"] .toast { background: rgba(245, 244, 250, 0.96); color: #1d1b26; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ==========================================================
+       HOME
+       ========================================================== */
+    .hero {
+      margin-top: 28px;
+      padding: 36px 32px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(120% 120% at 100% 0%, rgba(14, 143, 138, 0.18), transparent 50%),
+        radial-gradient(120% 120% at 0% 100%, rgba(224, 96, 126, 0.16), transparent 55%),
+        linear-gradient(135deg, var(--primary) 0%, #3d2fb0 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero::after {
+      content: 'Aa';
+      position: absolute;
+      right: -10px;
+      bottom: -50px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 13rem;
+      font-weight: 700;
+      opacity: 0.08;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-en);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 8px 0 10px;
+    }
+
+    .hero p { opacity: 0.88; max-width: 520px; font-size: 0.98rem; }
+
+    .hero-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-stat b { font-family: var(--font-en); font-size: 1.1rem; margin-right: 4px; }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .unit-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+
+    .unit-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--border-focus); }
+
+    .unit-card-head { display: flex; gap: 14px; align-items: center; }
+
+    .unit-emoji {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      background: var(--primary-light);
+    }
+
+    .unit-card:nth-child(2) .unit-emoji { background: var(--teal-light); }
+
+    .unit-num { font-family: var(--font-en); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--primary); text-transform: uppercase; }
+    .unit-card:nth-child(2) .unit-num { color: var(--teal); }
+    .unit-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+    .unit-th { font-size: 0.82rem; color: var(--text-muted); }
+
+    .sec-bars { display: flex; flex-direction: column; gap: 8px; }
+
+    .sec-bar-row {
+      display: grid;
+      grid-template-columns: 22px 1fr 48px;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .sec-bar-label { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 3px; }
+    .bar { height: 6px; background: var(--border-strong); border-radius: 999px; overflow: hidden; }
+    .bar > span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.5s var(--ease); }
+    .sec-pct { font-family: var(--font-en); font-weight: 700; font-size: 0.78rem; text-align: right; color: var(--text-muted); }
+
+    .unit-card .btn { align-self: flex-start; }
+
+    .home-foot {
+      margin-top: 18px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================
+       UNIT VIEW
+       ========================================================== */
+    .unit-banner {
+      margin-top: 22px;
+      padding: 24px 26px;
+      border-radius: var(--radius-xl);
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary) 0%, #3d2fb0 100%);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unit-banner.u4 { background: linear-gradient(135deg, #0e8f8a 0%, #155e8a 100%); }
+
+    .unit-banner .unit-emoji { background: rgba(255, 255, 255, 0.16); width: 64px; height: 64px; font-size: 2.1rem; }
+    .unit-banner .unit-num { color: rgba(255, 255, 255, 0.8); }
+    .unit-banner h1 { font-family: var(--font-display); font-weight: 600; font-size: 1.75rem; line-height: 1.15; }
+    .unit-banner p { opacity: 0.85; font-size: 0.88rem; }
+
+    .sec-tabs {
+      position: sticky;
+      top: 62px;
+      z-index: 40;
+      margin-top: 14px;
+      display: flex;
+      gap: 4px;
+      padding: 5px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .sec-tabs::-webkit-scrollbar { display: none; }
+
+    .sec-tab {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 13px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s var(--ease);
+    }
+
+    .sec-tab:hover { color: var(--text-main); }
+
+    .sec-tab.active {
+      background: var(--bg-surface);
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-md), 0 0 0 1px var(--border-color);
+    }
+
+    .sec-tab .tab-pct {
+      font-family: var(--font-en);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: var(--bg-sunken);
+      color: var(--text-subtle);
+    }
+
+    .sec-tab .tab-pct.done { background: var(--success-light); color: var(--success); }
+
+    .sec-body { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
+
+    .toc {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-title { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); display: flex; justify-content: space-between; }
+    .toc-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .toc-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-sunken);
+      font-size: 0.78rem;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: all 0.15s var(--ease);
+    }
+
+    .toc-item:hover { border-color: var(--border-focus); color: var(--primary); }
+    .toc-item .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); }
+    .toc-item.done .dot { background: var(--success); }
+    .toc-item.done { color: var(--success); }
+
+    /* Blocks */
+    .blk-heading { padding: 10px 4px 0; }
+    .blk-heading .eyebrow { font-family: var(--font-en); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); }
+    .blk-heading h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.85rem; line-height: 1.2; letter-spacing: -0.01em; margin: 4px 0 6px; }
+    .blk-heading p { color: var(--text-muted); font-size: 0.93rem; max-width: 680px; }
+
+    .note { padding: 22px 24px; }
+    .note h3, .ex-head h3, .passage h3, .disc h3 { font-size: 1.08rem; font-weight: 600; line-height: 1.35; }
+    .note h3 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .note h3::before { content: '📌'; font-size: 0.95rem; }
+    .note p { margin-bottom: 8px; font-size: 0.94rem; }
+    .note ul, .note ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 0.93rem; margin: 6px 0 10px; }
+    .note blockquote {
+      font-family: var(--font-en);
+      font-size: 0.93rem;
+      background: var(--bg-sunken);
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 4px 12px 12px 4px;
+      margin: 8px 0 10px;
+    }
+
+    .tbl-wrap { overflow-x: auto; margin: 6px 0 4px; border-radius: 14px; border: 1px solid var(--border-color); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th { text-align: left; background: var(--bg-sunken); font-weight: 600; color: var(--text-muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: 600; white-space: nowrap; }
+
+    .prep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+    .prep-grid > div { background: var(--bg-sunken); border-radius: 14px; padding: 12px 14px; font-family: var(--font-en); font-size: 0.88rem; }
+    .prep-tag { display: inline-block; font-weight: 800; font-size: 1.1rem; color: var(--primary); margin-bottom: 4px; font-family: var(--font-display); }
+
+    .combine-list { list-style: none; padding: 0 !important; }
+    .combine-list li { background: var(--bg-sunken); border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; font-family: var(--font-en); font-size: 0.88rem; }
+    .combine-list span { color: var(--text-muted); }
+    .combine-list b { font-weight: 600; }
+
+    .rc-types { display: grid; gap: 12px; }
+    .rc-type { background: var(--bg-sunken); border-radius: 14px; padding: 14px 16px; }
+    .rc-type h4 { font-size: 0.98rem; margin-bottom: 4px; }
+    .rc-type h4 small { font-weight: 400; color: var(--text-muted); }
+    .rc-type ul { font-family: var(--font-en); font-size: 0.88rem; }
+
+    .coh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .coh-grid > div { background: var(--bg-sunken); border-radius: 14px; padding: 12px 14px; font-size: 0.88rem; }
+    .coh-grid p { margin: 4px 0 0; font-family: var(--font-en); font-size: 0.86rem; }
+
+    /* Passage */
+    .passage { padding: 26px 28px; position: relative; overflow: hidden; scroll-margin-top: 130px; }
+
+    .passage::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+
+    .passage-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .passage-kicker { font-family: var(--font-en); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-subtle); }
+    .passage h3 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.25; margin: 2px 0 4px; }
+    .passage .src { font-size: 0.76rem; color: var(--text-subtle); font-style: italic; }
+
+    .dyk {
+      background: var(--teal-light);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 0.88rem;
+    }
+
+    .dyk b { color: var(--teal); }
+    .dyk ul { padding-left: 18px; margin-top: 4px; font-family: var(--font-en); }
+
+    .para { display: grid; grid-template-columns: 28px 1fr 32px; gap: 10px; align-items: start; padding: 6px 0; }
+    .para.single { grid-template-columns: 1fr 32px; }
+
+    .para-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-en);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--bg-sunken);
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .para p { font-family: var(--font-en); font-size: 1.01rem; line-height: 1.8; }
+
+    .para p .ref {
+      color: var(--primary);
+      background: var(--primary-light);
+      border-radius: 5px;
+      padding: 0 3px;
+    }
+
+    .para p sup { font-size: 0.65em; font-weight: 800; margin-left: 1px; }
+    .sub-head { display: block; font-family: var(--font-body); font-weight: 600; color: var(--primary); font-size: 0.9rem; margin-bottom: 2px; }
+    .gap { font-weight: 700; color: var(--accent); background: rgba(224, 96, 126, 0.1); border-radius: 5px; padding: 0 4px; white-space: nowrap; }
+
+    .speak-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      transition: all 0.15s var(--ease);
+      flex-shrink: 0;
+    }
+
+    .speak-btn:hover, .speak-btn.speaking { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .gl-word {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      border-bottom: 2px dotted var(--teal);
+      cursor: help;
+      padding: 0;
+    }
+
+    .gl-word:hover { color: var(--teal); }
+
+    .gloss-pop {
+      position: absolute;
+      z-index: 200;
+      width: min(300px, calc(100vw - 24px));
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      animation: pop 0.2s var(--spring);
+    }
+
+    @keyframes pop { from { opacity: 0; transform: translateY(6px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+    .gloss-pop .gp-word { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .gloss-pop .gp-th { font-weight: 600; margin: 4px 0 2px; }
+    .gloss-pop .gp-en { color: var(--text-muted); font-family: var(--font-en); font-size: 0.84rem; }
+
+    /* Discussion */
+    .disc { padding: 20px 24px; background: var(--teal-light); border-color: transparent; }
+    .disc h3 { color: var(--teal); margin-bottom: 8px; }
+    .disc h3::before { content: '💬 '; }
+    .disc ol { padding-left: 20px; font-family: var(--font-en); font-size: 0.92rem; display: flex; flex-direction: column; gap: 4px; }
+
+    /* Tense cards */
+    .tense-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .tense-card { padding: 20px; display: flex; flex-direction: column; gap: 10px; border-top: 4px solid var(--c, var(--primary)); }
+    .tense-card:nth-child(1) { --c: #5b4bdb; }
+    .tense-card:nth-child(2) { --c: #0e8f8a; }
+    .tense-card:nth-child(3) { --c: #e0607e; }
+    .tense-card:nth-child(4) { --c: #e0900b; }
+    .tense-name { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: var(--c); line-height: 1.2; }
+    .tense-role { font-size: 0.8rem; color: var(--text-muted); }
+    .tense-form { font-family: var(--font-en); font-weight: 700; font-size: 0.88rem; background: var(--bg-sunken); border-radius: 10px; padding: 8px 12px; }
+    .tense-card ul { padding-left: 18px; font-size: 0.86rem; display: flex; flex-direction: column; gap: 4px; }
+    .tense-ex { font-family: var(--font-en); font-size: 0.86rem; color: var(--text-muted); font-style: italic; }
+    .tense-time { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tense-time span { font-family: var(--font-en); font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-muted); }
+    details summary { cursor: pointer; font-size: 0.82rem; font-weight: 600; color: var(--primary); list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: '▸ '; }
+    details[open] summary::before { content: '▾ '; }
+    details .model-text { margin-top: 6px; font-family: var(--font-en); font-size: 0.86rem; background: var(--bg-sunken); border-radius: 10px; padding: 10px 12px; }
+    .tense-foot { padding: 14px 18px; font-size: 0.9rem; background: var(--primary-light); border-color: transparent; }
+
+    /* Freytag */
+    .freytag { padding: 22px 24px; }
+    .freytag h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 12px; }
+    .freytag svg { width: 100%; height: auto; display: block; margin-bottom: 12px; }
+    .freytag-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .fstep { background: var(--bg-sunken); border-radius: 14px; padding: 12px 14px; font-size: 0.84rem; }
+    .fstep-n { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 7px; background: var(--primary); color: #fff; font-family: var(--font-en); font-weight: 700; font-size: 0.72rem; margin-right: 6px; }
+    .fstep b { font-size: 0.92rem; }
+    .fstep .fs-th { color: var(--text-muted); font-size: 0.78rem; }
+    .fstep p { margin: 6px 0 4px; }
+    .fstep i { font-family: var(--font-en); color: var(--text-muted); font-size: 0.8rem; display: block; }
+
+    /* Error cards */
+    .err-grid { display: grid; gap: 14px; }
+    .err-card { padding: 20px 22px; }
+    .err-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin-bottom: 4px; }
+    .err-card > p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
+    .err-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .err-col { border-radius: 14px; padding: 12px 14px; font-family: var(--font-en); font-size: 0.86rem; display: flex; flex-direction: column; gap: 6px; }
+    .err-col.bad { background: var(--danger-light); }
+    .err-col.good { background: var(--success-light); }
+    .err-col h4 { font-family: var(--font-body); font-size: 0.78rem; }
+    .err-col.bad h4 { color: var(--danger); }
+    .err-col.good h4 { color: var(--success); }
+
+    /* ==========================================================
+       EXERCISES
+       ========================================================== */
+    .ex-card {
+      padding: 22px 24px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      scroll-margin-top: 130px;
+    }
+
+    .ex-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 6px; }
+    .ex-head h3 { flex: 1 1 100%; order: 2; font-size: 1.12rem; }
+    .ex-kind { order: 1; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); background: var(--bg-sunken); border-radius: 999px; padding: 3px 10px; }
+    .ex-status { order: 1; margin-left: auto; }
+    .ex-inst { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .ex-intro { font-family: var(--font-en); font-size: 0.95rem; line-height: 1.75; background: var(--bg-sunken); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+    .ex-body { display: flex; flex-direction: column; gap: 12px; }
+    .ex-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border-strong); }
+    .ex-result { flex: 1 1 100%; }
+    .ex-result:empty { display: none; }
+
+    .score-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      animation: pop 0.3s var(--spring);
+    }
+
+    .score-banner .big { font-family: var(--font-en); font-weight: 800; font-size: 1.4rem; }
+    .score-banner.good { background: var(--success-light); color: var(--success); }
+    .score-banner.mid { background: var(--warning-light); color: var(--warning); }
+    .score-banner.low { background: var(--danger-light); color: var(--danger); }
+
+    .q-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-color);
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .q-item.need { border-color: var(--warning); box-shadow: 0 0 0 3px var(--warning-light); }
+    .q-text { font-family: var(--font-en); font-size: 0.97rem; line-height: 1.65; margin-bottom: 10px; }
+    .q-text .pill { font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--primary-light); color: var(--primary); margin-right: 4px; }
+
+    .opt-list { display: flex; flex-direction: column; gap: 6px; }
+    .opt-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-surface);
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      transition: all 0.15s var(--ease);
+    }
+
+    .opt-row .opt { width: auto; padding: 8px 16px; font-weight: 600; font-size: 0.85rem; border-radius: 999px; }
+    .opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+    .opt:disabled { cursor: default; }
+
+    .opt-key {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-strong);
+    }
+
+    .opt.picked { border-color: var(--primary); background: var(--primary-light); }
+    .opt.is-correct { border-color: var(--success); background: var(--success-light); color: var(--success); font-weight: 600; }
+    .opt.is-wrong { border-color: var(--danger); background: var(--danger-light); color: var(--danger); animation: shake 0.35s ease; }
+    .opt.is-correct .opt-key { background: var(--success); color: #fff; border-color: var(--success); }
+    .opt.is-wrong .opt-key { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+    .q-explain {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.87rem;
+      background: var(--bg-surface);
+      border-left: 3px solid var(--border-strong);
+      animation: pop 0.25s var(--ease);
+    }
+
+    .q-explain.ok { border-left-color: var(--success); }
+    .q-explain.bad { border-left-color: var(--danger); }
+    .q-explain b.ok { color: var(--success); }
+    .q-explain b.bad { color: var(--danger); }
+
+    .blank {
+      display: inline-block;
+      min-width: 130px;
+      max-width: 100%;
+      padding: 4px 10px;
+      margin: 2px 2px;
+      border-radius: 9px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-family: var(--font-en);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      outline: none;
+      transition: all 0.15s var(--ease);
+    }
+
+    .blank:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+    .blank.ok, .field.ok { border-color: var(--success); color: var(--success); background: var(--success-light); }
+    .blank.bad, .field.bad { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+
+    .field {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-family: var(--font-en);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      outline: none;
+      resize: vertical;
+      transition: all 0.15s var(--ease);
+    }
+
+    .field:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+    textarea.field { min-height: 70px; }
+
+    .orig { font-family: var(--font-en); font-size: 0.95rem; margin-bottom: 8px; }
+    .orig::before { content: '✘ '; color: var(--danger); font-weight: 700; }
+
+    .model-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-strong);
+      font-size: 0.88rem;
+    }
+
+    .model-box .lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+    .model-box .en { font-family: var(--font-en); }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
+    .meta-line { font-size: 0.76rem; color: var(--text-subtle); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+    .warn-line { font-size: 0.82rem; color: var(--warning); margin-top: 6px; }
+    .self-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; align-items: center; font-size: 0.82rem; color: var(--text-muted); }
+    .self-row .btn.on-ok { background: var(--success); border-color: var(--success); color: #fff; }
+    .self-row .btn.on-bad { background: var(--danger); border-color: var(--danger); color: #fff; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 3px; margin-top: 6px; font-size: 0.82rem; }
+    .checklist li::before { content: '☐ '; color: var(--text-subtle); }
+
+    /* Match */
+    .match-ref { list-style: none; display: flex; flex-direction: column; gap: 6px; font-family: var(--font-en); font-size: 0.86rem; background: var(--bg-sunken); border-radius: 14px; padding: 12px 14px; }
+    .match-row { display: grid; grid-template-columns: minmax(140px, 0.8fr) 1.2fr; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--bg-sunken); border: 1px solid var(--border-color); }
+    .match-left { font-weight: 600; font-size: 0.9rem; }
+    .match-row select, .range-row select {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-size: 0.86rem;
+      outline: none;
+    }
+
+    .match-row.ok { border-color: var(--success); background: var(--success-light); }
+    .match-row.bad { border-color: var(--danger); background: var(--danger-light); }
+    .match-row .fix { grid-column: 1 / -1; font-size: 0.8rem; color: var(--danger); }
+
+    /* Order */
+    .order-group { background: var(--bg-sunken); border-radius: 16px; padding: 14px 16px; border: 1px solid var(--border-color); }
+    .order-group h4 { font-size: 0.95rem; margin-bottom: 10px; }
+    .order-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .order-col-title { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .order-list { list-style: none; display: flex; flex-direction: column; gap: 6px; min-height: 48px; }
+    .order-chip {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      width: 100%;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 11px;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-surface);
+      font-family: var(--font-en);
+      font-size: 0.86rem;
+      line-height: 1.4;
+      transition: all 0.15s var(--ease);
+    }
+
+    .order-chip:hover:not(:disabled) { border-color: var(--primary); }
+    .order-chip:disabled { opacity: 0.35; cursor: default; }
+    .order-chip .k { flex-shrink: 0; font-weight: 700; color: var(--primary); min-width: 18px; }
+    .order-chip.ok { border-color: var(--success); background: var(--success-light); }
+    .order-chip.bad { border-color: var(--danger); background: var(--danger-light); }
+    .order-empty { font-size: 0.8rem; color: var(--text-subtle); border: 1.5px dashed var(--border-strong); border-radius: 11px; padding: 12px; text-align: center; }
+
+    /* Ranges */
+    .num-text { font-family: var(--font-en); font-size: 0.95rem; line-height: 1.85; background: var(--bg-sunken); border-radius: 14px; padding: 14px 16px; }
+    .num-text sup { font-weight: 800; color: var(--primary); font-size: 0.7em; margin-right: 2px; }
+    .range-row { display: grid; grid-template-columns: 1fr 90px 18px 90px; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--bg-sunken); border: 1px solid var(--border-color); }
+    .range-row .lbl { font-weight: 600; font-size: 0.9rem; }
+    .range-row .to { text-align: center; color: var(--text-muted); font-size: 0.8rem; }
+    .range-row.ok { border-color: var(--success); background: var(--success-light); }
+    .range-row.bad { border-color: var(--danger); background: var(--danger-light); }
+    .range-row .fix { grid-column: 1 / -1; font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Pronoun hunt */
+    .hunt-passage { background: var(--bg-sunken); border-radius: 16px; padding: 14px 16px; border: 1px solid var(--border-color); }
+    .hunt-passage h4 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
+    .hunt-text { font-family: var(--font-en); font-size: 0.97rem; line-height: 2; }
+    .tok { border-radius: 6px; padding: 1px 2px; cursor: pointer; transition: background 0.12s ease; }
+    .tok:hover { background: var(--primary-light); }
+    .tok.sel { background: var(--primary); color: #fff; }
+    .tok.hit { background: var(--success); color: #fff; }
+    .tok.missed { outline: 2px dashed var(--warning); outline-offset: 1px; color: var(--warning); font-weight: 700; }
+    .tok.false { background: var(--danger); color: #fff; text-decoration: line-through; }
+    .hunt-legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.76rem; color: var(--text-muted); }
+    .hunt-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+    .hunt-legend .l-hit::before { background: var(--success); }
+    .hunt-legend .l-miss::before { border: 2px dashed var(--warning); }
+    .hunt-legend .l-false::before { background: var(--danger); }
+
+    /* RO check */
+    .ro-btns { display: flex; gap: 6px; margin-bottom: 4px; }
+
+    /* Composer */
+    .composer { padding: 22px 24px; border-radius: var(--radius-xl); box-shadow: var(--shadow-card); }
+    .composer h3 { font-size: 1.12rem; font-weight: 600; margin-bottom: 4px; }
+    .topic-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .topic-chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--bg-sunken); font-family: var(--font-en); font-size: 0.8rem; text-align: left; transition: all 0.15s var(--ease); }
+    .topic-chip:hover { border-color: var(--border-focus); }
+    .topic-chip.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .composer textarea.field { min-height: 240px; font-size: 1rem; line-height: 1.75; }
+    .comp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0; }
+    .comp-stat { background: var(--bg-sunken); border-radius: 12px; padding: 10px 12px; }
+    .comp-stat b { display: block; font-family: var(--font-en); font-size: 1.25rem; font-weight: 800; }
+    .comp-stat span { font-size: 0.72rem; color: var(--text-muted); }
+    .comp-stat.in-range b { color: var(--success); }
+    .comp-stat.out-range b { color: var(--warning); }
+    .hint-list { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 0.84rem; }
+    .hint-list li { padding: 8px 12px; border-radius: 10px; background: var(--warning-light); }
+    .hint-list li.good { background: var(--success-light); }
+    .hint-list q { font-family: var(--font-en); font-style: italic; }
+    .trans-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .trans-chips span { font-family: var(--font-en); font-size: 0.74rem; padding: 2px 8px; border-radius: 999px; background: var(--teal-light); color: var(--teal); font-weight: 600; }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .check-grid label { display: flex; gap: 8px; align-items: flex-start; font-size: 0.86rem; padding: 6px 10px; border-radius: 10px; background: var(--bg-sunken); cursor: pointer; }
+    .check-grid input { margin-top: 4px; accent-color: var(--primary); }
+    .sub-title { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 6px; }
+
+    /* Planner */
+    .planner { padding: 22px 24px; }
+    .planner h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; }
+    .planner > p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
+    .plan-field { margin-bottom: 12px; }
+    .plan-field label { display: block; font-weight: 600; font-size: 0.9rem; }
+    .plan-field small { display: block; color: var(--text-muted); font-family: var(--font-en); font-size: 0.8rem; margin-bottom: 6px; }
+
+    /* ==========================================================
+       GLOSSARY
+       ========================================================== */
+    .gl-toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .gl-search { flex: 1 1 220px; position: relative; }
+    .gl-search input { width: 100%; padding: 11px 14px 11px 40px; border-radius: 14px; border: 1px solid var(--border-strong); background: var(--bg-surface); font-size: 0.95rem; outline: none; }
+    .gl-search input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+    .gl-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-subtle); }
+    .seg { display: inline-flex; padding: 3px; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; gap: 2px; }
+    .seg button { border: none; background: transparent; padding: 7px 12px; border-radius: 9px; font-size: 0.8rem; color: var(--text-muted); }
+    .seg button.active { background: var(--text-main); color: var(--bg-body); font-weight: 600; }
+    .gl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .gl-card { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; position: relative; }
+    .gl-card.known { border-color: var(--success); }
+    .gl-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .gl-word-big { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; line-height: 1.15; }
+    .gl-pos { font-family: var(--font-en); font-style: italic; font-size: 0.78rem; color: var(--text-muted); }
+    .gl-th { font-weight: 600; font-size: 1rem; }
+    .gl-en { font-family: var(--font-en); font-size: 0.86rem; color: var(--text-muted); }
+    .gl-ex { font-family: var(--font-en); font-size: 0.85rem; background: var(--bg-sunken); border-radius: 10px; padding: 8px 10px; margin-top: 4px; line-height: 1.55; }
+    .gl-ex b { color: var(--primary); }
+    .gl-actions { display: flex; gap: 6px; }
+    .known-btn { border: 1px solid var(--border-strong); background: var(--bg-surface); border-radius: 999px; padding: 4px 10px; font-size: 0.74rem; color: var(--text-muted); }
+    .known-btn.on { background: var(--success); border-color: var(--success); color: #fff; }
+
+    .quiz-card { padding: 26px; text-align: center; border-radius: var(--radius-xl); box-shadow: var(--shadow-card); }
+    .quiz-meta { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+    .quiz-prompt { font-size: 1.4rem; font-weight: 600; margin: 14px 0 6px; }
+    .quiz-prompt.en { font-family: var(--font-en); font-size: 1.05rem; font-weight: 500; line-height: 1.7; }
+    .quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+    .quiz-opts .opt { justify-content: center; font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+    .quiz-type { display: flex; gap: 8px; margin-top: 16px; }
+    .quiz-type input { flex: 1; }
+    .quiz-feedback { min-height: 24px; margin-top: 12px; font-weight: 600; font-size: 0.92rem; }
+
+    /* ==========================================================
+       RESPONSIVE
+       ========================================================== */
+    @media (max-width: 720px) {
+      body { padding: 0 12px 64px; }
+      .topbar { margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
+      .brand-sub { display: none; }
+      .icon-btn .lbl { display: none; }
+      .hero { padding: 28px 22px; }
+      .hero h1 { font-size: 2rem; }
+      .unit-grid, .tense-grid, .gl-grid, .err-cols, .coh-grid, .check-grid, .order-cols, .quiz-opts { grid-template-columns: 1fr; }
+      .freytag-steps { grid-template-columns: 1fr 1fr; }
+      .prep-grid { grid-template-columns: 1fr; }
+      .unit-banner { padding: 20px; gap: 14px; }
+      .unit-banner h1 { font-size: 1.35rem; }
+      .unit-banner .unit-emoji { width: 52px; height: 52px; font-size: 1.7rem; }
+      .sec-tabs { top: 57px; }
+      .sec-tab { padding: 8px 12px; font-size: 0.8rem; }
+      .blk-heading h2 { font-size: 1.5rem; }
+      .note, .passage, .ex-card, .composer, .planner, .freytag, .err-card { padding: 18px 16px; }
+      .para { grid-template-columns: 24px 1fr 30px; gap: 8px; }
+      .para p { font-size: 0.96rem; }
+      .match-row { grid-template-columns: 1fr; }
+      .range-row { grid-template-columns: 1fr 72px 14px 72px; padding: 8px 10px; }
+      .comp-stats { grid-template-columns: 1fr 1fr; }
+      .field, .blank, .gl-search input { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">W</span>
+        <span class="brand-text">
+          <span class="brand-name">EXPENG Workbook</span>
+          <span class="brand-sub">5500111 Experiential English 1 · Unit 3–4</span>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <a class="icon-btn" href="index.html" title="กลับไปหน้าการ์ดคำศัพท์และข้อสอบ">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
+          <span class="lbl">คลังศัพท์ & ข้อสอบ</span>
+        </a>
+        <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="สลับธีม สว่าง / มืด" aria-label="สลับธีม">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="workbook-data.js"></script>
+  <script>
+    // ==========================================================
+    // CONSTANTS & STORAGE
+    // ==========================================================
+    const WB = window.WORKBOOK;
+    const SECTION_ORDER = ['reading', 'language', 'writing', 'glossary', 'communication'];
+    const SECTION_META = {
+      reading: { label: 'Reading', th: 'การอ่าน', icon: '📖' },
+      language: { label: 'Language Focus', th: 'ไวยากรณ์', icon: '🧩' },
+      writing: { label: 'Writing', th: 'การเขียน', icon: '✍️' },
+      glossary: { label: 'Glossary', th: 'คำศัพท์', icon: '🔤' },
+      communication: { label: 'Communication', th: 'การสื่อสาร', icon: '🗣️' }
+    };
+    const KIND_META = {
+      mcq: { icon: '🔘', label: 'เลือกตอบ' },
+      tf: { icon: '⚖️', label: 'ถูก / ผิด' },
+      fill: { icon: '✏️', label: 'เติมคำ' },
+      short: { icon: '💬', label: 'ตอบสั้น' },
+      match: { icon: '🔗', label: 'จับคู่' },
+      order: { icon: '🔢', label: 'เรียงลำดับ' },
+      ranges: { icon: '📐', label: 'ระบุช่วงประโยค' },
+      rewrite: { icon: '🔁', label: 'เขียนใหม่' },
+      splice: { icon: '🩹', label: 'แก้ประโยค' },
+      rocheck: { icon: '🔍', label: 'ตรวจประโยค' },
+      open: { icon: '📝', label: 'เขียนตอบ' },
+      pronounHunt: { icon: '🎯', label: 'แตะเลือกคำ' },
+      paragraphFix: { icon: '🛠️', label: 'แก้ย่อหน้า' }
+    };
+    const TRANSITIONS = ['at first', 'first', 'initially', 'in the beginning', 'then', 'next', 'afterward', 'afterwards', 'after that', 'minutes later', 'shortly after', 'a while later', 'soon', 'while', 'meanwhile', 'at the same time', 'as a result', 'therefore', 'because', 'so', 'suddenly', 'however', 'unexpectedly', 'at that moment', 'just then', 'without warning', 'finally', 'in the end', 'eventually', 'at last', 'since then', 'from that day on', 'later', 'all of a sudden', 'immediately', 'by the time'];
+
+    const PROGRESS_KEY = 'wb_progress_v1';
+    const KNOWN_KEY = 'wb_glossary_known_v1';
+    const DRAFT_KEY = 'wb_drafts_v1';
+
+    function loadJSON(key, fallback) {
+      try {
+        const v = JSON.parse(localStorage.getItem(key));
+        return v && typeof v === 'object' ? v : fallback;
+      } catch (err) {
+        return fallback;
+      }
+    }
+
+    function saveJSON(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (err) { /* storage unavailable: progress just won't persist */ }
+    }
+
+    let progress = loadJSON(PROGRESS_KEY, {});
+    let knownWords = loadJSON(KNOWN_KEY, {});
+    let drafts = loadJSON(DRAFT_KEY, {});
+
+    // Exercise lookup across both units
+    const exIndex = new Map();
+    WB.units.forEach(unit => {
+      Object.values(unit.sections).forEach(blocks => blocks.forEach(b => {
+        if (b.type === 'exercise') exIndex.set(b.id, b);
+      }));
+    });
+    const exState = new Map();
+
+    // ==========================================================
+    // HELPERS
+    // ==========================================================
+    function esc(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function norm(str) {
+      return String(str).replace(/[’‘`]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
+    // For comparing whole sentences: ignore case and punctuation, keep apostrophes
+    function normLoose(str) {
+      return norm(str).replace(/[.,;:!?"()\[\]–—]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function countWords(text) {
+      return (String(text).trim().match(/\S+/g) || []).length;
+    }
+
+    function escapeRe(s) {
+      return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // Matches common inflections of every token: "integrate" → integrates/integrated/integrating
+    function wordFormsPattern(word) {
+      return word.toLowerCase().split(/\s+/).map(tok => {
+        const forms = new Set([tok, tok + 's', tok + 'es', tok + 'd', tok + 'ed', tok + 'ing']);
+        if (tok.endsWith('e')) forms.add(tok.slice(0, -1) + 'ing');
+        if (tok.endsWith('y')) { forms.add(tok.slice(0, -1) + 'ies'); forms.add(tok.slice(0, -1) + 'ied'); }
+        return '(?:' + [...forms].sort((a, b) => b.length - a.length).map(escapeRe).join('|') + ')';
+      }).join('\\s+');
+    }
+
+    function percentClass(pct) {
+      return pct >= 80 ? 'good' : pct >= 50 ? 'mid' : 'low';
+    }
+
+    let toastTimer = null;
+    function toast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+    }
+
+    // ==========================================================
+    // SPEECH
+    // ==========================================================
+    let speakingBtn = null;
+
+    function speak(text, btn) {
+      if (!('speechSynthesis' in window)) {
+        toast('เบราว์เซอร์นี้ไม่รองรับการอ่านออกเสียง');
+        return;
+      }
+      const synth = window.speechSynthesis;
+      const wasThisButton = speakingBtn && speakingBtn === btn;
+      synth.cancel();
+      if (speakingBtn) speakingBtn.classList.remove('speaking');
+      speakingBtn = null;
+      if (wasThisButton) return; // second tap stops playback
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 0.95;
+      const voice = synth.getVoices().find(v => /en[-_](US|GB)/i.test(v.lang));
+      if (voice) utter.voice = voice;
+      if (btn) {
+        speakingBtn = btn;
+        btn.classList.add('speaking');
+        utter.onend = utter.onerror = () => {
+          btn.classList.remove('speaking');
+          if (speakingBtn === btn) speakingBtn = null;
+        };
+      }
+      synth.speak(utter);
+    }
+
+    function plainText(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      div.querySelectorAll('sup, .sub-head').forEach(n => n.remove());
+      return div.textContent.replace(/\s+/g, ' ').trim();
+    }
+
+    // ==========================================================
+    // THEME (shared key with index.html)
+    // ==========================================================
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('themeBtn').textContent = theme === 'dark' ? '☀️' : '🌙';
+      const meta = document.getElementById('themeColorMeta');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#0f0e14' : '#f5f3ee');
+    }
+
+    function toggleTheme() {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('vocab_app_theme', next); } catch (err) { /* ignore */ }
+      applyTheme(next);
+    }
+
+    // ==========================================================
+    // PROGRESS
+    // ==========================================================
+    function sectionExerciseIds(unit, key) {
+      if (key === 'glossary') return [`${unit.id}-g-quiz`];
+      return (unit.sections[key] || []).filter(b => b.type === 'exercise').map(b => b.id);
+    }
+
+    function sectionPct(unit, key) {
+      const ids = sectionExerciseIds(unit, key);
+      if (!ids.length) return 0;
+      return Math.round((ids.filter(id => progress[id]).length / ids.length) * 100);
+    }
+
+    function unitPct(unit) {
+      const ids = SECTION_ORDER.flatMap(k => sectionExerciseIds(unit, k));
+      return ids.length ? Math.round((ids.filter(id => progress[id]).length / ids.length) * 100) : 0;
+    }
+
+    function saveResult(id, score, total) {
+      const prev = progress[id];
+      progress[id] = { score, total, best: Math.max(score, prev ? prev.best || 0 : 0), at: Date.now() };
+      saveJSON(PROGRESS_KEY, progress);
+      refreshStatusUI();
+    }
+
+    function statusChipHtml(id) {
+      const p = progress[id];
+      if (!p) return '';
+      const pct = Math.round((p.score / p.total) * 100);
+      return `<span class="chip" style="background: var(--${pct >= 80 ? 'success' : pct >= 50 ? 'warning' : 'danger'}-light); color: var(--${pct >= 80 ? 'success' : pct >= 50 ? 'warning' : 'danger'});">✓ ล่าสุด ${p.score}/${p.total}</span>`;
+    }
+
+    function refreshStatusUI() {
+      document.querySelectorAll('[data-ex]').forEach(card => {
+        const slot = card.querySelector('[data-status]');
+        if (slot) slot.innerHTML = statusChipHtml(card.dataset.ex);
+      });
+      document.querySelectorAll('.toc-item[data-target]').forEach(a => a.classList.toggle('done', !!progress[a.dataset.target]));
+      document.querySelectorAll('.sec-tab[data-sec]').forEach(tab => {
+        const unit = WB.units.find(u => u.id === tab.dataset.unit);
+        const pct = sectionPct(unit, tab.dataset.sec);
+        const badge = tab.querySelector('.tab-pct');
+        if (badge) {
+          badge.textContent = pct + '%';
+          badge.classList.toggle('done', pct === 100);
+        }
+      });
+    }
+
+    function showScore(card, score, total, extra = '') {
+      const pct = total ? Math.round((score / total) * 100) : 0;
+      const msg = pct === 100 ? 'สุดยอด! ถูกทั้งหมด 🎉' : pct >= 80 ? 'เก่งมาก! เกือบเต็มแล้ว 👏' : pct >= 50 ? 'ดีแล้ว ทบทวนข้อที่พลาดอีกนิด 💪' : 'ไม่เป็นไร อ่านคำอธิบายแล้วลองใหม่นะ 📚';
+      card.querySelector('[data-result]').innerHTML = `
+        <div class="score-banner ${percentClass(pct)}">
+          <span class="big">${score}/${total}</span>
+          <span>${msg}${extra ? '<br><small>' + extra + '</small>' : ''}</span>
+        </div>`;
+    }
+
+    // ==========================================================
+    // EXERCISE KINDS
+    // ==========================================================
+    function itemFeedback(ok, body) {
+      return `<div class="q-explain ${ok ? 'ok' : 'bad'}"><b class="${ok ? 'ok' : 'bad'}">${ok ? '✓ ถูกต้อง' : '✗ ยังไม่ถูก'}</b>${body ? ' — ' + body : ''}</div>`;
+    }
+
+    function overrideBtn(i) {
+      return `<button class="btn btn-sm" data-act="override" data-i="${i}">✓ คำตอบของฉันก็ถูก (นับคะแนน)</button>`;
+    }
+
+    // Accepts a period, semicolon, or a linking word between the two clauses
+    function spliceOk(a, b, answer) {
+      const clean = s => norm(s).replace(/[.!?]+$/, '');
+      const junction = '(?:\\s*[.;]\\s*|\\s*,?\\s+(?:and|but|so|yet|or|for|because|as|since|although|though|even though|while)\\s+)';
+      const re = new RegExp('^' + escapeRe(clean(a)) + junction + escapeRe(clean(b)) + '\\s*[.!?]?$');
+      return re.test(norm(answer));
+    }
+
+    const KINDS = {
+      /* ---------- Multiple choice (instant feedback) ---------- */
+      mcq: {
+        instant: true,
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              <div class="q-text">${it.q}</div>
+              <div class="opt-list">
+                ${it.options.map((o, j) => `<button class="opt" data-act="choose" data-i="${i}" data-j="${j}"><span class="opt-key">${'ABCDEF'[j]}</span><span>${esc(o)}</span></button>`).join('')}
+              </div>
+            </div>`).join('');
+        },
+        answerIndex: (ex, it) => it.answer,
+        optionLabel: (ex, it, j) => 'ABCDEF'[j]
+      },
+
+      /* ---------- True / False / Not given (instant feedback) ---------- */
+      tf: {
+        instant: true,
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              <div class="q-text">${it.q}</div>
+              <div class="opt-row">
+                ${ex.labels.map((l, j) => `<button class="opt" data-act="choose" data-i="${i}" data-j="${j}">${esc(l)}</button>`).join('')}
+              </div>
+            </div>`).join('');
+        },
+        answerIndex: (ex, it) => ex.labels.indexOf(it.answer),
+        optionLabel: (ex, it, j) => ex.labels[j]
+      },
+
+      /* ---------- Fill in the blank ---------- */
+      fill: {
+        render(ex) {
+          return ex.items.map((it, i) => {
+            const input = `<input class="blank" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="คำตอบข้อ ${i + 1}">`;
+            const q = it.q.includes('___') ? it.q.replace('___', input) : it.q + ' ' + input;
+            return `<div class="q-item" data-i="${i}"><div class="q-text">${q}</div><div data-fb></div></div>`;
+          }).join('');
+        },
+        check(ex, card) {
+          const inputs = [...card.querySelectorAll('.blank')];
+          if (inputs.some(inp => !inp.value.trim())) {
+            markUnanswered(card, inputs.map(inp => !inp.value.trim()));
+            return null;
+          }
+          let score = 0;
+          inputs.forEach((inp, i) => {
+            const it = ex.items[i];
+            const ok = it.accept.some(a => norm(a) === norm(inp.value));
+            if (ok) score++;
+            inp.classList.add(ok ? 'ok' : 'bad');
+            inp.disabled = true;
+            card.querySelector(`.q-item[data-i="${i}"] [data-fb]`).innerHTML =
+              itemFeedback(ok, (ok ? '' : `คำตอบ: <b>${esc(it.accept[0])}</b>. `) + (it.explain || ''));
+          });
+          return score;
+        }
+      },
+
+      /* ---------- Short answer, graded by key words ---------- */
+      short: {
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              <div class="q-text">${it.q}</div>
+              <input class="field" data-field="${i}" autocomplete="off" placeholder="พิมพ์คำตอบภาษาอังกฤษ...">
+              <div data-fb></div>
+            </div>`).join('');
+        },
+        check(ex, card) {
+          const fields = [...card.querySelectorAll('[data-field]')];
+          if (fields.some(f => !f.value.trim())) {
+            markUnanswered(card, fields.map(f => !f.value.trim()));
+            return null;
+          }
+          let score = 0;
+          fields.forEach((f, i) => {
+            const it = ex.items[i];
+            const ans = norm(f.value);
+            const ok = it.keywords.every(group => group.some(k => ans.includes(norm(k))));
+            if (ok) score++;
+            f.classList.add(ok ? 'ok' : 'bad');
+            f.disabled = true;
+            card.querySelector(`.q-item[data-i="${i}"] [data-fb]`).innerHTML =
+              itemFeedback(ok, `ตัวอย่างคำตอบ: <span class="en">${esc(it.model)}</span>${it.explain ? '<br>' + it.explain : ''}`) +
+              (ok ? '' : `<div class="row-actions">${overrideBtn(i)}</div>`);
+          });
+          return score;
+        }
+      },
+
+      /* ---------- Matching with dropdowns ---------- */
+      match: {
+        render(ex) {
+          const labelOf = (r, j) => { const m = r.match(/^([A-Z0-9]{1,2})\.\s*/); return m ? m[1] : String.fromCharCode(65 + j); };
+          const textOf = r => r.replace(/^([A-Z0-9]{1,2})\.\s*/, '');
+          const shortText = t => t.length > 64 ? t.slice(0, 62) + '…' : t;
+          const longRight = ex.right.some(r => r.length > 50);
+          return `
+            ${longRight ? `<ol class="match-ref">${ex.right.map((r, j) => `<li><b>${esc(labelOf(r, j))}.</b> ${esc(textOf(r))}</li>`).join('')}</ol>` : ''}
+            ${ex.left.map((l, i) => `
+              <div class="match-row" data-i="${i}">
+                <div class="match-left">${esc(l)}</div>
+                <select data-sel="${i}" aria-label="จับคู่ ${esc(l)}">
+                  <option value="">— เลือก —</option>
+                  ${ex.right.map((r, j) => `<option value="${j}">${esc(labelOf(r, j))}. ${esc(shortText(textOf(r)))}</option>`).join('')}
+                </select>
+              </div>`).join('')}`;
+        },
+        check(ex, card) {
+          const sels = [...card.querySelectorAll('[data-sel]')];
+          if (sels.some(s => s.value === '')) {
+            sels.forEach(s => s.closest('.match-row').classList.toggle('need', s.value === ''));
+            toast('ยังจับคู่ไม่ครบ');
+            return null;
+          }
+          let score = 0;
+          sels.forEach((s, i) => {
+            const ok = Number(s.value) === ex.answer[i];
+            if (ok) score++;
+            const row = s.closest('.match-row');
+            row.classList.add(ok ? 'ok' : 'bad');
+            s.disabled = true;
+            if (!ok) row.insertAdjacentHTML('beforeend', `<div class="fix">คำตอบที่ถูก: ${esc(ex.right[ex.answer[i]])}</div>`);
+          });
+          card.querySelector('[data-result]').dataset.extra = ex.explain || '';
+          return score;
+        },
+        total: ex => ex.left.length
+      },
+
+      /* ---------- Tap-to-order ---------- */
+      order: {
+        render(ex) {
+          return ex.groups.map((g, gi) => `<div class="order-group" data-g="${gi}">${orderGroupHtml(ex, gi, [])}</div>`).join('');
+        },
+        check(ex, card) {
+          const st = getState(ex);
+          const picks = ex.groups.map((g, gi) => st.order[gi] || []);
+          if (picks.some((p, gi) => p.length < ex.groups[gi].sentences.length)) {
+            toast('เรียงประโยคให้ครบทุกข้อก่อนนะ');
+            return null;
+          }
+          let score = 0;
+          ex.groups.forEach((g, gi) => {
+            picks[gi].forEach((sIdx, pos) => { if (g.answer[pos] === sIdx) score++; });
+            const box = card.querySelector(`.order-group[data-g="${gi}"]`);
+            box.innerHTML = orderGroupHtml(ex, gi, picks[gi], true);
+          });
+          st.locked = true;
+          return score;
+        },
+        total: ex => ex.groups.reduce((n, g) => n + g.sentences.length, 0)
+      },
+
+      /* ---------- Sentence ranges (narrative components) ---------- */
+      ranges: {
+        render(ex) {
+          const n = ex.text.length;
+          const opts = Array.from({ length: n }, (_, k) => `<option value="${k + 1}">${k + 1}</option>`).join('');
+          return `
+            <div class="num-text">${ex.text.map((s, k) => `<sup>(${k + 1})</sup>${esc(s)}`).join(' ')}</div>
+            ${ex.components.map((c, i) => `
+              <div class="range-row" data-i="${i}">
+                <span class="lbl">${i + 1}. ${esc(c.label)}</span>
+                <select data-from="${i}" aria-label="${esc(c.label)} จากประโยค"><option value="">จาก</option>${opts}</select>
+                <span class="to">–</span>
+                <select data-to="${i}" aria-label="${esc(c.label)} ถึงประโยค"><option value="">ถึง</option>${opts}</select>
+              </div>`).join('')}`;
+        },
+        check(ex, card) {
+          const rows = [...card.querySelectorAll('.range-row')];
+          const vals = rows.map((r, i) => [r.querySelector(`[data-from="${i}"]`).value, r.querySelector(`[data-to="${i}"]`).value]);
+          if (vals.some(([f, t]) => !f || !t)) {
+            rows.forEach((r, i) => r.classList.toggle('need', !vals[i][0] || !vals[i][1]));
+            toast('เลือกช่วงประโยคให้ครบทุกส่วน');
+            return null;
+          }
+          let score = 0;
+          rows.forEach((r, i) => {
+            const c = ex.components[i];
+            const f = Number(vals[i][0]);
+            const t = Number(vals[i][1]);
+            const ok = c.accept.some(([a, b]) => a === f && b === t);
+            if (ok) score++;
+            r.classList.add(ok ? 'ok' : 'bad');
+            r.querySelectorAll('select').forEach(s => { s.disabled = true; });
+            r.insertAdjacentHTML('beforeend', `<div class="fix">${ok ? '✓' : '✗ คำตอบแนะนำ: ประโยค ' + c.model + ' —'} ${esc(c.explain)}</div>`);
+          });
+          return score;
+        },
+        total: ex => ex.components.length
+      },
+
+      /* ---------- Rewrite a sentence (normalised exact match) ---------- */
+      rewrite: {
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              <div class="orig">${esc(it.q)}</div>
+              <textarea class="field" data-field="${i}" rows="2" placeholder="เขียนประโยคที่แก้แล้ว..."></textarea>
+              <div data-fb></div>
+            </div>`).join('');
+        },
+        check(ex, card) {
+          return gradeFields(ex, card, (it, val) => it.accept.some(a => normLoose(a) === normLoose(val)));
+        }
+      },
+
+      /* ---------- Comma splice fixes ---------- */
+      splice: {
+        render(ex) { return KINDS.rewrite.render(ex); },
+        check(ex, card) {
+          return gradeFields(ex, card, (it, val) => spliceOk(it.a, it.b, val));
+        }
+      },
+
+      /* ---------- Run-on or correct? ---------- */
+      rocheck: {
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              <div class="q-text">${i + 1}. ${esc(it.q)}</div>
+              <div class="ro-btns">
+                <button class="opt" style="width:auto" data-act="ro-pick" data-i="${i}" data-v="C">✔ C — ถูกต้อง</button>
+                <button class="opt" style="width:auto" data-act="ro-pick" data-i="${i}" data-v="RO">✘ RO — Run-on</button>
+              </div>
+              <textarea class="field" data-field="${i}" rows="2" placeholder="เขียนประโยคที่แก้แล้ว..." hidden></textarea>
+              <div data-fb></div>
+            </div>`).join('');
+        },
+        check(ex, card) {
+          const st = getState(ex);
+          const missing = ex.items.map((it, i) => !st.ro[i] || (st.ro[i] === 'RO' && !card.querySelector(`[data-field="${i}"]`).value.trim()));
+          if (missing.some(Boolean)) {
+            markUnanswered(card, missing);
+            return null;
+          }
+          let score = 0;
+          ex.items.forEach((it, i) => {
+            const pick = st.ro[i];
+            const field = card.querySelector(`[data-field="${i}"]`);
+            let ok;
+            let body;
+            if (it.answer === 'C') {
+              ok = pick === 'C';
+              body = ok ? (it.explain || '') : `ประโยคนี้ถูกต้องแล้ว (C) — ${it.explain || ''}`;
+            } else if (pick !== 'RO') {
+              ok = false;
+              body = `ประโยคนี้เป็น run-on — ตัวอย่างการแก้: <span class="en">${esc(it.model)}</span>`;
+            } else {
+              ok = spliceOk(it.a, it.b, field.value);
+              body = `ตัวอย่างการแก้: <span class="en">${esc(it.model)}</span>`;
+            }
+            if (ok) score++;
+            field.disabled = true;
+            if (!field.hidden) field.classList.add(ok ? 'ok' : 'bad');
+            card.querySelectorAll(`[data-act="ro-pick"][data-i="${i}"]`).forEach(b => { b.disabled = true; });
+            card.querySelector(`.q-item[data-i="${i}"] [data-fb]`).innerHTML = itemFeedback(ok, body) +
+              (!ok && it.answer === 'RO' && pick === 'RO' ? `<div class="row-actions">${overrideBtn(i)}</div>` : '');
+          });
+          st.locked = true;
+          return score;
+        }
+      },
+
+      /* ---------- Open writing with model answer + self-check ---------- */
+      open: {
+        selfGraded: true,
+        render(ex) {
+          return ex.items.map((it, i) => `
+            <div class="q-item" data-i="${i}">
+              ${it.fragment ? `<div class="orig">Fragment: ${esc(it.q)}</div>` : `<div class="q-text">${it.q}</div>`}
+              <textarea class="field" data-field="${i}" rows="${it.minWords ? 5 : 3}" placeholder="เขียนคำตอบของคุณ..."></textarea>
+              <div class="meta-line" data-meta="${i}"></div>
+              <div class="row-actions"><button class="btn btn-sm" data-act="reveal" data-i="${i}">👀 ตรวจ & ดูตัวอย่างคำตอบ</button></div>
+              <div data-fb></div>
+            </div>`).join('');
+        }
+      },
+
+      /* ---------- Tap the pronouns ---------- */
+      pronounHunt: {
+        render(ex) {
+          return `
+            <div class="hunt-legend"><span class="l-hit">เลือกถูก</span><span class="l-miss">ยังไม่ได้เลือก</span><span class="l-false">ไม่ใช่สรรพนาม</span></div>
+            ${ex.passages.map((p, pi) => {
+              let k = 0;
+              const html = p.text.replace(/\{([^}]+)\}|([A-Za-z’']+)|([^A-Za-z’'{]+)/g, (m, pron, word, other) => {
+                if (other) return esc(other);
+                const w = pron || word;
+                return `<span class="tok" data-act="hunt" data-pron="${pron ? 1 : 0}" data-k="${pi}-${k++}">${esc(w)}</span>`;
+              });
+              return `<div class="hunt-passage"><h4>${esc(p.title)}</h4><div class="hunt-text">${html}</div></div>`;
+            }).join('')}
+            ${ex.note ? `<p class="muted" style="font-size: 0.82rem;" data-hunt-note hidden>💡 ${esc(ex.note)}</p>` : ''}`;
+        },
+        check(ex, card) {
+          const toks = [...card.querySelectorAll('.tok')];
+          if (!toks.some(t => t.classList.contains('sel'))) {
+            toast('แตะเลือกคำสรรพนามก่อนแล้วค่อยตรวจ');
+            return null;
+          }
+          let hits = 0;
+          let falses = 0;
+          let total = 0;
+          toks.forEach(t => {
+            const isPron = t.dataset.pron === '1';
+            const sel = t.classList.contains('sel');
+            t.classList.remove('sel');
+            if (isPron) total++;
+            if (isPron && sel) { hits++; t.classList.add('hit'); }
+            else if (isPron) t.classList.add('missed');
+            else if (sel) { falses++; t.classList.add('false'); }
+          });
+          getState(ex).locked = true;
+          const note = card.querySelector('[data-hunt-note]');
+          if (note) note.hidden = false;
+          card.querySelector('[data-result]').dataset.extra = `พบ ${hits} จาก ${total} คำ · เลือกเกิน ${falses} คำ (หักคะแนนคำที่เลือกผิด)`;
+          return Math.max(0, hits - falses);
+        },
+        total: ex => ex.passages.reduce((n, p) => n + (p.text.match(/\{/g) || []).length, 0)
+      },
+
+      /* ---------- Rewrite a whole paragraph consistently ---------- */
+      paragraphFix: {
+        render(ex) {
+          return `
+            <div class="orig">${esc(ex.original)}</div>
+            <textarea class="field" data-field="0" rows="6">${esc(ex.original)}</textarea>
+            <div data-fb></div>`;
+        },
+        check(ex, card) {
+          const field = card.querySelector('[data-field="0"]');
+          const text = field.value;
+          const issues = ex.checks.filter(c => new RegExp(c.bad, 'i').test(text));
+          const missing = ex.requires.filter(w => !new RegExp('\\b' + escapeRe(w) + '\\b', 'i').test(text));
+          const score = Math.max(0, ex.checks.length - issues.length - missing.length);
+          field.disabled = true;
+          field.classList.add(issues.length || missing.length ? 'bad' : 'ok');
+          card.querySelector('[data-fb]').innerHTML = `
+            <div class="q-explain ${issues.length || missing.length ? 'bad' : 'ok'}">
+              ${issues.length || missing.length ? '<b class="bad">ยังมีจุดที่ต้องแก้:</b><ul class="checklist">' + issues.map(c => `<li>${esc(c.msg)}</li>`).join('') + missing.map(w => `<li>ยังไม่พบคำว่า “${esc(w)}”</li>`).join('') + '</ul>' : '<b class="ok">✓ สม่ำเสมอทั้งย่อหน้าแล้ว!</b>'}
+            </div>
+            <div class="model-box"><span class="lbl">ตัวอย่างคำตอบ</span><span class="en">${esc(ex.model)}</span></div>`;
+          return score;
+        },
+        total: ex => ex.checks.length
+      }
+    };
+
+    function getState(ex) {
+      if (!exState.has(ex.id)) exState.set(ex.id, { answers: {}, order: {}, ro: {}, self: {}, locked: false, overrides: 0 });
+      return exState.get(ex.id);
+    }
+
+    function exTotal(ex) {
+      const kind = KINDS[ex.kind];
+      return kind.total ? kind.total(ex) : ex.items.length;
+    }
+
+    function markUnanswered(card, flags) {
+      card.querySelectorAll('.q-item').forEach((q, i) => q.classList.toggle('need', !!flags[i]));
+      const n = flags.filter(Boolean).length;
+      toast(`ยังตอบไม่ครบ อีก ${n} ข้อ`);
+      const first = card.querySelector('.q-item.need');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function gradeFields(ex, card, isCorrect) {
+      const fields = [...card.querySelectorAll('[data-field]')];
+      if (fields.some(f => !f.value.trim())) {
+        markUnanswered(card, fields.map(f => !f.value.trim()));
+        return null;
+      }
+      let score = 0;
+      fields.forEach((f, i) => {
+        const it = ex.items[i];
+        const ok = isCorrect(it, f.value);
+        if (ok) score++;
+        f.classList.add(ok ? 'ok' : 'bad');
+        f.disabled = true;
+        card.querySelector(`.q-item[data-i="${i}"] [data-fb]`).innerHTML =
+          itemFeedback(ok, `ตัวอย่างคำตอบ: <span class="en">${esc(it.model)}</span>${it.explain ? '<br>' + it.explain : ''}`) +
+          (ok ? '' : `<div class="row-actions">${overrideBtn(i)}</div>`);
+      });
+      return score;
+    }
+
+    function orderGroupHtml(ex, gi, picked, checked = false) {
+      const g = ex.groups[gi];
+      const letters = 'abcdefghij';
+      const pickedList = picked.length
+        ? picked.map((sIdx, pos) => {
+            const cls = checked ? (g.answer[pos] === sIdx ? 'ok' : 'bad') : '';
+            return `<li><button class="order-chip ${cls}" data-act="order-unpick" data-g="${gi}" data-pos="${pos}" ${checked ? 'disabled' : ''}><span class="k">${pos + 1}.</span><span>${esc(g.sentences[sIdx])}</span></button></li>`;
+          }).join('')
+        : '<li class="order-empty">แตะประโยคด้านขวาตามลำดับที่ถูกต้อง</li>';
+      const pool = g.sentences.map((s, si) => `<li><button class="order-chip" data-act="order-pick" data-g="${gi}" data-s="${si}" ${picked.includes(si) || checked ? 'disabled' : ''}><span class="k">${letters[si]}</span><span>${esc(s)}</span></button></li>`).join('');
+      const answerHtml = checked
+        ? `<div class="q-explain ${picked.every((s, p) => g.answer[p] === s) ? 'ok' : 'bad'}"><b>ลำดับที่ถูก:</b> ${g.answer.map(si => letters[si]).join(' → ')}<br>${esc(g.explain || '')}</div>`
+        : '';
+      return `
+        <h4>${esc(g.title)}</h4>
+        <div class="order-cols">
+          <div><div class="order-col-title">ลำดับของคุณ</div><ol class="order-list">${pickedList}</ol></div>
+          <div><div class="order-col-title">ประโยค</div><ul class="order-list">${pool}</ul></div>
+        </div>
+        ${answerHtml}`;
+    }
+
+    function renderExercise(ex) {
+      const kind = KINDS[ex.kind];
+      const meta = KIND_META[ex.kind];
+      const footer = kind.instant || kind.selfGraded
+        ? `<button class="btn btn-sm" data-act="reset">↺ ทำใหม่</button>`
+        : `<button class="btn btn-primary" data-act="check">ตรวจคำตอบ</button><button class="btn" data-act="reset">↺ ทำใหม่</button>`;
+      return `
+        <section class="card ex-card" id="ex-${ex.id}" data-ex="${ex.id}">
+          <header class="ex-head">
+            <span class="ex-kind">${meta.icon} ${meta.label}</span>
+            <span class="ex-status" data-status>${statusChipHtml(ex.id)}</span>
+            <h3>${ex.title}</h3>
+          </header>
+          ${ex.instructions ? `<p class="ex-inst">${ex.instructions}</p>` : ''}
+          ${ex.intro ? `<div class="ex-intro">${ex.intro}</div>` : ''}
+          <div class="ex-body">${kind.render(ex)}</div>
+          <footer class="ex-foot">${footer}<div class="ex-result" data-result></div></footer>
+        </section>`;
+    }
+
+    function resetExercise(ex, card) {
+      exState.delete(ex.id);
+      card.outerHTML = renderExercise(ex);
+      const fresh = document.getElementById('ex-' + ex.id);
+      bindCardInputs(fresh);
+    }
+
+    function finishGrade(ex, card, score) {
+      const total = exTotal(ex);
+      saveResult(ex.id, score, total);
+      const extra = card.querySelector('[data-result]').dataset.extra || '';
+      showScore(card, score, total, extra);
+      const checkBtn = card.querySelector('[data-act="check"]');
+      if (checkBtn) checkBtn.disabled = true;
+    }
+
+    // Live input helpers (Enter to jump between blanks, word counts)
+    function bindCardInputs(root) {
+      root.querySelectorAll('.blank').forEach((inp, idx, all) => {
+        inp.addEventListener('keydown', e => {
+          if (e.key !== 'Enter') return;
+          e.preventDefault();
+          const next = all[idx + 1];
+          if (next) next.focus();
+          else inp.closest('[data-ex]').querySelector('[data-act="check"]')?.click();
+        });
+      });
+      root.querySelectorAll('.ex-card textarea.field[data-field], .ex-card input.field[data-field]').forEach(f => {
+        f.addEventListener('input', () => {
+          f.closest('.q-item')?.classList.remove('need');
+          const meta = f.closest('.q-item')?.querySelector('[data-meta]');
+          if (meta) meta.innerHTML = openMetaHtml(f.closest('[data-ex]').dataset.ex, Number(f.dataset.field), f.value);
+        });
+      });
+      root.querySelectorAll('.match-row select, .range-row select').forEach(s => {
+        s.addEventListener('change', () => s.closest('.match-row, .range-row').classList.remove('need'));
+      });
+    }
+
+    function findTransitions(text) {
+      const lower = norm(text);
+      return TRANSITIONS.filter(t => new RegExp('(^|[^a-z])' + escapeRe(t) + '([^a-z]|$)').test(lower));
+    }
+
+    function openMetaHtml(exId, i, text) {
+      const ex = exIndex.get(exId);
+      if (!ex || ex.kind !== 'open') return '';
+      const it = ex.items[i];
+      const words = countWords(text);
+      let html = `<span>${words} คำ${it.minWords ? ` / แนะนำ ≥ ${it.minWords}` : ''}</span>`;
+      if (it.highlightTransitions) {
+        const found = findTransitions(text);
+        html += `<span>Transitions: ${found.length ? found.map(t => `<b style="color: var(--teal)">${esc(t)}</b>`).join(', ') : '—'}</span>`;
+      }
+      return html;
+    }
+
+    // ==========================================================
+    // CLICK DELEGATION
+    // ==========================================================
+    const ACTIONS = {
+      choose(el, ex, card) {
+        const i = Number(el.dataset.i);
+        const j = Number(el.dataset.j);
+        const st = getState(ex);
+        if (st.answers[i] !== undefined) return;
+        const it = ex.items[i];
+        const kind = KINDS[ex.kind];
+        const ansIdx = kind.answerIndex(ex, it);
+        const ok = j === ansIdx;
+        st.answers[i] = j;
+        const item = card.querySelector(`.q-item[data-i="${i}"]`);
+        item.classList.remove('need');
+        item.querySelectorAll('.opt').forEach((b, k) => {
+          b.disabled = true;
+          if (k === ansIdx) b.classList.add('is-correct');
+          if (k === j && !ok) b.classList.add('is-wrong');
+        });
+        item.insertAdjacentHTML('beforeend', itemFeedback(ok, (ok ? '' : `คำตอบคือ <b>${esc(kind.optionLabel(ex, it, ansIdx))}</b>. `) + (it.explain || '')));
+        if (Object.keys(st.answers).length === ex.items.length) {
+          const score = ex.items.reduce((n, item2, k) => n + (st.answers[k] === kind.answerIndex(ex, item2) ? 1 : 0), 0);
+          finishGrade(ex, card, score);
+        }
+      },
+
+      check(el, ex, card) {
+        const kind = KINDS[ex.kind];
+        const score = kind.check(ex, card);
+        if (score === null || score === undefined) return;
+        getState(ex).score = score;
+        finishGrade(ex, card, score);
+      },
+
+      reset(el, ex, card) { resetExercise(ex, card); },
+
+      override(el, ex, card) {
+        const st = getState(ex);
+        st.score = (st.score || 0) + 1;
+        el.closest('.row-actions').innerHTML = '<span class="chip" style="background: var(--success-light); color: var(--success);">✓ นับเป็นคำตอบที่ถูกแล้ว</span>';
+        const field = card.querySelector(`[data-field="${el.dataset.i}"]`);
+        if (field) { field.classList.remove('bad'); field.classList.add('ok'); }
+        finishGrade(ex, card, st.score);
+      },
+
+      'order-pick'(el, ex, card) {
+        const st = getState(ex);
+        if (st.locked) return;
+        const gi = Number(el.dataset.g);
+        st.order[gi] = st.order[gi] || [];
+        st.order[gi].push(Number(el.dataset.s));
+        card.querySelector(`.order-group[data-g="${gi}"]`).innerHTML = orderGroupHtml(ex, gi, st.order[gi]);
+      },
+
+      'order-unpick'(el, ex, card) {
+        const st = getState(ex);
+        if (st.locked) return;
+        const gi = Number(el.dataset.g);
+        st.order[gi].splice(Number(el.dataset.pos), 1);
+        card.querySelector(`.order-group[data-g="${gi}"]`).innerHTML = orderGroupHtml(ex, gi, st.order[gi]);
+      },
+
+      'ro-pick'(el, ex, card) {
+        const st = getState(ex);
+        if (st.locked) return;
+        const i = Number(el.dataset.i);
+        st.ro[i] = el.dataset.v;
+        card.querySelectorAll(`[data-act="ro-pick"][data-i="${i}"]`).forEach(b => b.classList.toggle('picked', b === el));
+        const field = card.querySelector(`[data-field="${i}"]`);
+        field.hidden = el.dataset.v !== 'RO';
+        if (!field.hidden) field.focus();
+        card.querySelector(`.q-item[data-i="${i}"]`).classList.remove('need');
+      },
+
+      hunt(el, ex) {
+        if (getState(ex).locked) return;
+        el.classList.toggle('sel');
+      },
+
+      reveal(el, ex, card) {
+        const i = Number(el.dataset.i);
+        const it = ex.items[i];
+        const field = card.querySelector(`[data-field="${i}"]`);
+        const text = field.value.trim();
+        if (!text) {
+          toast('ลองเขียนคำตอบก่อน แล้วค่อยดูตัวอย่างนะ ✍️');
+          field.focus();
+          return;
+        }
+        const warnings = [];
+        if (it.fragment) {
+          if (!normLoose(text).includes(normLoose(it.fragment))) warnings.push('ประโยคของคุณไม่ได้ใช้ข้อความ fragment เดิม');
+          if (countWords(text) <= countWords(it.fragment) + 2) warnings.push('ดูเหมือนยังขาด main clause (ประธาน + กริยาหลัก)');
+        }
+        if (it.oneSentence && (text.match(/[.!?](\s|$)/g) || []).length > 1) warnings.push('ยังเป็นมากกว่า 1 ประโยค ลองรวมด้วย conjunction / -ing phrase');
+        if (it.minWords && countWords(text) < it.minWords) warnings.push(`ยังสั้นไป (${countWords(text)} คำ) ลองเขียนให้ได้อย่างน้อย ${it.minWords} คำ`);
+        if (it.highlightTransitions && findTransitions(text).length < 3) warnings.push('ลองเพิ่ม transition words ให้ได้อย่างน้อย 3 คำ');
+        if (/[.!?]$/.test(text) === false) warnings.push('อย่าลืมเครื่องหมายจบประโยค');
+        el.closest('.row-actions').remove();
+        card.querySelector(`.q-item[data-i="${i}"] [data-fb]`).innerHTML = `
+          ${warnings.map(w => `<div class="warn-line">⚠️ ${esc(w)}</div>`).join('')}
+          <div class="model-box"><span class="lbl">ตัวอย่างคำตอบ</span><span class="en">${esc(it.model)}</span>
+            ${it.checklist ? `<ul class="checklist">${it.checklist.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
+          </div>
+          <div class="self-row">ประเมินตัวเอง:
+            <button class="btn btn-sm" data-act="self" data-i="${i}" data-v="1">✓ ถูก / ใกล้เคียง</button>
+            <button class="btn btn-sm" data-act="self" data-i="${i}" data-v="0">✗ ยังไม่ได้</button>
+          </div>`;
+      },
+
+      self(el, ex, card) {
+        const st = getState(ex);
+        const i = Number(el.dataset.i);
+        st.self[i] = el.dataset.v === '1';
+        el.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('on-ok', 'on-bad'));
+        el.classList.add(st.self[i] ? 'on-ok' : 'on-bad');
+        if (Object.keys(st.self).length === ex.items.length) {
+          finishGrade(ex, card, Object.values(st.self).filter(Boolean).length);
+        }
+      },
+
+      'speak-para'(el) {
+        speak(plainText(el.closest('.para').querySelector('p').innerHTML), el);
+      },
+
+      'speak-all'(el) {
+        const article = el.closest('.passage');
+        speak([...article.querySelectorAll('.para p')].map(p => plainText(p.innerHTML)).join(' '), el);
+      },
+
+      'speak-text'(el) { speak(el.dataset.text, el); },
+
+      gloss(el) { openGlossPop(el); },
+
+      known(el) {
+        const key = el.dataset.word;
+        knownWords[key] = !knownWords[key];
+        saveJSON(KNOWN_KEY, knownWords);
+        el.classList.toggle('on', knownWords[key]);
+        el.textContent = knownWords[key] ? '★ จำได้แล้ว' : '☆ จำได้';
+        el.closest('.gl-card').classList.toggle('known', knownWords[key]);
+        updateGlossaryCount();
+      },
+
+      topic(el) {
+        const box = el.closest('.composer');
+        box.querySelectorAll('.topic-chip').forEach(c => c.classList.toggle('active', c === el));
+        const id = box.dataset.comp;
+        drafts[id + ':topic'] = el.dataset.topic;
+        saveJSON(DRAFT_KEY, drafts);
+      },
+
+      'plan-sample'(el) {
+        const box = el.closest('.plan-field').querySelector('.model-box');
+        box.hidden = !box.hidden;
+      },
+
+      'copy-text'(el) {
+        const target = document.getElementById(el.dataset.target);
+        const text = target.tagName === 'TEXTAREA' ? target.value : [...target.querySelectorAll('textarea')].map(t => t.closest('.plan-field').querySelector('label').textContent + '\n' + t.value).join('\n\n');
+        navigator.clipboard?.writeText(text).then(() => toast('คัดลอกแล้ว 📋'), () => toast('คัดลอกไม่สำเร็จ'));
+      },
+
+      'reset-progress'() {
+        if (!confirm('ล้างคะแนนและความคืบหน้าทั้งหมดใช่ไหม?')) return;
+        progress = {};
+        saveJSON(PROGRESS_KEY, progress);
+        route();
+        toast('ล้างความคืบหน้าแล้ว');
+      },
+
+      'gl-filter'(el) {
+        el.parentElement.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === el));
+        glossaryFilter = el.dataset.v;
+        filterGlossary();
+      },
+
+      'quiz-start'(el) { startGlossQuiz(el.dataset.unit, el.dataset.mode); },
+      'quiz-answer'(el) { answerGlossQuiz(el); },
+      'quiz-type-check'() { answerGlossQuizTyped(); },
+      'quiz-next'() { nextGlossQuiz(); },
+      'quiz-close'() { closeGlossQuiz(); }
+    };
+
+    document.addEventListener('click', e => {
+      const el = e.target.closest('[data-act]');
+      if (!el) {
+        if (!e.target.closest('.gloss-pop')) closeGlossPop();
+        return;
+      }
+      const card = el.closest('[data-ex]');
+      const ex = card ? exIndex.get(card.dataset.ex) : null;
+      const handler = ACTIONS[el.dataset.act];
+      if (handler) handler(el, ex, card, e);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeGlossPop();
+    });
+
+    // ==========================================================
+    // GLOSSARY POPOVER IN PASSAGES
+    // ==========================================================
+    function glossaryRegex(unit) {
+      const entries = unit.glossary.flatMap(g => [g.word, ...(g.alts || [])]);
+      const parts = entries.sort((a, b) => b.length - a.length).map(wordFormsPattern);
+      return new RegExp('\\b(' + parts.join('|') + ')\\b', 'gi');
+    }
+
+    function findGlossEntry(unit, text) {
+      const t = text.toLowerCase();
+      return unit.glossary.find(g => [g.word, ...(g.alts || [])].some(w => new RegExp('^' + wordFormsPattern(w) + '$', 'i').test(t)));
+    }
+
+    function linkGlossary(root, unit) {
+      const re = glossaryRegex(unit);
+      root.querySelectorAll('.passage[data-glossary="1"] .para p').forEach(p => {
+        const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(node => {
+          const text = node.nodeValue;
+          re.lastIndex = 0;
+          if (!re.test(text)) return;
+          re.lastIndex = 0;
+          const frag = document.createDocumentFragment();
+          let last = 0;
+          text.replace(re, (m, _g, offset) => {
+            frag.appendChild(document.createTextNode(text.slice(last, offset)));
+            const btn = document.createElement('button');
+            btn.className = 'gl-word';
+            btn.dataset.act = 'gloss';
+            btn.dataset.unit = unit.id;
+            btn.textContent = m;
+            frag.appendChild(btn);
+            last = offset + m.length;
+            return m;
+          });
+          frag.appendChild(document.createTextNode(text.slice(last)));
+          node.parentNode.replaceChild(frag, node);
+        });
+      });
+    }
+
+    let glossPop = null;
+
+    function openGlossPop(el) {
+      closeGlossPop();
+      const unit = WB.units.find(u => u.id === el.dataset.unit);
+      const entry = findGlossEntry(unit, el.textContent);
+      if (!entry) return;
+      glossPop = document.createElement('div');
+      glossPop.className = 'gloss-pop';
+      glossPop.innerHTML = `
+        <div class="gp-word">${esc(entry.word)} <button class="speak-btn" data-act="speak-text" data-text="${esc(entry.word)}" aria-label="ฟังเสียง">🔊</button></div>
+        <div class="gl-pos">${esc(entry.pos)}</div>
+        <div class="gp-th">${esc(entry.th)}</div>
+        <div class="gp-en">${esc(entry.en)}</div>`;
+      document.body.appendChild(glossPop);
+      const r = el.getBoundingClientRect();
+      const popW = glossPop.offsetWidth;
+      const left = Math.min(Math.max(12, r.left + window.scrollX + r.width / 2 - popW / 2), window.scrollX + document.documentElement.clientWidth - popW - 12);
+      glossPop.style.left = left + 'px';
+      glossPop.style.top = (r.bottom + window.scrollY + 8) + 'px';
+    }
+
+    function closeGlossPop() {
+      if (glossPop) { glossPop.remove(); glossPop = null; }
+    }
+
+    // ==========================================================
+    // BLOCK RENDERERS
+    // ==========================================================
+    function tableHtml(t) {
+      return `<div class="tbl-wrap"><table><thead><tr>${t.columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    }
+
+    const BLOCKS = {
+      heading: b => `<div class="blk-heading">${b.eyebrow ? `<div class="eyebrow">${esc(b.eyebrow)}</div>` : ''}<h2>${esc(b.title)}</h2>${b.subtitle ? `<p>${esc(b.subtitle)}</p>` : ''}</div>`,
+
+      note: b => {
+        const html = b.html || '';
+        const table = b.table ? tableHtml(b.table) : '';
+        return `<section class="card note"><h3>${esc(b.title)}</h3>${b.tableFirst ? table + html : html + table}</section>`;
+      },
+
+      passage: b => {
+        const single = b.paragraphs.length === 1;
+        return `
+          <article class="card passage" data-glossary="${b.plain ? 0 : 1}" id="${b.id}">
+            <div class="passage-head">
+              <div>
+                <div class="passage-kicker">📄 Passage</div>
+                <h3>${esc(b.title)}</h3>
+                ${b.source ? `<span class="src">${esc(b.source)}</span>` : ''}
+              </div>
+              <button class="btn btn-sm" data-act="speak-all" title="ฟังทั้งบท">🔊 ฟัง</button>
+            </div>
+            ${b.didYouKnow ? `<div class="dyk"><b>💡 Did you know?</b><ul>${b.didYouKnow.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
+            ${b.paragraphs.map((p, i) => `
+              <div class="para ${single ? 'single' : ''}">
+                ${single ? '' : `<span class="para-num">${i + 1}</span>`}
+                <p>${p}</p>
+                <button class="speak-btn" data-act="speak-para" aria-label="ฟังย่อหน้านี้">🔊</button>
+              </div>`).join('')}
+            ${b.plain ? '' : '<p class="muted" style="font-size: 0.76rem; margin-top: 8px;">💡 แตะคำที่ขีดเส้นประเพื่อดูความหมายจาก Glossary</p>'}
+          </article>`;
+      },
+
+      discussion: b => `<section class="card disc"><h3>${esc(b.title)}</h3><ol>${b.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ol></section>`,
+
+      tenseCards: b => `
+        <div class="tense-grid">
+          ${b.cards.map(c => `
+            <section class="card tense-card">
+              <div><div class="tense-name">${esc(c.name)}</div><div class="tense-role">${esc(c.role)}</div></div>
+              <div class="tense-form">${esc(c.form)}</div>
+              <ul>${c.uses.map(u => `<li>${esc(u)}</li>`).join('')}</ul>
+              ${c.examples.length ? `<div class="tense-ex">${c.examples.map(esc).join('<br>')}</div>` : ''}
+              <div class="tense-time">${c.time.split(',').map(t => `<span>${esc(t.trim())}</span>`).join('')}</div>
+              <details><summary>ตัวอย่างในเรื่องเล่า</summary><div class="model-text">${esc(c.model)}</div></details>
+            </section>`).join('')}
+        </div>
+        <div class="card tense-foot">${b.footnote}</div>`,
+
+      freytag: b => `
+        <section class="card freytag">
+          <h3>⛰️ ${esc(b.title)}</h3>
+          <svg viewBox="0 0 640 210" role="img" aria-label="Freytag's Pyramid">
+            <polyline points="20,170 150,170 330,40 510,170 620,170" fill="none" stroke="var(--primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="150,170 330,40 510,170" fill="var(--primary-light)"/>
+            ${[[85, 170, '1 Exposition', 195], [150, 170, '2 Inciting incident', 195], [225, 105, '3 Rising action', 98], [330, 40, '4 Climax', 26], [430, 105, '5 Falling action', 98], [570, 170, '6 Resolution', 195]]
+              .map(([x, y, label, ty]) => `<circle cx="${x}" cy="${y}" r="7" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="3"/><text x="${x}" y="${ty}" text-anchor="middle" font-size="14" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" fill="var(--text-main)">${label}</text>`).join('')}
+          </svg>
+          <div class="freytag-steps">
+            ${b.steps.map((s, i) => `<div class="fstep"><span class="fstep-n">${i + 1}</span><b>${esc(s.name)}</b> <span class="fs-th">${esc(s.th)}</span><p>${esc(s.desc)}</p><i>${esc(s.example)}</i></div>`).join('')}
+          </div>
+        </section>`,
+
+      errorCards: b => `
+        <div class="err-grid">
+          ${b.cards.map(c => `
+            <section class="card err-card">
+              <h3>${esc(c.name)}</h3>
+              <p>${c.what}</p>
+              <div class="err-cols">
+                <div class="err-col bad"><h4>✘ ตัวอย่างที่ผิด</h4>${c.wrong.map(w => `<div>${esc(w)}</div>`).join('')}</div>
+                <div class="err-col good"><h4>✔ วิธีแก้</h4>${c.fixes.map(f => `<div>${f}</div>`).join('')}</div>
+              </div>
+            </section>`).join('')}
+        </div>`,
+
+      exercise: b => renderExercise(b),
+
+      composer: b => {
+        const draft = drafts[b.id] || '';
+        const topic = drafts[b.id + ':topic'] || '';
+        const ticks = drafts[b.id + ':ticks'] || {};
+        return `
+          <section class="card composer" data-comp="${b.id}" id="comp-${b.id}">
+            <h3>🖋️ ${esc(b.title)}</h3>
+            <p class="ex-inst">${esc(b.instructions)}</p>
+            <div class="sub-title">เลือกหัวข้อ</div>
+            <div class="topic-list">${b.topics.map(t => `<button class="topic-chip ${t === topic ? 'active' : ''}" data-act="topic" data-topic="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+            <textarea class="field" id="draft-${b.id}" placeholder="เริ่มเขียนเรื่องเล่าของคุณที่นี่... (ระบบบันทึกร่างให้อัตโนมัติ)">${esc(draft)}</textarea>
+            <div class="comp-stats" data-stats></div>
+            <div class="sub-title">คำแนะนำอัตโนมัติ</div>
+            <ul class="hint-list" data-hints></ul>
+            <div class="sub-title">Checklist ก่อนส่ง</div>
+            <div class="check-grid">${b.checklist.map((c, i) => `<label><input type="checkbox" data-tick="${i}" ${ticks[i] ? 'checked' : ''}> ${esc(c)}</label>`).join('')}</div>
+            ${b.rubric ? `<details style="margin-top: 14px;"><summary>ดู Writing Rubric (15 คะแนน)</summary>${tableHtml(b.rubric)}</details>` : ''}
+            <div class="row-actions" style="margin-top: 14px;"><button class="btn btn-sm" data-act="copy-text" data-target="draft-${b.id}">📋 คัดลอกข้อความ</button></div>
+          </section>`;
+      },
+
+      planner: b => `
+        <section class="card planner" id="plan-${b.id}">
+          <h3>🗂️ ${esc(b.title)}</h3>
+          <p>${b.intro}</p>
+          ${b.fields.map((f, i) => `
+            <div class="plan-field">
+              <label>${esc(f.label)}</label>
+              <small>${esc(f.hint)}</small>
+              <textarea class="field" rows="3" data-plan="${b.id}:${i}" placeholder="จดไอเดียของกลุ่ม...">${esc(drafts[b.id + ':' + i] || '')}</textarea>
+              ${f.sample ? `<div class="row-actions"><button class="btn btn-sm" data-act="plan-sample">ดูตัวอย่างจากหนังสือ</button></div><div class="model-box" hidden><span class="lbl">Sample</span><span class="en">${esc(f.sample)}</span></div>` : ''}
+            </div>`).join('')}
+          <div class="row-actions"><button class="btn btn-sm" data-act="copy-text" data-target="plan-${b.id}">📋 คัดลอกทั้งหมด</button></div>
+        </section>`
+    };
+
+    // ==========================================================
+    // COMPOSER ANALYSIS
+    // ==========================================================
+    const PRESENT_VERBS = ['am', 'is', 'are', 'go', 'goes', 'feel', 'feels', 'see', 'sees', 'run', 'runs', 'walk', 'walks', 'say', 'says', 'think', 'thinks', 'want', 'wants', 'know', 'knows', 'come', 'comes', 'get', 'gets', 'look', 'looks', 'start', 'starts', 'decide', 'decides', 'realize', 'realizes', 'hear', 'hears'];
+    const SUBORDINATORS = /^(when|while|as|because|after|before|if|although|though|since|by the time|once|until|whenever|even though|as soon as)\b/i;
+
+    function analyzeNarrative(text, min, max) {
+      const words = countWords(text);
+      const sentences = (text.match(/[^.!?]+[.!?]+["”']?/g) || []).map(s => s.trim()).filter(Boolean);
+      const transitions = findTransitions(text);
+      const hints = [];
+
+      // Strip quoted speech before tense / POV checks
+      const unquoted = text.replace(/[“"][^”"]*[”"]/g, ' ');
+      const lower = ' ' + unquoted.toLowerCase().replace(/[^a-z'\s]/g, ' ') + ' ';
+
+      const presentFound = PRESENT_VERBS.filter(v => lower.includes(' ' + v + ' '));
+      if (presentFound.length) hints.push({ msg: `อาจมี present tense ปนอยู่: <q>${presentFound.slice(0, 6).join(', ')}</q> — ถ้าไม่ใช่การสะท้อนปัจจุบัน ให้เปลี่ยนเป็น past tense` });
+      if (/\byou(r)?\b/.test(lower)) hints.push({ msg: 'พบคำว่า <q>you / your</q> — ระวังการเปลี่ยน point of view' });
+
+      sentences.forEach(s => {
+        // ", I lost my phone" after a full clause; short openers like "Last summer, I…" are fine
+        const spliceRe = /,\s+(i|he|she|we|they|it|my|his|her|our|their|everyone|nobody)\s+[a-z]+/gi;
+        let m;
+        while (!SUBORDINATORS.test(s) && (m = spliceRe.exec(s))) {
+          if (countWords(s.slice(0, m.index)) > 4) {
+            hints.push({ msg: `อาจเป็น comma splice: <q>${esc(s.length > 90 ? s.slice(0, 88) + '…' : s)}</q>` });
+            break;
+          }
+        }
+        if (SUBORDINATORS.test(s) && !s.includes(',') && countWords(s) < 9) {
+          hints.push({ msg: `อาจเป็น fragment: <q>${esc(s)}</q>` });
+        }
+        if (countWords(s) > 40) hints.push({ msg: `ประโยคยาวมาก (${countWords(s)} คำ) อาจเป็น run-on: <q>${esc(s.slice(0, 80))}…</q>` });
+      });
+
+      if (words && transitions.length < 4) hints.push({ msg: 'ลองเพิ่ม transition words ให้หลากหลายขึ้น (อย่างน้อย 4–5 คำ)' });
+      if (words >= min && words <= max && !hints.length) hints.push({ msg: 'ยอดเยี่ยม! ความยาวพอดีและไม่พบจุดที่น่าสงสัย ✨', good: true });
+
+      return { words, sentences: sentences.length, transitions, hints, inRange: words >= min && words <= max };
+    }
+
+    function updateComposer(box) {
+      const id = box.dataset.comp;
+      const block = findBlock(id);
+      const text = box.querySelector('textarea').value;
+      const a = analyzeNarrative(text, block.min, block.max);
+      box.querySelector('[data-stats]').innerHTML = `
+        <div class="comp-stat ${a.inRange ? 'in-range' : a.words ? 'out-range' : ''}"><b>${a.words}</b><span>คำ (เป้าหมาย ${block.min}–${block.max})</span></div>
+        <div class="comp-stat"><b>${a.sentences}</b><span>ประโยค</span></div>
+        <div class="comp-stat"><b>${a.transitions.length}</b><span>transition words</span></div>
+        <div class="comp-stat"><b>${a.sentences ? Math.round(a.words / a.sentences) : 0}</b><span>คำ/ประโยค เฉลี่ย</span></div>
+        ${a.transitions.length ? `<div style="grid-column: 1 / -1;" class="trans-chips">${a.transitions.map(t => `<span>${esc(t)}</span>`).join('')}</div>` : ''}`;
+      box.querySelector('[data-hints]').innerHTML = text.trim()
+        ? a.hints.map(h => `<li class="${h.good ? 'good' : ''}">${h.good ? '' : '⚠️ '}${h.msg}</li>`).join('')
+        : '<li class="good">เริ่มเขียนได้เลย ระบบจะช่วยตรวจระหว่างพิมพ์</li>';
+    }
+
+    function findBlock(id) {
+      for (const unit of WB.units) {
+        for (const blocks of Object.values(unit.sections)) {
+          const b = blocks.find(x => x.id === id);
+          if (b) return b;
+        }
+      }
+      return null;
+    }
+
+    let draftTimer = null;
+    document.addEventListener('input', e => {
+      const t = e.target;
+      const comp = t.closest('.composer');
+      if (comp && t.tagName === 'TEXTAREA') {
+        updateComposer(comp);
+        clearTimeout(draftTimer);
+        draftTimer = setTimeout(() => { drafts[comp.dataset.comp] = t.value; saveJSON(DRAFT_KEY, drafts); }, 400);
+      }
+      if (t.dataset.plan) {
+        drafts[t.dataset.plan] = t.value;
+        clearTimeout(draftTimer);
+        draftTimer = setTimeout(() => saveJSON(DRAFT_KEY, drafts), 400);
+      }
+      if (t.id === 'glSearch') filterGlossary();
+    });
+
+    document.addEventListener('change', e => {
+      const t = e.target;
+      if (t.dataset.tick !== undefined) {
+        const id = t.closest('.composer').dataset.comp;
+        const ticks = drafts[id + ':ticks'] || {};
+        ticks[t.dataset.tick] = t.checked;
+        drafts[id + ':ticks'] = ticks;
+        saveJSON(DRAFT_KEY, drafts);
+      }
+    });
+
+    // ==========================================================
+    // GLOSSARY SECTION + QUIZ
+    // ==========================================================
+    let glossaryFilter = 'all';
+
+    function highlightInExample(entry) {
+      const re = new RegExp('\\b(' + [entry.word, ...(entry.alts || [])].map(wordFormsPattern).join('|') + ')\\b', 'gi');
+      return esc(entry.example).replace(re, '<b>$1</b>');
+    }
+
+    function renderGlossary(unit) {
+      const quizId = `${unit.id}-g-quiz`;
+      return `
+        <div class="blk-heading">
+          <div class="eyebrow">Unit ${unit.number} Glossary</div>
+          <h2>คำศัพท์ประจำบท (${unit.glossary.length} คำ)</h2>
+          <p>ฟังเสียง ดูความหมายไทย–อังกฤษ และประโยคตัวอย่างจากบทอ่าน แล้วทดสอบตัวเองด้วยควิซ</p>
+        </div>
+        <section class="card ex-card" data-quiz-host id="ex-${quizId}">
+          <header class="ex-head">
+            <span class="ex-kind">🎮 ควิซคำศัพท์</span>
+            <span class="ex-status">${statusChipHtml(quizId)}</span>
+            <h3>ทดสอบคำศัพท์ Unit ${unit.number}</h3>
+          </header>
+          <p class="ex-inst">เลือกรูปแบบ แล้วตอบให้ได้มากที่สุด (สุ่ม 10 ข้อ)</p>
+          <div class="row-actions">
+            <button class="btn btn-primary" data-act="quiz-start" data-unit="${unit.id}" data-mode="th">🇹🇭 ความหมาย → คำศัพท์</button>
+            <button class="btn" data-act="quiz-start" data-unit="${unit.id}" data-mode="def">📘 นิยามอังกฤษ → คำศัพท์</button>
+            <button class="btn" data-act="quiz-start" data-unit="${unit.id}" data-mode="gap">✏️ เติมคำในประโยค</button>
+          </div>
+          <div data-quiz></div>
+        </section>
+        <div class="gl-toolbar">
+          <div class="gl-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="glSearch" type="search" placeholder="ค้นหาคำศัพท์ ความหมาย..." autocomplete="off">
+          </div>
+          <div class="seg" role="tablist">
+            <button class="${glossaryFilter === 'all' ? 'active' : ''}" data-act="gl-filter" data-v="all">ทั้งหมด</button>
+            <button class="${glossaryFilter === 'todo' ? 'active' : ''}" data-act="gl-filter" data-v="todo">ยังไม่จำ</button>
+            <button class="${glossaryFilter === 'known' ? 'active' : ''}" data-act="gl-filter" data-v="known">จำได้แล้ว</button>
+          </div>
+          <span class="chip" id="glCount"></span>
+        </div>
+        <div class="gl-grid" id="glGrid">
+          ${unit.glossary.map(g => {
+            const key = unit.id + ':' + g.word;
+            const on = !!knownWords[key];
+            return `
+              <article class="card gl-card ${on ? 'known' : ''}" data-search="${esc((g.word + ' ' + g.th + ' ' + g.en).toLowerCase())}" data-key="${esc(key)}">
+                <div class="gl-top">
+                  <div><div class="gl-word-big">${esc(g.word)}</div><div class="gl-pos">${esc(g.pos)}</div></div>
+                  <div class="gl-actions">
+                    <button class="speak-btn" data-act="speak-text" data-text="${esc(g.word)}" aria-label="ฟังเสียง ${esc(g.word)}">🔊</button>
+                  </div>
+                </div>
+                <div class="gl-th">${esc(g.th)}</div>
+                <div class="gl-en">${esc(g.en)}</div>
+                <div class="gl-ex">${highlightInExample(g)} <button class="speak-btn" style="display: inline-grid; width: 24px; height: 24px; font-size: 0.65rem; vertical-align: middle;" data-act="speak-text" data-text="${esc(g.example)}" aria-label="ฟังประโยค">🔊</button></div>
+                <div><button class="known-btn ${on ? 'on' : ''}" data-act="known" data-word="${esc(key)}">${on ? '★ จำได้แล้ว' : '☆ จำได้'}</button></div>
+              </article>`;
+          }).join('')}
+        </div>`;
+    }
+
+    function filterGlossary() {
+      const q = (document.getElementById('glSearch')?.value || '').toLowerCase().trim();
+      document.querySelectorAll('.gl-card').forEach(card => {
+        const known = !!knownWords[card.dataset.key];
+        const matchFilter = glossaryFilter === 'all' || (glossaryFilter === 'known' ? known : !known);
+        card.hidden = !(matchFilter && (!q || card.dataset.search.includes(q)));
+      });
+      updateGlossaryCount();
+    }
+
+    function updateGlossaryCount() {
+      const cards = [...document.querySelectorAll('.gl-card')];
+      const known = cards.filter(c => knownWords[c.dataset.key]).length;
+      const el = document.getElementById('glCount');
+      if (el) el.textContent = `★ จำได้ ${known}/${cards.length}`;
+    }
+
+    let quiz = null;
+
+    function startGlossQuiz(unitId, mode) {
+      const unit = WB.units.find(u => u.id === unitId);
+      const pool = [...unit.glossary].sort(() => Math.random() - 0.5).slice(0, 10);
+      quiz = { unit, mode, pool, idx: 0, score: 0, answered: false };
+      renderGlossQuizStep();
+    }
+
+    function renderGlossQuizStep() {
+      const host = document.querySelector('[data-quiz]');
+      const { unit, mode, pool, idx } = quiz;
+      const entry = pool[idx];
+      quiz.answered = false;
+      let prompt;
+      if (mode === 'th') prompt = `<div class="quiz-prompt">${esc(entry.th)}</div><div class="muted">${esc(entry.pos)}</div>`;
+      else if (mode === 'def') prompt = `<div class="quiz-prompt en">“${esc(entry.en)}”</div><div class="muted">${esc(entry.pos)}</div>`;
+      else {
+        const re = new RegExp('\\b(' + [entry.word, ...(entry.alts || [])].map(wordFormsPattern).join('|') + ')\\b', 'gi');
+        prompt = `<div class="quiz-prompt en">${esc(entry.example).replace(re, '<b style="color: var(--primary)">_______</b>')}</div><div class="muted">${esc(entry.th)} · ${esc(entry.pos)}</div>`;
+      }
+      let answerUi;
+      if (mode === 'gap') {
+        answerUi = `<div class="quiz-type"><input class="field" id="quizInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="พิมพ์คำศัพท์ (รูปพื้นฐาน)..."><button class="btn btn-primary" data-act="quiz-type-check">ตรวจ</button></div>`;
+      } else {
+        const others = unit.glossary.filter(g => g !== entry).sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [entry, ...others].sort(() => Math.random() - 0.5);
+        answerUi = `<div class="quiz-opts">${options.map(o => `<button class="opt" data-act="quiz-answer" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>`;
+      }
+      host.innerHTML = `
+        <div class="quiz-card card" style="margin-top: 14px;">
+          <div class="quiz-meta"><span>ข้อ ${idx + 1} / ${pool.length}</span><span>คะแนน ${quiz.score}</span></div>
+          <div class="bar"><span style="width: ${((idx + 1) / pool.length) * 100}%"></span></div>
+          ${prompt}
+          ${answerUi}
+          <div class="quiz-feedback" id="quizFb"></div>
+          <div class="row-actions" style="justify-content: center;"><button class="btn btn-sm" data-act="quiz-close">ออกจากควิซ</button></div>
+        </div>`;
+      const input = document.getElementById('quizInput');
+      if (input) {
+        input.addEventListener('keydown', e => {
+          if (e.key !== 'Enter') return;
+          e.preventDefault();
+          if (quiz.answered) nextGlossQuiz(); else answerGlossQuizTyped();
+        });
+        if (window.innerWidth > 720) input.focus();
+      }
+    }
+
+    function showQuizFeedback(ok, entry) {
+      quiz.answered = true;
+      if (ok) quiz.score++;
+      const fb = document.getElementById('quizFb');
+      fb.innerHTML = `<span style="color: var(--${ok ? 'success' : 'danger'})">${ok ? '🎉 ถูกต้อง!' : '❌ คำตอบคือ'} <b style="font-family: var(--font-display);">${esc(entry.word)}</b></span> — ${esc(entry.th)}
+        <div class="row-actions" style="justify-content: center;"><button class="btn btn-primary btn-sm" data-act="quiz-next">${quiz.idx + 1 < quiz.pool.length ? 'ข้อถัดไป →' : 'ดูผลคะแนน'}</button></div>`;
+      speak(entry.word);
+    }
+
+    function answerGlossQuiz(el) {
+      if (quiz.answered) return;
+      const entry = quiz.pool[quiz.idx];
+      const ok = el.dataset.word === entry.word;
+      el.parentElement.querySelectorAll('.opt').forEach(b => {
+        b.disabled = true;
+        if (b.dataset.word === entry.word) b.classList.add('is-correct');
+        else if (b === el) b.classList.add('is-wrong');
+      });
+      showQuizFeedback(ok, entry);
+    }
+
+    function answerGlossQuizTyped() {
+      if (quiz.answered) return;
+      const input = document.getElementById('quizInput');
+      if (!input.value.trim()) { toast('พิมพ์คำตอบก่อนนะ'); return; }
+      const entry = quiz.pool[quiz.idx];
+      const val = norm(input.value);
+      const ok = [entry.word, ...(entry.alts || [])].some(w => new RegExp('^' + wordFormsPattern(w) + '$').test(val));
+      input.disabled = true;
+      input.classList.add(ok ? 'ok' : 'bad');
+      showQuizFeedback(ok, entry);
+    }
+
+    function nextGlossQuiz() {
+      quiz.idx++;
+      if (quiz.idx < quiz.pool.length) {
+        renderGlossQuizStep();
+        return;
+      }
+      const id = `${quiz.unit.id}-g-quiz`;
+      saveResult(id, quiz.score, quiz.pool.length);
+      const host = document.querySelector('[data-quiz]');
+      const pct = Math.round((quiz.score / quiz.pool.length) * 100);
+      host.innerHTML = `
+        <div class="score-banner ${percentClass(pct)}" style="margin-top: 14px;">
+          <span class="big">${quiz.score}/${quiz.pool.length}</span>
+          <span>${pct >= 80 ? 'เยี่ยมมาก! คำศัพท์บทนี้แน่นแล้ว 🏆' : pct >= 50 ? 'ดีแล้ว ทบทวนคำที่พลาดอีกนิด 💪' : 'ลองทบทวนการ์ดคำศัพท์ด้านล่างแล้วเล่นใหม่นะ 📚'}</span>
+        </div>`;
+      document.querySelector('[data-quiz-host] .ex-status').innerHTML = statusChipHtml(id);
+      quiz = null;
+    }
+
+    function closeGlossQuiz() {
+      quiz = null;
+      document.querySelector('[data-quiz]').innerHTML = '';
+    }
+
+    // ==========================================================
+    // PAGES
+    // ==========================================================
+    function renderHome() {
+      const totalEx = WB.units.reduce((n, u) => n + SECTION_ORDER.reduce((m, k) => m + sectionExerciseIds(u, k).length, 0), 0);
+      const doneEx = WB.units.reduce((n, u) => n + SECTION_ORDER.reduce((m, k) => m + sectionExerciseIds(u, k).filter(id => progress[id]).length, 0), 0);
+      const totalWords = WB.units.reduce((n, u) => n + u.glossary.length, 0);
+      document.getElementById('app').innerHTML = `
+        <section class="hero">
+          <div class="hero-eyebrow">5500111 Experiential English 1</div>
+          <h1>Workbook<br>Unit 3 – 4</h1>
+          <p>แบบฝึกหัดครบทุกพาร์ตจากหนังสือ — Reading, Language Focus, Writing, Glossary และ Communication ตรวจคำตอบทันทีพร้อมคำอธิบายภาษาไทย</p>
+          <div class="hero-stats">
+            <span class="hero-stat"><b>${doneEx}/${totalEx}</b>แบบฝึกที่ทำแล้ว</span>
+            <span class="hero-stat"><b>${totalWords}</b>คำศัพท์</span>
+            <span class="hero-stat"><b>6</b>บทอ่าน</span>
+          </div>
+        </section>
+        <div class="unit-grid">
+          ${WB.units.map(u => `
+            <a class="card unit-card" href="#${u.id}/reading">
+              <div class="unit-card-head">
+                <span class="unit-emoji">${u.emoji}</span>
+                <div>
+                  <div class="unit-num">Unit ${u.number} · ${esc(u.pages)}</div>
+                  <div class="unit-title">${esc(u.title)}</div>
+                  <div class="unit-th">${esc(u.titleTh)}</div>
+                </div>
+              </div>
+              <div class="sec-bars">
+                ${SECTION_ORDER.map(k => {
+                  const pct = sectionPct(u, k);
+                  return `<div><div class="sec-bar-label"><span>${SECTION_META[k].icon} ${SECTION_META[k].label}</span><span class="sec-pct">${pct}%</span></div><div class="bar"><span style="width: ${pct}%"></span></div></div>`;
+                }).join('')}
+              </div>
+              <span class="btn btn-primary">${unitPct(u) ? 'เรียนต่อ' : 'เริ่มเรียน'} →</span>
+            </a>`).join('')}
+        </div>
+        <div class="card home-foot">
+          <span>💾 ความคืบหน้าบันทึกไว้ในเบราว์เซอร์นี้ · 🔊 แตะปุ่มลำโพงเพื่อฟังเสียงอ่าน · 📖 แตะคำที่ขีดเส้นประในบทอ่านเพื่อดูความหมาย</span>
+          <button class="btn btn-sm" data-act="reset-progress">ล้างความคืบหน้า</button>
+        </div>`;
+    }
+
+    function renderUnit(unit, sec) {
+      const blocks = sec === 'glossary' ? null : unit.sections[sec] || [];
+      const exBlocks = blocks ? blocks.filter(b => b.type === 'exercise') : [];
+      const toc = exBlocks.length ? `
+        <nav class="card toc" aria-label="แบบฝึกในพาร์ตนี้">
+          <div class="toc-title"><span>แบบฝึกในพาร์ตนี้ (${exBlocks.length})</span><span>${sectionPct(unit, sec)}% เสร็จแล้ว</span></div>
+          <div class="toc-list">${exBlocks.map(b => `<a class="toc-item ${progress[b.id] ? 'done' : ''}" data-target="${b.id}" href="#${unit.id}/${sec}" onclick="event.preventDefault(); document.getElementById('ex-${b.id}').scrollIntoView({ behavior: 'smooth' });"><span class="dot"></span>${esc(b.title.replace(/ — .*/, ''))}</a>`).join('')}</div>
+        </nav>` : '';
+
+      document.getElementById('app').innerHTML = `
+        <section class="unit-banner ${unit.id}">
+          <span class="unit-emoji">${unit.emoji}</span>
+          <div>
+            <div class="unit-num">Unit ${unit.number} · ${esc(unit.pages)}</div>
+            <h1>${esc(unit.title)}</h1>
+            <p>${esc(unit.titleTh)}</p>
+          </div>
+        </section>
+        <nav class="sec-tabs" aria-label="พาร์ตของบทเรียน">
+          ${SECTION_ORDER.map(k => {
+            const pct = sectionPct(unit, k);
+            return `<a class="sec-tab ${k === sec ? 'active' : ''}" href="#${unit.id}/${k}" data-sec="${k}" data-unit="${unit.id}">${SECTION_META[k].icon} ${SECTION_META[k].label} <span class="tab-pct ${pct === 100 ? 'done' : ''}">${pct}%</span></a>`;
+          }).join('')}
+        </nav>
+        <div class="sec-body">
+          ${sec === 'glossary' ? renderGlossary(unit) : toc + blocks.map(b => (BLOCKS[b.type] || (() => ''))(b)).join('')}
+          ${sectionNavHtml(unit, sec)}
+        </div>`;
+
+      const app = document.getElementById('app');
+      linkGlossary(app, unit);
+      bindCardInputs(app);
+      app.querySelectorAll('.composer').forEach(updateComposer);
+      if (sec === 'glossary') filterGlossary();
+      document.querySelector('.sec-tab.active')?.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+
+    function sectionNavHtml(unit, sec) {
+      const i = SECTION_ORDER.indexOf(sec);
+      const prev = SECTION_ORDER[i - 1];
+      const next = SECTION_ORDER[i + 1];
+      const nextUnit = WB.units[WB.units.indexOf(unit) + 1];
+      return `
+        <div class="row-actions" style="justify-content: space-between; margin-top: 8px;">
+          ${prev ? `<a class="btn" href="#${unit.id}/${prev}">← ${SECTION_META[prev].label}</a>` : '<a class="btn" href="#">← หน้าแรก</a>'}
+          ${next ? `<a class="btn btn-primary" href="#${unit.id}/${next}">${SECTION_META[next].label} →</a>` : nextUnit ? `<a class="btn btn-primary" href="#${nextUnit.id}/reading">Unit ${nextUnit.number} →</a>` : '<a class="btn btn-primary" href="#">กลับหน้าแรก</a>'}
+        </div>`;
+    }
+
+    function route() {
+      closeGlossPop();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      quiz = null;
+      const [uid, sec] = location.hash.replace(/^#\/?/, '').split('/');
+      const unit = WB.units.find(u => u.id === uid);
+      if (unit) renderUnit(unit, SECTION_ORDER.includes(sec) ? sec : 'reading');
+      else renderHome();
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', route);
+
+    // ==========================================================
+    // INIT
+    // ==========================================================
+    (function init() {
+      let theme = 'light';
+      try { theme = localStorage.getItem('vocab_app_theme') || 'light'; } catch (err) { /* ignore */ }
+      applyTheme(theme);
+      if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
+      route();
+    })();
+  </script>
+</body>
+</html>
